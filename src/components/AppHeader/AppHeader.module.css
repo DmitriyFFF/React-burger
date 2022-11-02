@@ -1,27 +1,24 @@
 .header {
-  display: flex;
-  max-width: calc(100% - 40px * 2);
-  margin: 0 auto;
+  width: 100%;
   background: #1C1C21;
 }
 
-/*.container {
+.container {
   display: flex;
+  max-width: 1280px;
+  width: calc(100% - 40px * 2);
+  margin: 0 auto;
   justify-content: space-between;
   align-items: center;
-}*/
-
-.menu {
-
 }
 
 .menuContainer {
   display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .menuItem {
   display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
 }
