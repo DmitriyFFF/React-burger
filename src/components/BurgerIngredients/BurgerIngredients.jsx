@@ -1,6 +1,7 @@
 import React from 'react';
-import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
+import { Tab, Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import ingredientStyles from './BurgerIngredients.module.css';
+import { data } from '../../utils/data.js'
 
 function Tabs() {
   const [current, setCurrent] = React.useState('Булки')
@@ -19,13 +20,28 @@ function Tabs() {
   )
 }
 
-function Ingredients(title, type) {
+function IngredientItem(card) {
+  return (
+    <li className={ingredientStyles.card}>
+      <Counter count={1} size="small" />
+      <img className={ingredientStyles.cardImage} src={card.image} alt={card.name} />
+      <div className={ingredientStyles.priceContainer}>
+        <p className={ingredientStyles.price}>{card.price}</p>
+        <CurrencyIcon type="primary" />
+      </div>
+      <h3 className={ingredientStyles.cardName}>{card.name}</h3>
+    </li>
+  );
+}
+
+function Ingredients(title, cards) {
+  //const cards=[];
   return (
     <div>
       <h2 className="text text_type_main-medium">{title}</h2>
-      <ul className="">
-        {type.map((item) => {
-
+      <ul className={ingredientStyles.ingredients}>
+        {cards.map((card) => {
+          <IngredientItem card={card} key={card.id} />
         })}
       </ul>
     </div>
@@ -37,6 +53,9 @@ function BurgerIngredients() {
     <section>
       <h1 className="text text_type_main-large">Соберите бургер</h1>
       <Tabs />
+      {/*<Ingredients title="Булки" cards={data}/>
+      <Ingredients title="Соусы" cards={data}/>
+  <Ingredients title="Начинки" cards={data}/>*/}
     </section>
   );
 }
