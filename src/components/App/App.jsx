@@ -8,10 +8,10 @@ function App() {
   return (
     <div className={appStyles.App}>
       <AppHeader />
-      {/*<main className={appStyles.main}>
+      <main className={appStyles.main}>
         <BurgerIngredients />
         <BurgerConstructor />
-  </main>*/}
+      </main>
     </div>
   );
 }
