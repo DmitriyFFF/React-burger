@@ -4,7 +4,8 @@
 
 .main {
   display: flex;
-  justify-content: space-between;
-  /*max-width: calc(100% - 2 * 100px);
-  margin: auto;*/
+  /*justify-content: space-between;
+  align-items: center;*/
+  max-width: calc(100% - 2 * 100px);
+  margin: auto;
 }

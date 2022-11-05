@@ -1,9 +1,10 @@
 import React from 'react';
-import { Tab, Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import ingredientStyles from './BurgerIngredients.module.css';
-import { data } from '../../utils/data.js'
+import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
+import Ingredients from '../Ingredients/Ingredients.jsx';
+import styles from './BurgerIngredients.module.css';
+//import { data } from '../../utils/data.js'
 
-function Tabs() {
+const Tabs = () => {
   const [current, setCurrent] = React.useState('Булки')
   return (
     <div style={{ display: 'flex' }}>
@@ -20,10 +21,29 @@ function Tabs() {
   )
 }
 
-function IngredientItem(card) {
+const BurgerIngredients = ({data}) => {
+
+  const buns = data.filter(item => item.type === 'bun');
+  const sauces = data.filter(item => item.type === 'sauce');
+  const mains = data.filter(item => item.type === 'main');
+
+  return (
+    <section className="content mr-10">
+      <h1 className="text text_type_main-large mt-10 mb-5">Соберите бургер</h1>
+      <Tabs />
+      <Ingredients data={buns} title={'Булки'} />
+      <Ingredients data={sauces} title={'Соусы'} />
+      <Ingredients data={mains} title={'Начинки'} />
+    </section>
+  );
+}
+
+export default BurgerIngredients;
+
+{/*const IngredientItem = ({card}) => {
   return (
     <li className={ingredientStyles.card}>
-      <Counter count={1} size="small" />
+      <Counter count={1} size="default" />
       <img className={ingredientStyles.cardImage} src={card.image} alt={card.name} />
       <div className={ingredientStyles.priceContainer}>
         <p className={ingredientStyles.price}>{card.price}</p>
@@ -32,32 +52,34 @@ function IngredientItem(card) {
       <h3 className={ingredientStyles.cardName}>{card.name}</h3>
     </li>
   );
-}
+}*/}
 
-function Ingredients(title, cards) {
-  //const cards=[];
+{/*function Ingredients({title, cards, type}) {
+  const typeOfCards = data.filter((item) => item.type === type);
   return (
-    <div>
+    <div className="margin">
       <h2 className="text text_type_main-medium">{title}</h2>
       <ul className={ingredientStyles.ingredients}>
-        {cards.map((card) => {
-          <IngredientItem card={card} key={card.id} />
+        {typeOfCards.map((item) => {
+          <IngredientItem card={item} key={item._id} />
         })}
       </ul>
     </div>
   );
-}
+}*/}
 
-function BurgerIngredients() {
+{/*const Ingredients = ({data, title}) => {
+  //const typeOfCards = data.filter((item) => item.type === type);
   return (
-    <section>
-      <h1 className="text text_type_main-large">Соберите бургер</h1>
-      <Tabs />
-      {/*<Ingredients title="Булки" cards={data}/>
-      <Ingredients title="Соусы" cards={data}/>
-  <Ingredients title="Начинки" cards={data}/>*/}
-    </section>
+    <div className="margin">
+      <h2 className="text text_type_main-medium">{title}</h2>
+      <ul className={ingredientStyles.ingredients}>
+        {data.map((item) => {
+          <IngredientItem key={item._id} card={item} />
+        })}
+      </ul>
+    </div>
   );
-}
+}*/}
 
-export default BurgerIngredients;
+

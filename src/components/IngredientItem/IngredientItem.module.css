@@ -1,0 +1,29 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 272px;
+}
+
+.cardImage {
+
+}
+
+.priceContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.price {
+  margin-right: 8px;
+}
+
+.cardName {
+  margin: 0;
+  padding: 0;
+}
