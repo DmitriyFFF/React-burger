@@ -86,7 +86,7 @@ const BurgerConstructor = () => {
           <p className={`${styles.price} text text_type_digits-medium`}>100500</p>
           <CurrencyIcon type="primary" />
         </div>
-        <Button type="primary" size="large">
+        <Button type="primary" size="large" htmlType="button">
           Оформить заказ
         </Button>
       </div>

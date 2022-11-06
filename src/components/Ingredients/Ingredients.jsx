@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import IngredientItem from '../IngredientItem/IngredientItem.jsx';
 import styles from './Ingredients.module.css';
 
@@ -14,5 +15,12 @@ const Ingredients = ({data, title}) => {
     </div>
   );
 }
+
+Ingredients.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.shape({
+    _id: PropTypes.string
+  })),
+  title: PropTypes.string
+};
 
 export default Ingredients;
