@@ -1,0 +1,50 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+  width: 600px;
+}
+
+.fillingList {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  max-height: 464px;
+  padding: 0;
+  margin: 0;
+  gap: 16px;
+}
+
+.fillingList::-webkit-scrollbar {
+  width: 8px;
+  background: #2f2f37;
+}
+
+.fillingList::-webkit-scrollbar-thumb {
+  width: 8px;
+  height: 292px;
+  background: #8585ad;
+}
+
+.fillingItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+}
+
+.order {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.priceContainer {
+  display: flex;
+  align-items: center;
+}
+
+.price {
+  margin-right: 8px;
+}

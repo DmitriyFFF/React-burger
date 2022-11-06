@@ -10,7 +10,7 @@
 }
 
 .cardImage {
-
+  width: 240px;
 }
 
 .priceContainer {
@@ -24,6 +24,7 @@
 }
 
 .cardName {
+  height: 48px;
   margin: 0;
   padding: 0;
 }

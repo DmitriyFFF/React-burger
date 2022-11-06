@@ -1,11 +1,10 @@
 .App {
-  /*text-align: center;*/
+  background-color: #131316;
+  text-align: start;
 }
 
 .main {
   display: flex;
-  /*justify-content: space-between;
-  align-items: center;*/
-  max-width: calc(100% - 2 * 100px);
-  margin: auto;
+  max-width: 1240px;
+  margin: 0 auto;
 }

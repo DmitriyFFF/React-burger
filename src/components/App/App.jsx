@@ -5,14 +5,14 @@ import BurgerConstructor from '../BurgerConstructor/BurgerConstructor';
 import appStyles from './App.module.css';
 import { data } from '../../utils/data.js';
 
-function App() {
+const App = () => {
 
   return (
     <div className={appStyles.App}>
       <AppHeader />
       <main className={appStyles.main}>
         <BurgerIngredients data={data}/>
-        <BurgerConstructor data={data}/>
+        <BurgerConstructor />
       </main>
     </div>
   );

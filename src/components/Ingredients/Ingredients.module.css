@@ -1,7 +1,8 @@
 .ingredients {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px 32px;
-  text-align: center;/***/
-  padding-left: 0;/*&&&*/
+  gap: 32px 24px;
+  text-align: center;
+  padding-left: 0;
+  margin: 0;
 }
