@@ -1,10 +1,14 @@
 import React from 'react';
 import { ConstructorElement, DragIcon, Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import { ingredientType } from '../../utils/types.js'
 import styles from './BurgerConstructor.module.css';
 
-const BurgerConstructor = () => {
+export const BurgerConstructor = ({data}) => {
+
+  const fillings = data.filter(item => item.type !== 'bun');
+
   return (
-    <section className={`${styles.main} mt-25 pl-8 pr-4`}>
+    <section className={`${styles.content} mt-25 pl-8 pr-4`}>
       <div>
         <ConstructorElement
           type="top"
@@ -15,62 +19,16 @@ const BurgerConstructor = () => {
         />
       </div>
       <ul className={styles.fillingList}>
-        <li className={styles.fillingItem}>
-          <DragIcon type="primary" />
-          <ConstructorElement
-            text="Краторная булка N-200i (верх)"
-            price={50}
-            thumbnail="https://code.s3.yandex.net/react/code/meat-04.png"
-          />
-        </li>
-        <li className={styles.fillingItem}>
-          <DragIcon type="primary" />
-          <ConstructorElement
-            text="Краторная булка N-200i (верх)"
-            price={50}
-            thumbnail="https://code.s3.yandex.net/react/code/meat-04.png"
-          />
-        </li>
-        <li className={styles.fillingItem}>
-          <DragIcon type="primary" />
-          <ConstructorElement
-            text="Краторная булка N-200i (верх)"
-            price={50}
-            thumbnail="https://code.s3.yandex.net/react/code/meat-04.png"
-          />
-        </li>
-        <li className={styles.fillingItem}>
-          <DragIcon type="primary" />
-          <ConstructorElement
-            text="Краторная булка N-200i (верх)"
-            price={50}
-            thumbnail="https://code.s3.yandex.net/react/code/meat-04.png"
-          />
-        </li>
-        <li className={styles.fillingItem}>
-          <DragIcon type="primary" />
-          <ConstructorElement
-            text="Краторная булка N-200i (верх)"
-            price={50}
-            thumbnail="https://code.s3.yandex.net/react/code/meat-04.png"
-          />
-        </li>
-        <li className={styles.fillingItem}>
-          <DragIcon type="primary" />
-          <ConstructorElement
-            text="Краторная булка N-200i (верх)"
-            price={50}
-            thumbnail="https://code.s3.yandex.net/react/code/meat-04.png"
-          />
-        </li>
-        <li className={styles.fillingItem}>
-          <DragIcon type="primary" />
-          <ConstructorElement
-            text="Краторная булка N-200i (верх)"
-            price={50}
-            thumbnail="https://code.s3.yandex.net/react/code/meat-04.png"
-          />
-        </li>
+        {fillings.map(item =>
+          <li className={styles.fillingItem} key={item._id}>
+            <DragIcon type="primary" />
+            <ConstructorElement
+              text={item.name}
+              price={item.price}
+              thumbnail={item.image}
+            />
+          </li>
+        )}
       </ul>
       <div>
         <ConstructorElement
@@ -78,7 +36,7 @@ const BurgerConstructor = () => {
           isLocked={true}
           text="Краторная булка N-200i (низ)"
           price={200}
-          thumbnail="https://code.s3.yandex.net/react/code/bun-01.png"
+          thumbnail="https://code.s3.yandex.net/react/code/bun-02.png"
         />
       </div>
       <div className={`${styles.order} mt-10`}>
@@ -94,4 +52,5 @@ const BurgerConstructor = () => {
   )
 }
 
-export default BurgerConstructor;
+BurgerConstructor.propTypes = ingredientType;
+

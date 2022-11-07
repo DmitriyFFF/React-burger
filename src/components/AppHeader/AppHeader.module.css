@@ -1,6 +1,6 @@
 .header {
   width: 100%;
-  background: #1C1C21;
+  background: var(--bg-color-header);
 }
 
 .container {

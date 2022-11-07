@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   max-width: 600px;
+  min-height: 912px;
 }
 
 .menu {
@@ -12,11 +13,15 @@
 
 .menu::-webkit-scrollbar {
   width: 8px;
-  background: #2f2f37;
+  background: var(--bg-color-scroll);
 }
 
 .menu::-webkit-scrollbar-thumb {
   width: 8px;
   height: 492px;
-  background: #8585ad;
+  background: var(--bg-color-scroll-thumb);
+}
+
+.tabs {
+  display: flex;
 }

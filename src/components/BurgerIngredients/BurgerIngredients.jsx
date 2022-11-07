@@ -1,13 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
-import Ingredients from '../Ingredients/Ingredients.jsx';
+import { Ingredients } from '../Ingredients/Ingredients.jsx';
+import { ingredientType } from '../../utils/types.js';
 import styles from './BurgerIngredients.module.css';
 
 const Tabs = () => {
   const [current, setCurrent] = React.useState('Булки')
   return (
-    <div style={{ display: 'flex' }}>
+    <div className={styles.tabs}>
       <Tab value="Булки" active={current === 'Булки'} onClick={setCurrent}>
         Булки
       </Tab>
@@ -21,7 +21,7 @@ const Tabs = () => {
   )
 }
 
-const BurgerIngredients = ({data}) => {
+export const BurgerIngredients = ({data}) => {
 
   const buns = data.filter(item => item.type === 'bun');
   const sauces = data.filter(item => item.type === 'sauce');
@@ -40,10 +40,4 @@ const BurgerIngredients = ({data}) => {
   );
 }
 
-BurgerIngredients.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.shape({
-    type: PropTypes.string
-  }))
-};
-
-export default BurgerIngredients;
+BurgerIngredients.propTypes = ingredientType;

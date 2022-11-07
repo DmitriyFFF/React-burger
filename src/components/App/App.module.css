@@ -1,9 +1,9 @@
 .App {
-  background-color: #131316;
+  background-color: var(--bg-color-body);
   text-align: start;
 }
 
-.main {
+.content {
   display: flex;
   max-width: 1240px;
   margin: 0 auto;

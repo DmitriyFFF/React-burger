@@ -32,7 +32,7 @@ const Profile = () => {
   );
 }
 
-const AppHeader = () => {
+export const AppHeader = () => {
   return (
     <header className={appHeaderStyles.header}>
       <div className={`${appHeaderStyles.container} pt-4 pb-4`}>
@@ -44,4 +44,3 @@ const AppHeader = () => {
   );
 }
 
-export default AppHeader;
