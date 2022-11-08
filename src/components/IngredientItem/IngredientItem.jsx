@@ -17,5 +17,7 @@ export const IngredientItem = ({card}) => {
   );
 }
 
-IngredientItem.propTypes = ingredientType;
+IngredientItem.propTypes = {
+  card: ingredientType
+};
 

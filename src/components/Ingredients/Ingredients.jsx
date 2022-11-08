@@ -1,5 +1,6 @@
 import React from 'react';
 import { IngredientItem } from '../IngredientItem/IngredientItem.jsx';
+import PropTypes from 'prop-types';
 import { ingredientType } from '../../utils/types.js';
 import styles from './Ingredients.module.css';
 
@@ -16,6 +17,9 @@ export const Ingredients = ({data, title}) => {
   );
 }
 
-Ingredients.propTypes = ingredientType;
+Ingredients.propTypes = {
+  data: PropTypes.arrayOf(ingredientType),
+  title: PropTypes.string
+};
 
 

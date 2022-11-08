@@ -52,5 +52,5 @@ export const BurgerConstructor = ({data}) => {
   )
 }
 
-BurgerConstructor.propTypes = ingredientType;
+BurgerConstructor.propTypes = ingredientType.isRequired;
 
