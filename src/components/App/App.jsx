@@ -1,11 +1,24 @@
-import React from 'react';
+import {React, useState, useEffect} from 'react';
 import { AppHeader } from '../AppHeader/AppHeader';
 import { BurgerIngredients } from '../BurgerIngredients/BurgerIngredients';
 import { BurgerConstructor } from '../BurgerConstructor/BurgerConstructor';
 import appStyles from './App.module.css';
-import { data } from '../../utils/data.js';
+//import { data } from '../../utils/data.js';
+import { baseUrl, checkResponse } from '../../utils/constants';
 
 export const App = () => {
+  const[data, setData] = useState([]);
+  useEffect(() => {
+    const getData = () => {
+      fetch(`${baseUrl}/ingredients`)
+        .then (checkResponse)
+        .then (res => setData(res.data))
+        .catch((err) => {
+          console.log(err);
+        })
+    }
+    getData();
+  }, []);
 
   return (
     <div className={appStyles.App}>
