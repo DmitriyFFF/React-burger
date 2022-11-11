@@ -1,18 +1,20 @@
-import React from 'react';
+import { React, useEffect } from 'react';
+import ReactDOM from 'react-dom/client';
+import { ModalOverlay } from '../ModalOverlay/ModalOverlay';
 import styles from './Modal.module.css';
 
 
-const modalRoot = document.getElementById("react-modals");
 
-const Modal =({ children, onClose }) => {
+export const Modal =({ children, onClose }) => {
 
+  const modalRoot = document.getElementById("react-modals");
   const handleEscClose = (evt) => {
     if(evt.key === 'Escape') {
       onClose();
     }
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     document.addEventListener("keydown", handleEscClose);
     return () => {
       document.removeEventListener("keydown", handleEscClose);
@@ -25,10 +27,11 @@ const Modal =({ children, onClose }) => {
     (
       <>
         <div className="Modal">
-          <ModalHeader onClose={onClose}>{header}</ModalHeader>
+          <ModalOverlay onClose={onClose}>
+
+          </ModalOverlay>
             {children}
         </div>
-        <ModalBackDrop onClose={onClose} />
       </>
     ),
     modalRoot
