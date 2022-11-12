@@ -1,4 +1,5 @@
 import React from 'react';
+import { ingredientType } from '../../utils/types';
 import styles from './IngredientDetails.module.css';
 
 export const IngredientDetails = (props) => {
@@ -27,3 +28,5 @@ export const IngredientDetails = (props) => {
     </section>
   )
 };
+
+IngredientDetails.propTypes = ingredientType.isRequired;
