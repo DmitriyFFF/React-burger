@@ -5,10 +5,9 @@ import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './Modal.module.css';
 
 
+const modalRoot = document.getElementById("react-modals");
 
-export const Modal =({ children, onClose }) => {
-
-  const modalRoot = document.getElementById("react-modals");
+export const Modal =({ children, title, onClose }) => {
   const handleEscClose = (evt) => {
     if(evt.key === 'Escape') {
       onClose();
@@ -21,22 +20,23 @@ export const Modal =({ children, onClose }) => {
       document.removeEventListener("keydown", handleEscClose);
     };
   }, []);
-  //const { children, header, onClose } = this.props;
+
     // Возвращаем ReactDOM.createPortal,
     // который поместит дочерние элементы в modalRoot
   return ReactDOM.createPortal(
-    (
-      <div>
-        <ModalOverlay onClose={onClose}>
-          <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+    <>
+      <ModalOverlay onClose={onClose}>
+        <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+          <div className={`${styles.container} mt-10 ml-10 mr-10`}>
+            <h2 className={`${styles.title} text text_type_main-large`}>{title}</h2>
             <button className={styles.closeButton} onClick={onClose}>
               <CloseIcon type="secondary" />
             </button>
           </div>
           {children}
-        </ModalOverlay>
-      </div>
-    ),
-    modalRoot
+        </div>
+      </ModalOverlay>
+    </>,
+  modalRoot
  );
 }

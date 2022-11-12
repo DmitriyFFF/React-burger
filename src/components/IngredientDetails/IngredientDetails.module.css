@@ -1,0 +1,37 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 520px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  min-height: 56px;
+}
+
+.image {
+  width: 480px;
+  height: 240px;
+}
+
+.title {
+  padding: 0;
+  text-align: center;
+}
+
+.detailItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style: none;
+  margin-right: 20px;
+  padding: 0;
+  width: 112px;
+}
+
+.detailItem:last-of-type {
+  margin-right: 0;
+}

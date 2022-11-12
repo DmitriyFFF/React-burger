@@ -1,6 +1,6 @@
-import React from 'react';
-import { IngredientItem } from '../IngredientItem/IngredientItem.jsx';
+import {React, useState} from 'react';
 import PropTypes from 'prop-types';
+import { IngredientItem } from '../IngredientItem/IngredientItem.jsx';
 import { ingredientType } from '../../utils/types.js';
 import styles from './Ingredients.module.css';
 

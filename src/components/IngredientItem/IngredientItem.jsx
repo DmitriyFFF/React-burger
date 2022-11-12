@@ -8,9 +8,13 @@ import styles from './IngredientItem.module.css';
 export const IngredientItem = ({card}) => {
   const[isOpen, setIsOpen] = useState(false);
 
+  const handleOpen = () => {
+    setIsOpen(true);
+  }
+
   return (
     <>
-      <li className={styles.card} onClick={() => setIsOpen(true)}>
+      <li className={styles.card} onClick={() => handleOpen()}>
         <Counter count={1} size="default" />
         <img className={styles.cardImage} src={card.image} alt={card.name} />
         <div className={`${styles.priceContainer} mt-1 mb-1`}>
@@ -19,11 +23,14 @@ export const IngredientItem = ({card}) => {
         </div>
         <p className={`${styles.cardName} text text_type_main-default`}>{card.name}</p>
       </li>
-      <Modal onClose={() => setIsOpen(false)} isOpen={isOpen}>
-        <IngredientDetails item={card} />
-      </Modal>
+      {isOpen &&
+        <Modal
+          onClose={() => setIsOpen(false)}
+          //isOpen={isOpen}
+          title="Детали ингредиента">
+            <IngredientDetails {...card} />
+        </Modal>}
     </>
-
   );
 }
 

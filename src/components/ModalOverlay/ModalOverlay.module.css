@@ -7,6 +7,5 @@
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #000;
-  opacity: .6;
+  background-color: rgba(0, 0, 0, 0.6);
 }
