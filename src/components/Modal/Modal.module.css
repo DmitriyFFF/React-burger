@@ -4,7 +4,7 @@
   align-items: center;
   position: relative;
   width: 720px;
-  background-color: #1C1C21;
+  background-color: var(--bg-color-header);
   border: 1px solid rgba(76, 76, 255, .2);;
   border-radius: 40px;
 }
@@ -23,7 +23,7 @@
 }
 
 .closeButton {
-  background-color: #1C1C21;
+  background-color: var(--bg-color-header);
   border: none;
   padding: 0;
 }

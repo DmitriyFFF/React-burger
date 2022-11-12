@@ -26,7 +26,6 @@ export const IngredientItem = ({card}) => {
       {isOpen &&
         <Modal
           onClose={() => setIsOpen(false)}
-          //isOpen={isOpen}
           title="Детали ингредиента">
             <IngredientDetails {...card} />
         </Modal>}
