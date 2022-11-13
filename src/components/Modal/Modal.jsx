@@ -21,7 +21,7 @@ export const Modal =({ children, title, onClose }) => {
     return () => {
       document.removeEventListener("keydown", handleEscClose);
     };
-  }, []);
+  }, [onClose]);
 
   return ReactDOM.createPortal(
     <>
