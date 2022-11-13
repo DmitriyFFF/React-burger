@@ -9,21 +9,20 @@ import styles from './Modal.module.css';
 const modalRoot = document.getElementById("react-modals");
 
 export const Modal =({ children, title, onClose }) => {
-  const handleEscClose = (evt) => {
-    if(evt.key === 'Escape') {
-      onClose();
-    }
-  }
 
   useEffect(() => {
+    const handleEscClose = (evt) => {
+      if(evt.key === 'Escape') {
+        onClose();
+      }
+    };
+
     document.addEventListener("keydown", handleEscClose);
     return () => {
       document.removeEventListener("keydown", handleEscClose);
     };
   }, []);
 
-    // Возвращаем ReactDOM.createPortal,
-    // который поместит дочерние элементы в modalRoot
   return ReactDOM.createPortal(
     <>
       <ModalOverlay onClose={onClose}>

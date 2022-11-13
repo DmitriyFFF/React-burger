@@ -10,11 +10,14 @@ export const IngredientItem = ({card}) => {
 
   const handleOpen = () => {
     setIsOpen(true);
+  };
+  const handleClose = () => {
+    setIsOpen(false);
   }
 
   return (
     <>
-      <li className={styles.card} onClick={() => handleOpen()}>
+      <li className={styles.card} onClick={handleOpen}>
         <Counter count={1} size="default" />
         <img className={styles.cardImage} src={card.image} alt={card.name} />
         <div className={`${styles.priceContainer} mt-1 mb-1`}>
@@ -25,7 +28,7 @@ export const IngredientItem = ({card}) => {
       </li>
       {isOpen &&
         <Modal
-          onClose={() => setIsOpen(false)}
+          onClose={handleClose}
           title="Детали ингредиента">
             <IngredientDetails {...card} />
         </Modal>}
@@ -34,6 +37,6 @@ export const IngredientItem = ({card}) => {
 }
 
 IngredientItem.propTypes = {
-  card: ingredientType
+  card: ingredientType.isRequired
 };
 

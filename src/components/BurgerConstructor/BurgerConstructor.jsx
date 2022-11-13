@@ -1,15 +1,21 @@
 import { React, useState } from 'react';
+import PropTypes from 'prop-types';
 import { ConstructorElement, DragIcon, Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Modal } from '../Modal/Modal.jsx';
 import { OrderDetails } from '../OrderDetails/OrderDetails.jsx';
-import { ingredientType } from '../../utils/types.js'
+import { ingredientType } from '../../utils/types.js';
 import styles from './BurgerConstructor.module.css';
 
 export const BurgerConstructor = ({data}) => {
   const[isOpen, setIsOpen] = useState(false);
+
   const handleOpen = () => {
     setIsOpen(true);
-  }
+  };
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
   const fillings = data.filter(item => item.type !== 'bun');
 
   return (
@@ -53,7 +59,7 @@ export const BurgerConstructor = ({data}) => {
           Оформить заказ
         </Button>
         {isOpen &&
-          <Modal onClose={() => setIsOpen(false)}>
+          <Modal onClose={handleClose}>
             <OrderDetails />
           </Modal>}
       </div>
@@ -61,5 +67,7 @@ export const BurgerConstructor = ({data}) => {
   )
 }
 
-BurgerConstructor.propTypes = ingredientType.isRequired;
+BurgerConstructor.propTypes = {
+  data: PropTypes.arrayOf(ingredientType).isRequired
+};
 
