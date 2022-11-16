@@ -1,0 +1,14 @@
+.order {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  max-width: 520px;
+}
+
+.image {
+  background-image: url('../../images/done_vector.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 120px;
+  height: 120px;
+}

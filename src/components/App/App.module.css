@@ -1,0 +1,10 @@
+.App {
+  background-color: var(--bg-color-body);
+  text-align: start;
+}
+
+.content {
+  display: flex;
+  max-width: 1240px;
+  margin: 0 auto;
+}

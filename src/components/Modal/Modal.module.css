@@ -1,0 +1,29 @@
+.modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 720px;
+  background-color: var(--bg-color-header);
+  border: 1px solid rgba(76, 76, 255, .2);;
+  border-radius: 40px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 640px;
+  min-height: 64px;
+}
+
+.title {
+  text-align: center;
+  padding: 0;
+}
+
+.closeButton {
+  background-color: var(--bg-color-header);
+  border: none;
+  padding: 0;
+}
