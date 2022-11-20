@@ -1,13 +1,15 @@
-import { React, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useContext } from 'react';
+//import PropTypes from 'prop-types';
 import { ConstructorElement, DragIcon, Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Modal } from '../Modal/Modal.jsx';
 import { OrderDetails } from '../OrderDetails/OrderDetails.jsx';
-import { ingredientType } from '../../utils/types.js';
+//import { ingredientType } from '../../utils/types.js';
 import styles from './BurgerConstructor.module.css';
+import { DataContext } from '../../services/AppContext.js';
 
-export const BurgerConstructor = ({data}) => {
+export const BurgerConstructor = () => {
   const[isOpen, setIsOpen] = useState(false);
+  const {data} = useContext(DataContext);
 
   const handleOpen = () => {
     setIsOpen(true);
@@ -67,7 +69,7 @@ export const BurgerConstructor = ({data}) => {
   )
 }
 
-BurgerConstructor.propTypes = {
+/*BurgerConstructor.propTypes = {
   data: PropTypes.arrayOf(ingredientType).isRequired
-};
+};*/
 

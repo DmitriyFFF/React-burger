@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { OrderContext } from '../../services/OrderDetailsContext';
 import styles from './OrderDetails.module.css';
 
 export const OrderDetails = () => {
+  const orderNumber = useContext(OrderContext);
+
   return (
     <section className={`${styles.order} pt-4 pb-30`}>
-      <h2 className="text text_type_digits-large mb-8">111122</h2>
+      <h2 className="text text_type_digits-large mb-8">{orderNumber}</h2>
       <p className="text text_type_main-medium">идентификатор заказа</p>
       <div className={`${styles.image} mt-15 mb-15`}></div>
       <p className="text text_type_main-default mb-2">Ваш заказ начали готовить</p>
