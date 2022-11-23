@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 //import PropTypes from 'prop-types';
 import { ConstructorElement, DragIcon, Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Modal } from '../Modal/Modal.jsx';
@@ -6,6 +6,7 @@ import { OrderDetails } from '../OrderDetails/OrderDetails.jsx';
 //import { ingredientType } from '../../utils/types.js';
 import styles from './BurgerConstructor.module.css';
 import { DataContext } from '../../services/AppContext.js';
+import { request, baseUrl } from '../../utils/constants';
 
 export const BurgerConstructor = () => {
   const[isOpen, setIsOpen] = useState(false);
@@ -17,6 +18,38 @@ export const BurgerConstructor = () => {
   const handleClose = () => {
     setIsOpen(false);
   };
+
+  /*useEffect(() => {
+    const postData = () => {
+      request(`${baseUrl}/orders`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          "ingredients": ["609646e4dc916e00276b286e", "609646e4dc916e00276b2870"]
+         }),
+      })
+        .then (res => postData(res.order.number))
+        .catch((err) => {
+          console.log(err);
+        })
+    };
+    postData();
+  }, []);*/
+
+  const postData = () => {
+    request(`${baseUrl}/orders`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        "ingredients": ["609646e4dc916e00276b286e", "609646e4dc916e00276b2870"]
+       }),
+    })
+      .then (res => postData(res.order.number))
+      .catch((err) => {
+        console.log(err);
+      })
+  };
+  postData();
 
   const fillings = data.filter(item => item.type !== 'bun');
 
