@@ -6,18 +6,20 @@ import { OrderDetails } from '../OrderDetails/OrderDetails.jsx';
 //import { ingredientType } from '../../utils/types.js';
 import styles from './BurgerConstructor.module.css';
 import { DataContext } from '../../services/AppContext.js';
-import { request, baseUrl } from '../../utils/constants';
+import { request, baseUrl, ingredientsId } from '../../utils/constants';
+import { ConstructorOrder } from '../ConstructorOrder/ConstructorOrder.jsx';
+
 
 export const BurgerConstructor = () => {
-  const[isOpen, setIsOpen] = useState(false);
+  //const[isOpen, setIsOpen] = useState(false);
   const {data} = useContext(DataContext);
 
-  const handleOpen = () => {
+  /*const handleOpen = () => {
     setIsOpen(true);
   };
   const handleClose = () => {
     setIsOpen(false);
-  };
+  };*/
 
   /*useEffect(() => {
     const postData = () => {
@@ -36,20 +38,22 @@ export const BurgerConstructor = () => {
     postData();
   }, []);*/
 
-  const postData = () => {
+  //const ingredientsId = data.map(ingredient => ingredient._id)
+
+  /*const postData = () => {
     request(`${baseUrl}/orders`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        "ingredients": ["609646e4dc916e00276b286e", "609646e4dc916e00276b2870"]
+        ingredients: ingredientsId
        }),
     })
-      .then (res => postData(res.order.number))
+      //.then (res => postData(res.order.number))
       .catch((err) => {
         console.log(err);
       })
   };
-  postData();
+  postData();*/
 
   const fillings = data.filter(item => item.type !== 'bun');
 
@@ -85,19 +89,7 @@ export const BurgerConstructor = () => {
           thumbnail="https://code.s3.yandex.net/react/code/bun-02.png"
         />
       </div>
-      <div className={`${styles.order} mt-10`}>
-        <div className={`${styles.priceContainer} mt-1 mb-1 mr-10`}>
-          <p className={`${styles.price} text text_type_digits-medium`}>100500</p>
-          <CurrencyIcon type="primary" />
-        </div>
-        <Button onClick={handleOpen} type="primary" size="large" htmlType="button">
-          Оформить заказ
-        </Button>
-        {isOpen &&
-          <Modal onClose={handleClose}>
-            <OrderDetails />
-          </Modal>}
-      </div>
+      <ConstructorOrder />
     </section>
   )
 }

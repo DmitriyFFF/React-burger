@@ -34,18 +34,3 @@
   align-items: center;
   list-style: none;
 }
-
-.order {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.priceContainer {
-  display: flex;
-  align-items: center;
-}
-
-.price {
-  margin-right: 8px;
-}
