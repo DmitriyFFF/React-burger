@@ -5,7 +5,7 @@ import { Modal } from '../Modal/Modal';
 import { OrderDetails } from '../OrderDetails/OrderDetails';
 import { request, baseUrl, ingredientsId } from '../../utils/constants';
 
-export const ConstructorOrder = () => {
+export const ConstructorOrder = ({totalPrice}) => {
   //const [order, setOrder] = React.useState(null);
 
   const[isOpen, setIsOpen] = useState(false);
@@ -35,7 +35,7 @@ export const ConstructorOrder = () => {
   return (
     <div className={`${styles.order} mt-10`}>
       <div className={`${styles.priceContainer} mt-1 mb-1 mr-10`}>
-        <p className={`${styles.price} text text_type_digits-medium`}>100500</p>
+        <p className={`${styles.price} text text_type_digits-medium`}>{totalPrice}</p>
         <CurrencyIcon type="primary" />
       </div>
       <Button onClick={handleOpen} type="primary" size="large" htmlType="button">
