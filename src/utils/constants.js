@@ -11,7 +11,6 @@ export const request = (url, options) => {
   return fetch(url, options).then(checkResponse);
 };
 
-
 export const ingredientsId = [
   "60d3b41abdacab0026a733c6",
   "60d3b41abdacab0026a733c7",

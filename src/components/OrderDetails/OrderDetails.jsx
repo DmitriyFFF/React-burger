@@ -1,9 +1,8 @@
-import React, { useContext } from 'react';
-import { OrderContext } from '../../services/OrderDetailsContext';
+import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './OrderDetails.module.css';
 
-export const OrderDetails = () => {
-  const orderNumber = useContext(OrderContext);
+export const OrderDetails = ({orderNumber}) => {
 
   return (
     <section className={`${styles.order} pt-4 pb-30`}>
@@ -15,3 +14,7 @@ export const OrderDetails = () => {
     </section>
   )
 }
+
+OrderDetails.propTypes = {
+  orderNumber: PropTypes.number.isRequired
+};

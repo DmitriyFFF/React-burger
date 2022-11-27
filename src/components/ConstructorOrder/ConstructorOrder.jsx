@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import PropTypes from 'prop-types';
 import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './ConstructorOrder.module.css';
 import { Modal } from '../Modal/Modal';
@@ -6,13 +7,9 @@ import { OrderDetails } from '../OrderDetails/OrderDetails';
 import { request, baseUrl, ingredientsId } from '../../utils/constants';
 
 export const ConstructorOrder = ({totalPrice}) => {
-  //const [order, setOrder] = React.useState(null);
-
+  const [order, setOrder] = useState(0);
   const[isOpen, setIsOpen] = useState(false);
 
-  const handleOpen = () => {
-    setIsOpen(true);
-  };
   const handleClose = () => {
     setIsOpen(false);
   };
@@ -25,12 +22,12 @@ export const ConstructorOrder = ({totalPrice}) => {
         ingredients: ingredientsId
        }),
     })
-      //.then (res => postData(res.order.number))
+      .then (res => setOrder(res.order.number))
       .catch((err) => {
         console.log(err);
-      })
+      });
+    setIsOpen(true);
   };
-  postData();
 
   return (
     <div className={`${styles.order} mt-10`}>
@@ -38,13 +35,17 @@ export const ConstructorOrder = ({totalPrice}) => {
         <p className={`${styles.price} text text_type_digits-medium`}>{totalPrice}</p>
         <CurrencyIcon type="primary" />
       </div>
-      <Button onClick={handleOpen} type="primary" size="large" htmlType="button">
+      <Button onClick={postData} type="primary" size="large" htmlType="button">
         Оформить заказ
       </Button>
       {isOpen &&
         <Modal onClose={handleClose}>
-          <OrderDetails />
+          <OrderDetails orderNumber={order} />
         </Modal>}
     </div>
   )
 }
+
+ConstructorOrder.propTypes = {
+  totalPrice: PropTypes.number.isRequired
+};
