@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext, useMemo } from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Ingredients } from '../Ingredients/Ingredients.jsx';
 import styles from './BurgerIngredients.module.css';
 import { DataContext } from '../../services/AppContext.js';
 
 const Tabs = () => {
-  const [current, setCurrent] = React.useState('Булки')
+  const [current, setCurrent] = useState('Булки')
   return (
     <div className={styles.tabs}>
       <Tab value="Булки" active={current === 'Булки'} onClick={setCurrent}>
@@ -24,9 +24,9 @@ const Tabs = () => {
 export const BurgerIngredients = () => {
   const {data} = useContext(DataContext);
 
-  const buns = data.filter(item => item.type === 'bun');
-  const sauces = data.filter(item => item.type === 'sauce');
-  const mains = data.filter(item => item.type === 'main');
+  const buns = useMemo(() => data.filter(item => item.type === 'bun'), [data]);
+  const sauces = useMemo(() => data.filter(item => item.type === 'sauce'), [data]) ;
+  const mains = useMemo(() => data.filter(item => item.type === 'main'), [data]) ;
 
   return (
     <section className={`${styles.content} mr-10`}>
