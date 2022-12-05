@@ -1,4 +1,4 @@
-import { GET_INGREDIENTS_FAIL, GET_INGREDIENTS_REQUEST, GET_INGREDIENTS_SUCCESS } from '../actions/ingredients.js';
+import { GET_INGREDIENTS_FAIL, GET_INGREDIENTS_REQUEST, GET_INGREDIENTS_SUCCESS } from '../actions/ingredients';
 
 const initialState = {
   items: [],
@@ -25,6 +25,7 @@ export const ingredientsReducer = (state = initialState, action) => {
       return {
         ...state,
         itemsFailed: true,
+        items: [],
         itemsRequest: false };
     }
     default: {

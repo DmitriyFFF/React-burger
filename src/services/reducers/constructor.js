@@ -1,9 +1,7 @@
 import { ADD_INGREDIENT, DELETE_INGREDIENT } from "../actions/constructor.js";
 
 const initialState = {
-  items: [],
-  itemsRequest: false,
-  itemsFailed: false,
+  items: []
 };
 
 export const constructorReducer = (state = initialState, action) => {
@@ -11,15 +9,14 @@ export const constructorReducer = (state = initialState, action) => {
     case ADD_INGREDIENT: {
       return {
         ...state,
-        itemsRequest: true
+        items: [...state.items, action.item]
       };
     }
     case DELETE_INGREDIENT: {
       return {
         ...state,
-        itemsFailed: false,
-        items: action.items,
-        itemsRequest: false };
+        items: [...state.items].filter((item) => item.id !== action.id)
+      };
     }
     /*case GET_INGREDIENTS_FAIL: {
       return {
