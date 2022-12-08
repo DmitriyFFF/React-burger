@@ -3,15 +3,18 @@ import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burg
 import styles from './BurgerConstructor.module.css';
 import { DataContext } from '../../services/AppContext.js';
 import { ConstructorOrder } from '../ConstructorOrder/ConstructorOrder.jsx';
+import { useSelector } from 'react-redux';
 
 export const BurgerConstructor = () => {
-  const {data} = useContext(DataContext);
+  const ingredients = useSelector(store => store.constructorReducer.ingredients)
+  // {data} = useContext(DataContext);
 
-  const bun = data.find(item => item.type === 'bun')
-  const fillings = data.filter(item => item.type !== 'bun');
+  const bun = ingredients.find(item => item.type === 'bun')
+  const fillings = ingredients.filter(item => item.type !== 'bun');
+
 
   const totalPrice = useMemo(() =>
-    data.reduce((prev, item) => {
+    ingredients.reduce((prev, item) => {
       if (item.price) {
         if (item.type === 'bun') {
           return prev + item.price * 2;
@@ -20,7 +23,7 @@ export const BurgerConstructor = () => {
       }
       return prev;
     }, 0),
-    [data]
+    [ingredients]
   );
 
   return (

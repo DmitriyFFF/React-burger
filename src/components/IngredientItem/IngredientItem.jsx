@@ -3,17 +3,33 @@ import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-c
 import { ingredientType } from '../../utils/types.js';
 import { Modal } from '../Modal/Modal.jsx';
 import { IngredientDetails } from '../IngredientDetails/IngredientDetails.jsx';
+import { OPEN_MODAL, CLOSE_MODAL } from '../../services/actions/modal.js';
 import styles from './IngredientItem.module.css';
+import { useDispatch } from 'react-redux';
 
 export const IngredientItem = ({card}) => {
+  const dispatch = useDispatch();
   const[isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => {
+    dispatch({
+      type: OPEN_MODAL
+    });
     setIsOpen(true);
   };
   const handleClose = () => {
+    dispatch({
+      type: CLOSE_MODAL
+    });
     setIsOpen(false);
   }
+
+  // const handleOpen = () => {
+  //   setIsOpen(true);
+  // };
+  // const handleClose = () => {
+  //   setIsOpen(false);
+  // }
 
   return (
     <>

@@ -1,9 +1,9 @@
 import { GET_INGREDIENTS_FAIL, GET_INGREDIENTS_REQUEST, GET_INGREDIENTS_SUCCESS } from '../actions/ingredients';
 
 const initialState = {
-  items: [],
-  itemsRequest: false,
-  itemsFailed: false,
+  ingredients: [],
+  ingredientsRequest: false,
+  ingredientsFailed: false,
 };
 
 export const ingredientsReducer = (state = initialState, action) => {
@@ -11,22 +11,23 @@ export const ingredientsReducer = (state = initialState, action) => {
     case GET_INGREDIENTS_REQUEST: {
       return {
         ...state,
-        itemsRequest: true
+        ingredientsRequest: true,
+        ingredientsFailed: false
       };
     }
     case GET_INGREDIENTS_SUCCESS: {
       return {
         ...state,
-        itemsFailed: false,
-        items: action.items,
-        itemsRequest: false };
+        ingredients: action.ingredients,
+        //ingredientsFailed: false,
+        ingredientsRequest: false };
     }
     case GET_INGREDIENTS_FAIL: {
       return {
         ...state,
-        itemsFailed: true,
-        items: [],
-        itemsRequest: false };
+        ingredientsFailed: true,
+        //ingredients: [],
+        ingredientsRequest: false };
     }
     default: {
       return state;

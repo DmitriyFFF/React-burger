@@ -7,14 +7,14 @@ export const GET_INGREDIENTS_FAIL = "GET_INGREDIENTS_FAIL";
 export function getIngredients() {
   return function(dispatch) {
     dispatch({
-      type: GET_INGREDIENTS_REQUEST,
+      type: GET_INGREDIENTS_REQUEST
     });
     request(`${baseUrl}/ingredients`)
       .then(res => {
         if (res && res.success) {
           dispatch({
             type: GET_INGREDIENTS_SUCCESS,
-            items: res.data//???
+            ingredients: res.data//???
           });
         } else {
           dispatch({

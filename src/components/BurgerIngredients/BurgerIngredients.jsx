@@ -2,7 +2,8 @@ import React, { useState, useContext, useMemo } from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Ingredients } from '../Ingredients/Ingredients.jsx';
 import styles from './BurgerIngredients.module.css';
-import { DataContext } from '../../services/AppContext.js';
+//import { DataContext } from '../../services/AppContext.js';
+import { useSelector } from 'react-redux';
 
 const Tabs = () => {
   const [current, setCurrent] = useState('Булки')
@@ -22,11 +23,14 @@ const Tabs = () => {
 }
 
 export const BurgerIngredients = () => {
-  const {data} = useContext(DataContext);
+  const ingredients = useSelector(state => state.ingredientsReducer.ingredients)
+  // console.log(data)
 
-  const buns = useMemo(() => data.filter(item => item.type === 'bun'), [data]);
-  const sauces = useMemo(() => data.filter(item => item.type === 'sauce'), [data]) ;
-  const mains = useMemo(() => data.filter(item => item.type === 'main'), [data]) ;
+  //const {data} = useContext(DataContext);
+
+  const buns = useMemo(() => ingredients.filter(item => item.type === 'bun'), [ingredients]);
+  const sauces = useMemo(() => ingredients.filter(item => item.type === 'sauce'), [ingredients]) ;
+  const mains = useMemo(() => ingredients.filter(item => item.type === 'main'), [ingredients]) ;
 
   return (
     <section className={`${styles.content} mr-10`}>
