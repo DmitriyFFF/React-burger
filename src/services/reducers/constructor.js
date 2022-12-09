@@ -9,13 +9,13 @@ export const constructorReducer = (state = initialState, action) => {
     case ADD_INGREDIENT: {
       return {
         ...state,
-        ingredients: [...state.ingredients, action.payload]
+        ingredients: [...state.ingredients, action.ingredient]
       };
     }
     case DELETE_INGREDIENT: {
       return {
         ...state,
-        ingredients: [...state.ingredients].filter((item) => item.id !== action.payload.id)
+        ingredients: [...state.ingredients].filter((ingredient) => ingredient.id !== action.id)
       };
     }
     /*case GET_INGREDIENTS_FAIL: {

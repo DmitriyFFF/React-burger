@@ -9,6 +9,8 @@
   overflow-y: scroll;
   position: relative;
   max-height: 664px;
+  list-style: none;
+  padding: 0;
 }
 
 .menu::-webkit-scrollbar {
@@ -20,8 +22,4 @@
   width: 8px;
   height: 492px;
   background: var(--bg-color-scroll-thumb);
-}
-
-.tabs {
-  display: flex;
 }

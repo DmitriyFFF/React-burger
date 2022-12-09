@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import styles from './OrderDetails.module.css';
 
-export const OrderDetails = ({orderNumber}) => {
+export const OrderDetails = () => {
+  const orderNumber = useSelector(store => store.order)
 
   return (
     <section className={`${styles.order} pt-4 pb-30`}>

@@ -1,17 +1,15 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './BurgerConstructor.module.css';
-import { DataContext } from '../../services/AppContext.js';
+
 import { ConstructorOrder } from '../ConstructorOrder/ConstructorOrder.jsx';
 import { useSelector } from 'react-redux';
 
 export const BurgerConstructor = () => {
-  const ingredients = useSelector(store => store.constructorReducer.ingredients)
-  // {data} = useContext(DataContext);
+  const ingredients = useSelector(store => store.constructorReducer.ingredients);
 
   const bun = ingredients.find(item => item.type === 'bun')
   const fillings = ingredients.filter(item => item.type !== 'bun');
-
 
   const totalPrice = useMemo(() =>
     ingredients.reduce((prev, item) => {
