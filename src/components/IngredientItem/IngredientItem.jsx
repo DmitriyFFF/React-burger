@@ -6,10 +6,18 @@ import { IngredientDetails } from '../IngredientDetails/IngredientDetails.jsx';
 import { OPEN_MODAL, CLOSE_MODAL } from '../../services/actions/modal.js';
 import styles from './IngredientItem.module.css';
 import { useDispatch } from 'react-redux';
+import { useDrag } from 'react-dnd/dist/hooks/index.js';
 
 export const IngredientItem = ({card}) => {
   const dispatch = useDispatch();
   const[isOpen, setIsOpen] = useState(false);
+  const[{ opacity }, dragRef] = useDrag({
+    type: 'ingredient',
+    item: { card },
+    collect: monitor => ({
+      opacity: monitor.isDragging() ? .5 : 1
+    })
+  });
 
   const handleOpen = () => {
     dispatch({
@@ -24,16 +32,14 @@ export const IngredientItem = ({card}) => {
     setIsOpen(false);
   }
 
-  // const handleOpen = () => {
-  //   setIsOpen(true);
-  // };
-  // const handleClose = () => {
-  //   setIsOpen(false);
-  // }
-
   return (
     <>
-      <li className={styles.card} onClick={handleOpen}>
+      <li
+        className={styles.card}
+        onClick={handleOpen}
+        ref={dragRef}
+        style={{ opacity }}
+      >
         <Counter count={1} size="default" />
         <img className={styles.cardImage} src={card.image} alt={card.name} />
         <div className={`${styles.priceContainer} mt-1 mb-1`}>
