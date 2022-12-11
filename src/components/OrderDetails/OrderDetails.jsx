@@ -1,10 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import styles from './OrderDetails.module.css';
 
 export const OrderDetails = () => {
-  const orderNumber = useSelector(store => store.order)
+  const orderNumber = useSelector(state => state.orderReducer.order);
 
   return (
     <section className={`${styles.order} pt-4 pb-30`}>
@@ -16,7 +15,3 @@ export const OrderDetails = () => {
     </section>
   )
 }
-
-OrderDetails.propTypes = {
-  orderNumber: PropTypes.number.isRequired
-};

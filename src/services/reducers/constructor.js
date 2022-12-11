@@ -1,38 +1,38 @@
-import { ADD_INGREDIENT, DELETE_INGREDIENT, ADD_BUN } from "../actions/constructor.js";
+import { ADD_INGREDIENT, DELETE_INGREDIENT, MOVE_INGREDIENT } from "../actions/constructor.js";
 
 const initialState = {
   ingredients: [],
-  bun: {}
+  bun: null
 };
 
 export const constructorReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_INGREDIENT: {
+      if (action.payload.type === 'bun') {
+        return {
+          ...state,
+          bun: action.payload
+        }
+      }
       return {
         ...state,
-        ingredients: [...state.ingredients, action.ingredient],
-        id: action.id
+        ingredients: [...state.ingredients, action.payload]
       };
     }
     case DELETE_INGREDIENT: {
       return {
         ...state,
-        ingredients: [...state.ingredients].filter((ingredient) => ingredient.id !== action.id)
+        ingredients: state.ingredients.filter((ingredient) => ingredient.key !== action.payload)
       };
     }
-    case ADD_BUN: {
+    case MOVE_INGREDIENT: {
+      const ingredients = [...state.ingredients];
+      [ ingredients[action.dragIndex], ingredients[action.hoverIndex] ] = [ ingredients[action.hoverIndex], ingredients[action.dragIndex] ];
       return {
         ...state,
-        bun: [...state.bun, action.bun],
-        id: action.id
+        ingredients: ingredients
       };
     }
-    /*case GET_INGREDIENTS_FAIL: {
-      return {
-        ...state,
-        itemsFailed: true,
-        itemsRequest: false };
-    }*/
     default: {
       return state;
     }

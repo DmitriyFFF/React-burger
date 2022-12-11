@@ -18,12 +18,12 @@ export const App = () => {
   return (
     <div className={appStyles.App}>
       <AppHeader />
-      <main className={appStyles.content}>
         <DndProvider backend={HTML5Backend}>
-          <BurgerIngredients />
-          <BurgerConstructor />
+          <main className={appStyles.content}>
+            <BurgerIngredients />
+            <BurgerConstructor />
+          </main>
         </DndProvider>
-      </main>
     </div>
   );
 }

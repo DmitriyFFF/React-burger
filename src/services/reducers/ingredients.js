@@ -20,15 +20,15 @@ export const ingredientsReducer = (state = initialState, action) => {
       return {
         ...state,
         ingredients: action.ingredients,
-        //ingredientsFailed: false,
-        ingredientsRequest: false };
+        ingredientsRequest: false
+      };
     }
     case GET_INGREDIENTS_FAIL: {
       return {
         ...state,
         ingredientsFailed: true,
-        //ingredients: [],
-        ingredientsRequest: false };
+        ingredientsRequest: false
+      };
     }
     case SET_INGREDIENT_TAB: {
       return {

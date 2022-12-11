@@ -4,30 +4,29 @@ import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-co
 import styles from './ConstructorOrder.module.css';
 import { Modal } from '../Modal/Modal';
 import { OrderDetails } from '../OrderDetails/OrderDetails';
-import { request, baseUrl, ingredientsId } from '../../utils/constants';
+import { ingredientsId } from '../../utils/constants';
+import { useDispatch } from 'react-redux';
+import { CLEAR_ORDER, postOrder } from '../../services/actions/order';
+import { CLOSE_MODAL } from '../../services/actions/modal';
 
 export const ConstructorOrder = ({totalPrice}) => {
-  const [order, setOrder] = useState(0);
   const[isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const handleClose = () => {
+    dispatch({
+      type: CLOSE_MODAL
+    });
+    dispatch({
+      type: CLEAR_ORDER
+    });
     setIsOpen(false);
-  };
+  }
 
-  const postData = () => {
-    request(`${baseUrl}/orders`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        ingredients: ingredientsId
-       }),
-    })
-      .then (res => setOrder(res.order.number))
-      .catch((err) => {
-        console.log(err);
-      });
+  const handlePostOrder = () => {
+    dispatch(postOrder(ingredientsId));
     setIsOpen(true);
-  };
+  }
 
   return (
     <div className={`${styles.order} mt-10`}>
@@ -35,12 +34,12 @@ export const ConstructorOrder = ({totalPrice}) => {
         <p className={`${styles.price} text text_type_digits-medium`}>{totalPrice}</p>
         <CurrencyIcon type="primary" />
       </div>
-      <Button onClick={postData} type="primary" size="large" htmlType="button">
+      <Button onClick={handlePostOrder} type="primary" size="large" htmlType="button">
         Оформить заказ
       </Button>
       {isOpen &&
         <Modal onClose={handleClose}>
-          <OrderDetails orderNumber={order} />
+          <OrderDetails />
         </Modal>}
     </div>
   )

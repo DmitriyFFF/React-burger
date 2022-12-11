@@ -1,65 +1,33 @@
 import React, { useMemo } from 'react';
-import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './BurgerConstructor.module.css';
 import { ConstructorOrder } from '../ConstructorOrder/ConstructorOrder.jsx';
+import { ConstructorItem } from '../ConstructorItem/ConstructorItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { useDrop } from 'react-dnd/dist/hooks';
-import { ADD_BUN, ADD_INGREDIENT } from '../../services/actions/constructor';
-import {v4 as uuid } from 'uuid';
+import { addIngredient } from '../../services/actions/constructor';
 
 export const BurgerConstructor = () => {
   const ingredients = useSelector(state => state.constructorReducer.ingredients);
+  const bun = useSelector(state => state.constructorReducer.bun)
   const dispatch = useDispatch();
 
-  const[{ isOver }, dropRef] = useDrop({
+  const[, dropRef] = useDrop({
     accept: 'ingredient',
-    collect: monitor => ({
-      isOver: monitor.isOver()
-    }),
-    drop(itemId) {
-      handleDrop(itemId);
+    drop(item) {
+      dispatch(addIngredient(item));
     }
   });
 
-  const handleDrop = (item) => {
-    if (item.type === 'bun') {
-      dispatch({
-        type: ADD_BUN,
-        id: uuid(),
-        bun: item
-      })
-    } else {
-      dispatch({
-        type: ADD_INGREDIENT,
-        id: uuid(),
-        ingredient: item
-      })
-    }
-  }
-
-  const bun = useMemo(() => ingredients.find(item => item.type === 'bun'), [ingredients]);
-  const fillings = useMemo(() => ingredients.filter(item => item.type !== 'bun'), [ingredients]) ;
-
-  const totalPrice = useMemo(() =>
-    ingredients.reduce((prev, item) => {
-      //return item.type === 'bun' ? prev + item.price * 2 : prev + item.price
-      if (item.price) {
-        if (item.type === 'bun') {
-          return prev + item.price * 2;
-        }
-        return prev + item.price;
-      }
-      return prev;
-    }, 0),
-    [ingredients]
+  const totalPrice = useMemo(() => {
+    return ingredients.reduce((prev, item) =>
+      prev + item.price, 0) + (bun ? bun.price * 2 : 0)
+    },
+    [bun, ingredients]
   );
 
   return (
-    <section
-      className={`${styles.content} mt-25 pl-8 pr-4`}
-      ref={dropRef}
-      style={{border: '2px solid #fff', borderColor: isOver ? 'red' : 'green'}}
-    >
+    <section className={`${styles.content} mt-25 pl-8 pr-4`} ref={dropRef}>
       {bun &&
         <div>
           <ConstructorElement
@@ -71,15 +39,12 @@ export const BurgerConstructor = () => {
           />
         </div>}
       <ul className={styles.fillingList}>
-        {fillings.map(item =>
-          <li className={styles.fillingItem} key={item._id}>
-            <DragIcon type="primary" />
-            <ConstructorElement
-              text={item.name}
-              price={item.price}
-              thumbnail={item.image}
-            />
-          </li>
+        {ingredients.map((ingredient, index) => (
+            <ConstructorItem
+              key={ingredient.key}
+              ingredient={ingredient}
+              index={index}
+            />)
         )}
       </ul>
       {bun &&

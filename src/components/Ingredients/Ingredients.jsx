@@ -2,12 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { IngredientItem } from '../IngredientItem/IngredientItem.jsx';
 import { ingredientType } from '../../utils/types.js';
-//import { useSelector } from 'react-redux';
 import styles from './Ingredients.module.css';
 
 export const Ingredients = ({data, title}) => {
-  // const ingredients = useSelector((store) => store.burger.ingredients);
-  // const itemType = ingredients.filter((item) => item.type === data.type);
   return (
     <div className="mb-10">
       <h2 className="text text_type_main-medium mb-6">{title}</h2>

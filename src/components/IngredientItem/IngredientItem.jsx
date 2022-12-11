@@ -13,7 +13,7 @@ export const IngredientItem = ({card}) => {
   const[isOpen, setIsOpen] = useState(false);
   const[{ opacity }, dragRef] = useDrag({
     type: 'ingredient',
-    item: { card },
+    item: card ,
     collect: monitor => ({
       opacity: monitor.isDragging() ? .5 : 1
     })
@@ -25,6 +25,7 @@ export const IngredientItem = ({card}) => {
     });
     setIsOpen(true);
   };
+
   const handleClose = () => {
     dispatch({
       type: CLOSE_MODAL

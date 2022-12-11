@@ -15,7 +15,7 @@ export function getIngredients() {
         if (res && res.success) {
           dispatch({
             type: GET_INGREDIENTS_SUCCESS,
-            ingredients: res.data//???
+            ingredients: res.data
           });
         } else {
           dispatch({

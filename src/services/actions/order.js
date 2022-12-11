@@ -4,6 +4,8 @@ export const POST_ORDER_REQUEST = "POST_ORDER_REQUEST";
 export const POST_ORDER_SUCCESS = "POST_ORDER_SUCCESS";
 export const POST_ORDER_FAIL = "POST_ORDER_FAIL";
 
+export const CLEAR_ORDER = "CLEAR_ORDER"
+
 export function postOrder(ingredientsId) {
   return function(dispatch) {
     dispatch({
@@ -20,7 +22,7 @@ export function postOrder(ingredientsId) {
         if (res && res.success) {
           dispatch({
             type: POST_ORDER_SUCCESS,
-            order: res.order.number//???
+            order: res.order.number
           });
         } else {
           dispatch({
