@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import {  useSelector } from 'react-redux';
 import styles from './Tabs.module.css';
@@ -19,4 +20,8 @@ export const Tabs = ({onClick}) => {
       </Tab>
     </div>
   )
+}
+
+Tabs.propTypes = {
+  onClose: PropTypes.func
 }
