@@ -19,17 +19,16 @@ export function postOrder(ingredientsId) {
       }),
     })
       .then(res => {
-        if (res && res.success) {
-          dispatch({
-            type: POST_ORDER_SUCCESS,
-            order: res.order.number
-          });
-        } else {
-          dispatch({
-            type: POST_ORDER_FAIL
-          });
-        }
+        dispatch({
+          type: POST_ORDER_SUCCESS,
+          order: res.order.number
+        });
       })
-      .catch(err => console.log(err))
-  };
+      .catch(err => {
+        console.log(err)
+        dispatch({
+          type: POST_ORDER_FAIL
+        });
+      });
+  }
 }

@@ -23,3 +23,7 @@
   height: 492px;
   background: var(--bg-color-scroll-thumb);
 }
+
+.tabs {
+  display: flex;
+}

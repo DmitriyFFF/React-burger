@@ -7,8 +7,15 @@ const checkResponse = (res) => {
   return Promise.reject(`Ошибка: ${res.status}`);
 };
 
+const checkSuccess = (res) => {
+  if (res && res.success) {
+    return res.json();
+  }
+  return Promise.reject(`Ошибка: ${res.status}`);
+}
+
 export const request = (url, options) => {
-  return fetch(url, options).then(checkResponse);
+  return fetch(url, options).then(checkResponse, checkSuccess);
 };
 
 export const ingredientsId = [

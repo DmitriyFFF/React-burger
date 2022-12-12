@@ -1,4 +1,4 @@
-import { ADD_INGREDIENT, DELETE_INGREDIENT, MOVE_INGREDIENT } from "../actions/constructor.js";
+import { ADD_INGREDIENT, DELETE_INGREDIENT, MOVE_INGREDIENT, CLEAR_INGREDIENTS } from "../actions/constructor.js";
 
 const initialState = {
   ingredients: [],
@@ -32,6 +32,13 @@ export const constructorReducer = (state = initialState, action) => {
         ...state,
         ingredients: ingredients
       };
+    }
+    case CLEAR_INGREDIENTS: {
+      return {
+        ...state,
+        bun: null,
+        ingredients: []
+      }
     }
     default: {
       return state;

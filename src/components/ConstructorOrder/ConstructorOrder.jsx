@@ -5,12 +5,14 @@ import styles from './ConstructorOrder.module.css';
 import { Modal } from '../Modal/Modal';
 import { OrderDetails } from '../OrderDetails/OrderDetails';
 import { ingredientsId } from '../../utils/constants';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { CLEAR_ORDER, postOrder } from '../../services/actions/order';
 import { CLOSE_MODAL } from '../../services/actions/modal';
+import { CLEAR_INGREDIENTS } from '../../services/actions/constructor';
 
 export const ConstructorOrder = ({totalPrice}) => {
   const[isOpen, setIsOpen] = useState(false);
+  const { bun, ingredients } = useSelector(state => state.constructorReducer);
   const dispatch = useDispatch();
 
   const handleClose = () => {
@@ -21,6 +23,9 @@ export const ConstructorOrder = ({totalPrice}) => {
       type: CLEAR_ORDER
     });
     setIsOpen(false);
+    dispatch({
+      type: CLEAR_INGREDIENTS
+    });
   }
 
   const handlePostOrder = () => {
@@ -34,7 +39,13 @@ export const ConstructorOrder = ({totalPrice}) => {
         <p className={`${styles.price} text text_type_digits-medium`}>{totalPrice}</p>
         <CurrencyIcon type="primary" />
       </div>
-      <Button onClick={handlePostOrder} type="primary" size="large" htmlType="button">
+      <Button
+        onClick={handlePostOrder}
+        type="primary"
+        size="large"
+        htmlType="button"
+        disabled={!bun || !ingredients.length ? true : false}
+      >
         Оформить заказ
       </Button>
       {isOpen &&

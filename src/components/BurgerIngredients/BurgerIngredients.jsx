@@ -1,54 +1,53 @@
-import React, { useMemo, useRef } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Ingredients } from '../Ingredients/Ingredients.jsx';
-import { Tabs } from '../Tabs/Tabs.jsx';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './BurgerIngredients.module.css';
-import { SET_INGREDIENT_TAB } from '../../services/actions/ingredients.js';
+import { useInView } from 'react-intersection-observer';
 
 export const BurgerIngredients = () => {
+  const [current, setCurrent] = useState('Булки')
+  const [bunRef, inViewBun] = useInView({threshold: .1});
+  const [sauceRef, inViewSauce] = useInView({threshold: .1});
+  const [mainRef, inViewMain] = useInView({threshold: .5});
   const ingredients = useSelector(state => state.ingredientsReducer.ingredients);
-  const dispatch = useDispatch();
 
   const buns = useMemo(() => ingredients.filter(item => item.type === 'bun'), [ingredients]);
   const sauces = useMemo(() => ingredients.filter(item => item.type === 'sauce'), [ingredients]);
   const mains = useMemo(() => ingredients.filter(item => item.type === 'main'), [ingredients]);
 
-  const bunsTab = useRef(null);
-  const sausesTab = useRef(null);
-  const mainsTab = useRef(null);
-
-  const scrollTab = (tab) => {
-    dispatch({
-      type: SET_INGREDIENT_TAB,
-      tab
-    });
-    switch (tab) {
-      case 'Булки':
-        bunsTab.current.scrollIntoView({behavior: 'smooth'})
-        break;
-      case 'Соусы':
-        sausesTab.current.scrollIntoView({behavior: 'smooth'})
-        break;
-      case 'Начинки':
-        mainsTab.current.scrollIntoView({behavior: 'smooth'})
-        break;
-      default:
-        break;
+  useEffect(() => {
+    if (inViewBun) {
+      setCurrent('Булки');
+    } else if (inViewSauce) {
+      setCurrent('Соусы');
+    } else if (inViewMain) {
+      setCurrent('Начинки');
     }
-  }
+  }, [inViewBun, inViewSauce, inViewMain]);
 
   return (
     <section className={`${styles.content} mr-10`}>
       <h1 className="text text_type_main-large mt-10 mb-5">Соберите бургер</h1>
-      <Tabs onClick={scrollTab}/>
+      <div className={styles.tabs}>
+        <Tab value="Булки" active={current === 'Булки'} onClick={setCurrent}>
+        Булки
+        </Tab>
+        <Tab value="Соусы" active={current === 'Соусы'} onClick={setCurrent}>
+        Соусы
+        </Tab>
+        <Tab value="Начинки" active={current === 'Начинки'} onClick={setCurrent}>
+        Начинки
+        </Tab>
+      </div>
       <ul className={`${styles.menu} mt-10`}>
-        <li ref={bunsTab}>
+        <li ref={bunRef}>
           <Ingredients data={buns} title={'Булки'} />
         </li>
-        <li ref={sausesTab} >
+        <li ref={sauceRef} >
           <Ingredients data={sauces} title={'Соусы'} />
         </li>
-        <li ref={mainsTab}>
+        <li ref={mainRef}>
           <Ingredients data={mains} title={'Начинки'} />
         </li>
       </ul>

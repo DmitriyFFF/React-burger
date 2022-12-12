@@ -12,17 +12,16 @@ export function getIngredients() {
     });
     request(`${baseUrl}/ingredients`)
       .then(res => {
-        if (res && res.success) {
-          dispatch({
-            type: GET_INGREDIENTS_SUCCESS,
-            ingredients: res.data
-          });
-        } else {
-          dispatch({
-            type: GET_INGREDIENTS_FAIL
-          });
-        }
+        dispatch({
+          type: GET_INGREDIENTS_SUCCESS,
+          ingredients: res.data
+        });
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        console.log(err);
+        dispatch({
+          type: GET_INGREDIENTS_FAIL
+        });
+      });
   }
 }
