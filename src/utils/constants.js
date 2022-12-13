@@ -9,13 +9,13 @@ const checkResponse = (res) => {
 
 const checkSuccess = (res) => {
   if (res && res.success) {
-    return res.json();
+    return res;
   }
   return Promise.reject(`Ошибка: ${res.status}`);
 }
 
 export const request = (url, options) => {
-  return fetch(url, options).then(checkResponse, checkSuccess);
+  return fetch(url, options).then(checkResponse).then(checkSuccess);
 };
 
 export const ingredientsId = [
