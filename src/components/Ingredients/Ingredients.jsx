@@ -18,7 +18,7 @@ export const Ingredients = ({data, title}) => {
 }
 
 Ingredients.propTypes = {
-  data: PropTypes.arrayOf(ingredientType),
+  data: PropTypes.arrayOf(ingredientType).isRequired,
   title: PropTypes.string
 };
 

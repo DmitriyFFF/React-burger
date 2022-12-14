@@ -1,30 +1,29 @@
-import {React, useState, useEffect} from 'react';
+import React from 'react';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import { AppHeader } from '../AppHeader/AppHeader';
 import { BurgerIngredients } from '../BurgerIngredients/BurgerIngredients';
 import { BurgerConstructor } from '../BurgerConstructor/BurgerConstructor';
 import appStyles from './App.module.css';
-import { baseUrl, request } from '../../utils/constants';
+import { useDispatch } from 'react-redux';
+import { getIngredients } from '../../services/actions/ingredients';
 
 export const App = () => {
-  const[data, setData] = useState([]);
-  useEffect(() => {
-    const getData = () => {
-      request(`${baseUrl}/ingredients`)
-        .then (res => setData(res.data))
-        .catch((err) => {
-          console.log(err);
-        })
-    };
-    getData();
-  }, []);
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(getIngredients());
+  }, [dispatch]);
 
   return (
     <div className={appStyles.App}>
       <AppHeader />
-      <main className={appStyles.content}>
-        <BurgerIngredients data={data} />
-        <BurgerConstructor data={data} />
-      </main>
+        <DndProvider backend={HTML5Backend}>
+          <main className={appStyles.content}>
+            <BurgerIngredients />
+            <BurgerConstructor />
+          </main>
+        </DndProvider>
     </div>
   );
 }

@@ -1,73 +1,63 @@
-import { React, useState } from 'react';
-import PropTypes from 'prop-types';
-import { ConstructorElement, DragIcon, Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { Modal } from '../Modal/Modal.jsx';
-import { OrderDetails } from '../OrderDetails/OrderDetails.jsx';
-import { ingredientType } from '../../utils/types.js';
+import React, { useMemo } from 'react';
+import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './BurgerConstructor.module.css';
+import { ConstructorOrder } from '../ConstructorOrder/ConstructorOrder.jsx';
+import { ConstructorItem } from '../ConstructorItem/ConstructorItem';
+import { useDispatch, useSelector } from 'react-redux';
+import { useDrop } from 'react-dnd/dist/hooks';
+import { addIngredient } from '../../services/actions/constructor';
 
-export const BurgerConstructor = ({data}) => {
-  const[isOpen, setIsOpen] = useState(false);
+export const BurgerConstructor = () => {
+  const ingredients = useSelector(state => state.constructorReducer.ingredients);
+  const bun = useSelector(state => state.constructorReducer.bun)
+  const dispatch = useDispatch();
 
-  const handleOpen = () => {
-    setIsOpen(true);
-  };
-  const handleClose = () => {
-    setIsOpen(false);
-  };
+  const[, dropRef] = useDrop({
+    accept: 'ingredient',
+    drop(item) {
+      dispatch(addIngredient(item));
+    }
+  });
 
-  const fillings = data.filter(item => item.type !== 'bun');
+  const totalPrice = useMemo(() => {
+    return ingredients.reduce((prev, item) =>
+      prev + item.price, 0) + (bun ? bun.price * 2 : 0)
+    },
+    [bun, ingredients]
+  );
 
   return (
-    <section className={`${styles.content} mt-25 pl-8 pr-4`}>
-      <div>
-        <ConstructorElement
-          type="top"
-          isLocked={true}
-          text="Краторная булка N-200i (верх)"
-          price={200}
-          thumbnail="https://code.s3.yandex.net/react/code/bun-02.png"
-        />
-      </div>
+    <section className={`${styles.content} mt-25 pl-8 pr-4`} ref={dropRef}>
+      {bun &&
+        <div>
+          <ConstructorElement
+            type="top"
+            isLocked={true}
+            text={`${bun.name} (верх)`}
+            price={bun.price}
+            thumbnail={bun.image}
+          />
+        </div>}
       <ul className={styles.fillingList}>
-        {fillings.map(item =>
-          <li className={styles.fillingItem} key={item._id}>
-            <DragIcon type="primary" />
-            <ConstructorElement
-              text={item.name}
-              price={item.price}
-              thumbnail={item.image}
-            />
-          </li>
+        {ingredients.map((ingredient, index) => (
+            <ConstructorItem
+              key={ingredient.key}
+              ingredient={ingredient}
+              index={index}
+            />)
         )}
       </ul>
-      <div>
-        <ConstructorElement
-          type="bottom"
-          isLocked={true}
-          text="Краторная булка N-200i (низ)"
-          price={200}
-          thumbnail="https://code.s3.yandex.net/react/code/bun-02.png"
-        />
-      </div>
-      <div className={`${styles.order} mt-10`}>
-        <div className={`${styles.priceContainer} mt-1 mb-1 mr-10`}>
-          <p className={`${styles.price} text text_type_digits-medium`}>100500</p>
-          <CurrencyIcon type="primary" />
-        </div>
-        <Button onClick={handleOpen} type="primary" size="large" htmlType="button">
-          Оформить заказ
-        </Button>
-        {isOpen &&
-          <Modal onClose={handleClose}>
-            <OrderDetails />
-          </Modal>}
-      </div>
+      {bun &&
+        <div>
+          <ConstructorElement
+            type="bottom"
+            isLocked={true}
+            text={`${bun.name} (низ)`}
+            price={bun.price}
+            thumbnail={bun.image}
+          />
+        </div>}
+      <ConstructorOrder totalPrice={totalPrice}/>
     </section>
   )
 }
-
-BurgerConstructor.propTypes = {
-  data: PropTypes.arrayOf(ingredientType).isRequired
-};
-
