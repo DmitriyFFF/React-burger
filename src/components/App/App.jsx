@@ -1,12 +1,12 @@
 import React from 'react';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import { AppHeader } from '../AppHeader/AppHeader';
-import { BurgerIngredients } from '../BurgerIngredients/BurgerIngredients';
-import { BurgerConstructor } from '../BurgerConstructor/BurgerConstructor';
-import appStyles from './App.module.css';
+import { Main } from '../../pages/main/main';
+import styles from './App.module.css';
 import { useDispatch } from 'react-redux';
 import { getIngredients } from '../../services/actions/ingredients';
+import { Login } from '../../pages/login/login';
+import { Register } from '../../pages/register/register';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -16,14 +16,21 @@ export const App = () => {
   }, [dispatch]);
 
   return (
-    <div className={appStyles.App}>
-      <AppHeader />
-        <DndProvider backend={HTML5Backend}>
-          <main className={appStyles.content}>
-            <BurgerIngredients />
-            <BurgerConstructor />
-          </main>
-        </DndProvider>
+    <div className={styles.App}>
+      <Router>
+        <AppHeader />
+        <Switch>
+          <Route path="/" exact={true}>
+            <Main />
+          </Route>
+          <Route path="/login" exact={true}>
+            <Login />
+          </Route>
+          <Route path="/register" exact={true}>
+            <Register />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
