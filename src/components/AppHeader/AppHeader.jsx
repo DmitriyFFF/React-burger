@@ -1,10 +1,13 @@
-import React from 'react';
-import { Logo, BurgerIcon, ListIcon, ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import appHeaderStyles from './AppHeader.module.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Logo, BurgerIcon, ListIcon, ProfileIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import appHeaderStyles from "./AppHeader.module.css";
 
 const AppHeaderLogo = () => {
   return (
-    <Logo />
+    <Link to="/">
+      <Logo />
+    </Link>
   );
 }
 
@@ -13,11 +16,11 @@ const NavigationMenu = () => {
     <ul className={appHeaderStyles.menuContainer}>
       <li className={`${appHeaderStyles.menuItem} pt-4 pr-5 pb-4 mr-1`}>
         <BurgerIcon type="primary"/>
-        <p className="text text_type_main-default pl-2">Конструктор</p>
+        <Link className="text text_type_main-default pl-2">Конструктор</Link>
       </li>
       <li className={`${appHeaderStyles.menuItem} pt-4 pr-5 pb-4 pl-5`}>
         <ListIcon type="secondary"/>
-        <p className="text text_type_main-default text_color_inactive pl-2">Лента заказов</p>
+        <Link className="text text_type_main-default text_color_inactive pl-2">Лента заказов</Link>
       </li>
     </ul>
   );
@@ -27,7 +30,7 @@ const Profile = () => {
   return (
     <div className={appHeaderStyles.menuItem}>
       <ProfileIcon type="secondary"/>
-      <p className="text text_type_main-default text_color_inactive pl-2">Личный кабинет</p>
+      <Link className="text text_type_main-default text_color_inactive pl-2" to="/login">Личный кабинет</Link>
     </div>
   );
 }

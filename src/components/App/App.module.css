@@ -1,6 +1,6 @@
 .App {
   background-color: var(--bg-color-body);
-  text-align: start;
+  text-align: start;height: 100vh;/*!!!!!!!*/
 }
 
 .content {

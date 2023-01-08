@@ -17,31 +17,33 @@ export const Login = () => {
   return (
     <section className={styles.container}>
       <form className={styles.form}>
-        <h1 className={styles.heading}>Вход</h1>
+        <h1 className={`${styles.heading} text text_type_main-medium`}>Вход</h1>
         <EmailInput
           onChange={onChange}
           value={form.email}
           name={'email'}
           placeholder="E-mail"
-          /*isIcon={true}
-          extraClass="mb-2"*/
+          /*isIcon={true}*/
+          extraClass="mt-6"
         />
         <PasswordInput
           onChange={onChange}
           value={form.password}
           name={'password'}
           placeholder="Пароль"
-          /*extraClass="mb-2"*/
+          extraClass="mt-6"
         />
-        <Button type="primary" size="medium">Войти</Button>
+        <Button extraClass="mt-6 mb-20" type="primary" size="medium">Войти</Button>
       </form>
       <div>
-          <p className="text text_type_main-default">Вы — новый пользователь?</p>
-          <Link className="text text_type_main-default" to="/register">Зарегистрироваться</Link>
+          <p className="text text_type_main-default text_color_inactive">{"Вы — новый пользователь? "}
+            <Link className="text text_type_main-default" to="/register">Зарегистрироваться</Link>
+          </p>
       </div>
       <div>
-          <p className="text text_type_main-default">Забыли пароль?</p>
-          <Link className="text text_type_main-default" to="/forgot-password">Восстановить пароль</Link>
+          <p className="text text_type_main-default text_color_inactive">{"Забыли пароль? "}
+            <Link className="text text_type_main-default" to="/forgot-password">Восстановить пароль</Link>
+          </p>
       </div>
     </section>
   );
