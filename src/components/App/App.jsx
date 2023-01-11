@@ -7,6 +7,8 @@ import { useDispatch } from 'react-redux';
 import { getIngredients } from '../../services/actions/ingredients';
 import { Login } from '../../pages/login/login';
 import { Register } from '../../pages/register/register';
+import { ForgotPassword } from '../../pages/forgot-password/forgot-password';
+import { ResetPassword } from '../../pages/reset-password/reset-password';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -28,6 +30,12 @@ export const App = () => {
           </Route>
           <Route path="/register" exact={true}>
             <Register />
+          </Route>
+          <Route path="/forgot-password" exact={true}>
+            <ForgotPassword />
+          </Route>aaaaaaaaa
+          <Route path="/forgot-password" exact={true}>
+            <ResetPassword />
           </Route>
         </Switch>
       </Router>

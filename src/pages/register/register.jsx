@@ -41,7 +41,7 @@ export const Register = () => {
           placeholder="Пароль"
           extraClass="mt-6"
         />
-        <Button extraClass="mt-6 mb-20" type="primary" size="medium"> Зарегистрироваться</Button>
+        <Button extraClass="mt-6 mb-20" type="primary" size="medium" htmlType="button"> Зарегистрироваться</Button>
       </form>
       <div>
           <p className="text text_type_main-default text_color_inactive">{"Уже зарегистрированы? "}

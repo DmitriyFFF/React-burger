@@ -24,5 +24,14 @@
 
 .menuItem {
   display: flex;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
+
+.link {
+  display: flex;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* .active_link {
+} */
