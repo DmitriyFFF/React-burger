@@ -33,7 +33,7 @@ const NavigationMenu = () => {
 const Profile = () => {
   return (
     <div className={styles.menuItem}>
-      <Link to="/login" className={styles.link}>
+      <Link to="/profile" className={styles.link}>
         <ProfileIcon type="secondary"/>
         <p className="text text_type_main-default text_color_inactive pl-2">Личный кабинет</p>
       </Link>

@@ -1,14 +1,10 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import { AppHeader } from '../AppHeader/AppHeader';
-import { Main } from '../../pages/main/main';
 import styles from './App.module.css';
 import { useDispatch } from 'react-redux';
 import { getIngredients } from '../../services/actions/ingredients';
-import { Login } from '../../pages/login/login';
-import { Register } from '../../pages/register/register';
-import { ForgotPassword } from '../../pages/forgot-password/forgot-password';
-import { ResetPassword } from '../../pages/reset-password/reset-password';
+import { Login, Register, Main, ForgotPassword, ResetPassword, Profile } from '../../pages';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -33,10 +29,16 @@ export const App = () => {
           </Route>
           <Route path="/forgot-password" exact={true}>
             <ForgotPassword />
-          </Route>aaaaaaaaa
+          </Route>
           <Route path="/forgot-password" exact={true}>
             <ResetPassword />
           </Route>
+          <Route path="/profile" exact={true}>
+            <Profile />
+          </Route>
+          {/* <Route>
+            <NotFound404 />
+        </Route> */}
         </Switch>
       </Router>
     </div>
