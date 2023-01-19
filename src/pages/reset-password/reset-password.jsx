@@ -9,11 +9,6 @@ export const ResetPassword = () => {
     setValue({ ...form, [e.target.name]: e.target.value })
   };
 
-  // const [value, setValue] = React.useState('password')
-  // const onChange = e => {
-  //   setValue(e.target.value)
-  // };
-
   return (
     <section className={styles.container}>
       <form className={styles.form}>
@@ -23,7 +18,6 @@ export const ResetPassword = () => {
           value={form.email}
           name={'email'}
           placeholder="Введите новый пароль"
-          /*isIcon={true}*/
           extraClass="mt-6"
         />
         <PasswordInput
@@ -37,14 +31,9 @@ export const ResetPassword = () => {
       </form>
       <div>
           <p className="text text_type_main-default text_color_inactive">{"Вспомнили пароль? "}
-            <Link className="text text_type_main-default" to="/login">Войти</Link>
+            <Link className={`${styles.link} text text_type_main-default`} to="/login">Войти</Link>
           </p>
       </div>
-      {/* <div>
-          <p className="text text_type_main-default text_color_inactive">{"Забыли пароль? "}
-            <Link className="text text_type_main-default" to="/forgot-password">Восстановить пароль</Link>
-          </p>
-      </div> */}
     </section>
   );
 };

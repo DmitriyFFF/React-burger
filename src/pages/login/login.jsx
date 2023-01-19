@@ -37,12 +37,12 @@ export const Login = () => {
       </form>
       <div>
           <p className="text text_type_main-default text_color_inactive">{"Вы — новый пользователь? "}
-            <Link className="text text_type_main-default" to="/register">Зарегистрироваться</Link>
+            <Link className={`${styles.link} text text_type_main-default`} to="/register">Зарегистрироваться</Link>
           </p>
       </div>
       <div>
           <p className="text text_type_main-default text_color_inactive">{"Забыли пароль? "}
-            <Link className="text text_type_main-default" to="/forgot-password">Восстановить пароль</Link>
+            <Link className={`${styles.link} text text_type_main-default`} to="/forgot-password">Восстановить пароль</Link>
           </p>
       </div>
     </section>

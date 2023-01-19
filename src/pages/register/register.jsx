@@ -45,7 +45,7 @@ export const Register = () => {
       </form>
       <div>
           <p className="text text_type_main-default text_color_inactive">{"Уже зарегистрированы? "}
-            <Link className="text text_type_main-default" to="/login">Войти</Link>
+            <Link className={`${styles.link} text text_type_main-default`} to="/login">Войти</Link>
           </p>
       </div>
       {/* <div>
