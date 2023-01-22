@@ -23,9 +23,9 @@ export const ForgotPassword = () => {
         <Button extraClass="mt-6 mb-20" type="primary" size="medium" htmlType="button">Восстановить</Button>
       </form>
       <div>
-          <p className="text text_type_main-default text_color_inactive">{"Вспомнили пароль? "}
-            <Link className={`${styles.link} text text_type_main-default`} to="/login">Войти</Link>
-          </p>
+        <p className="text text_type_main-default text_color_inactive">{"Вспомнили пароль? "}
+          <Link className={`${styles.link} text text_type_main-default`} to="/login">Войти</Link>
+        </p>
       </div>
     </section>
   );

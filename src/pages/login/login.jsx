@@ -36,14 +36,14 @@ export const Login = () => {
         <Button extraClass="mt-6 mb-20" type="primary" size="medium" htmlType="button">Войти</Button>
       </form>
       <div>
-          <p className="text text_type_main-default text_color_inactive">{"Вы — новый пользователь? "}
-            <Link className={`${styles.link} text text_type_main-default`} to="/register">Зарегистрироваться</Link>
-          </p>
+        <p className="text text_type_main-default text_color_inactive">{"Вы — новый пользователь? "}
+          <Link className={`${styles.link} text text_type_main-default`} to="/register">Зарегистрироваться</Link>
+        </p>
       </div>
       <div>
-          <p className="text text_type_main-default text_color_inactive">{"Забыли пароль? "}
-            <Link className={`${styles.link} text text_type_main-default`} to="/forgot-password">Восстановить пароль</Link>
-          </p>
+        <p className="text text_type_main-default text_color_inactive">{"Забыли пароль? "}
+          <Link className={`${styles.link} text text_type_main-default`} to="/forgot-password">Восстановить пароль</Link>
+        </p>
       </div>
     </section>
   );

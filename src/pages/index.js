@@ -4,5 +4,6 @@ import { ForgotPassword } from "./forgot-password/forgot-password";
 import { ResetPassword } from "./reset-password/reset-password";
 import { Profile } from "./profile/profile";
 import { Main } from "./main/main";
+import { NotFound404 } from "./not-found/not-found";
 
-export { Login, Register, ForgotPassword, ResetPassword, Profile, Main};
+export { Login, Register, ForgotPassword, ResetPassword, Profile, Main, NotFound404 };
