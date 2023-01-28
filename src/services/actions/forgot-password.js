@@ -18,7 +18,8 @@ export function postForgotPassword(email) {//???
     })
       .then(res => {
         dispatch({
-          type: FORGOT_PASSWORD_SUCCESS
+          type: FORGOT_PASSWORD_SUCCESS,
+          user: res.user//??
         });
       })
       .catch(err => {

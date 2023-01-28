@@ -38,7 +38,7 @@ export const App = () => {
           </Route>
           <Route path="*">
             <NotFound404 />
-        </Route>
+          </Route>
         </Switch>
       </Router>
     </div>

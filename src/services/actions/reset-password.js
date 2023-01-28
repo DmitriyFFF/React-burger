@@ -19,7 +19,8 @@ export function postResetPassword(password, token) {//????
     })
       .then(res => {
         dispatch({
-          type: RESET_PASSWORD_SUCCESS
+          type: RESET_PASSWORD_SUCCESS,
+          user: res.user//??
         });
       })
       .catch(err => {

@@ -1,20 +1,28 @@
-import { request, baseUrl } from "../../utils/constants";
+import { request, baseUrl, setCookie, deleteCookie, getCookie } from "../../utils/constants";
 
-export const POST_USER_REGISTER_REQUEST = "POST_USERDATA_REQUEST";
-export const POST_USER_REGISTER_SUCCESS = "POST_USERDATA_SUCCESS";
-export const POST_USER_REGISTER_FAIL = "POST_USERDATA_FAIL";
+export const POST_USER_REGISTER_REQUEST = "POST_USER_REGISTER_REQUEST";
+export const POST_USER_REGISTER_SUCCESS = "POST_USER_REGISTER_SUCCESS";
+export const POST_USER_REGISTER_FAIL = "POST_USER_REGISTER_FAIL";
 
-export const POST_USER_LOGIN_REQUEST = "POST_USERDATA_REQUEST";
-export const POST_USER_LOGIN_SUCCESS = "POST_USERDATA_SUCCESS";
-export const POST_USER_LOGIN_FAIL = "POST_USERDATA_FAIL";
+export const POST_USER_LOGIN_REQUEST = "POST_USER_LOGIN_REQUEST";
+export const POST_USER_LOGIN_SUCCESS = "POST_USER_LOGIN_SUCCESS";
+export const POST_USER_LOGIN_FAIL = "POST_USER_LOGIN_FAIL";
 
-export const POST_USER_LOGOUT_REQUEST = "POST_USERDATA_REQUEST";
-export const POST_USER_LOGOUT_SUCCESS = "POST_USERDATA_SUCCESS";
-export const POST_USER_LOGOUT_FAIL = "POST_USERDATA_FAIL";
+export const POST_USER_LOGOUT_REQUEST = "POST_USER_LOGOUT_REQUEST";
+export const POST_USER_LOGOUT_SUCCESS = "POST_USER_LOGOUT_SUCCESS";
+export const POST_USER_LOGOUT_FAIL = "POST_USER_LOGOUT_FAIL";
 
-export const POST_TOKEN_REQUEST = "POST_USERDATA_REQUEST";
-export const POST_TOKEN_SUCCESS = "POST_USERDATA_SUCCESS";
-export const POST_TOKEN_FAIL = "POST_USERDATA_FAIL";
+export const POST_TOKEN_REQUEST = "POST_TOKEN_REQUEST";
+export const POST_TOKEN_SUCCESS = "POST_TOKEN_SUCCESS";
+export const POST_TOKEN_FAIL = "POST_TOKEN_FAIL";
+
+export const GET_USER_REQUEST = "GET_USER_REQUEST";
+export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
+export const GET_USER_FAIL = "GET_USER_FAIL";
+
+export const PATCH_USER_REQUEST = "PATCH_USER_REQUEST";
+export const PATCH_USER_SUCCESS = "PATCH_USER_SUCCESS";
+export const PATCH_USER_FAIL = "PATCH_USER_FAIL";
 
 export function postUserData(email, password, name) {//???
   return function(dispatch) {
@@ -30,18 +38,20 @@ export function postUserData(email, password, name) {//???
         name: name
       }),
     })
-      .then(res => {
-        dispatch({
-          type: POST_USER_REGISTER_SUCCESS,
-          user: res.user
-        });
-      })
-      .catch(err => {
-        console.log(err)
-        dispatch({
-          type: POST_USER_REGISTER_FAIL
-        });
+    .then(res => {
+      setCookie('token', res.accessToken);//???
+      localStorage.setItem('refreshToken', res.refreshToken);//???
+      dispatch({
+        type: POST_USER_REGISTER_SUCCESS,
+        user: res.user
       });
+    })
+    .catch(err => {
+      console.log(err)
+      dispatch({
+        type: POST_USER_REGISTER_FAIL
+      });
+    });
   }
 }
 
@@ -58,22 +68,24 @@ export function postLogin(email, password) {//???
         password: password
       }),
     })
-      .then(res => {
-        dispatch({
-          type: POST_USER_LOGIN_SUCCESS,
-          user: res.user
-        });
-      })
-      .catch(err => {
-        console.log(err)
-        dispatch({
-          type: POST_USER_LOGIN_FAIL
-        });
+    .then(res => {
+      setCookie('token', res.accessToken);//???
+      localStorage.setItem('refreshToken', res.refreshToken);//???
+      dispatch({
+        type: POST_USER_LOGIN_SUCCESS,
+        user: res.user
       });
+    })
+    .catch(err => {
+      console.log(err)
+      dispatch({
+        type: POST_USER_LOGIN_FAIL
+      });
+    });
   }
 }
 
-export function postLogout(token) {//???
+export function postLogout() {//???
   return function(dispatch) {
     dispatch({
       type: POST_USER_LOGOUT_REQUEST,
@@ -82,25 +94,26 @@ export function postLogout(token) {//???
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        token: "refreshToken"//????
+        token: localStorage.getItem('refreshToken')//????
       }),
     })
-      .then(res => {
-        dispatch({
-          type: POST_USER_LOGOUT_SUCCESS,
-          user: res.user
-        });
-      })
-      .catch(err => {
-        console.log(err)
-        dispatch({
-          type: POST_USER_LOGOUT_FAIL
-        });
+    .then(res => {
+      localStorage.removeItem('refreshToken');//???
+      deleteCookie('token', res.accessToken);//???
+      dispatch({
+        type: POST_USER_LOGOUT_SUCCESS
       });
+    })
+    .catch(err => {
+      console.log(err)
+      dispatch({
+        type: POST_USER_LOGOUT_FAIL
+      });
+    });
   }
 }
 
-export function postToken(token) {//???
+export function postToken(/*token*/) {//???
   return function(dispatch) {
     dispatch({
       type: POST_TOKEN_REQUEST,
@@ -109,21 +122,80 @@ export function postToken(token) {//???
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        token: token
+        token: localStorage.getItem('refreshToken')//??
       }),
     })
-      .then(res => {
-        dispatch({
-          type: POST_TOKEN_SUCCESS,
-          user: res.user
-        });
-      })
-      .catch(err => {
-        console.log(err)
-        dispatch({
-          type: POST_TOKEN_FAIL
-        });
+    .then(res => {
+      setCookie('token', res.accessToken);//???
+      localStorage.setItem('refreshToken', res.refreshToken);//???
+      dispatch({
+        type: POST_TOKEN_SUCCESS,
+        user: res.user
       });
+    })
+    .catch(err => {
+      console.log(err)
+      dispatch({
+        type: POST_TOKEN_FAIL
+      });
+    });
+  }
+}
+
+export function getUserData() {//???
+  return function(dispatch) {
+    dispatch({
+      type: GET_USER_REQUEST,
+    });
+    request(`${baseUrl}/auth/user`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + getCookie('token')
+      }
+    })
+    .then(res => {
+      dispatch({
+        type: GET_USER_SUCCESS,
+        user: res.user
+      });
+    })
+    .catch(err => {
+      console.log(err)
+      dispatch({
+        type: GET_USER_FAIL
+      });
+    });
+  }
+}
+
+export function patchUserData(email, name) {//???
+  return function(dispatch) {
+    dispatch({
+      type: PATCH_USER_REQUEST,
+    });
+    request(`${baseUrl}/auth/user`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + getCookie('token')},
+      body: JSON.stringify({
+        email: email,
+        name: name
+      }),
+    })
+    .then(res => {
+      dispatch({
+        type: PATCH_USER_SUCCESS,
+        user: res.user
+      });
+    })
+    .catch(err => {
+      console.log(err)
+      dispatch({
+        type: PATCH_USER_FAIL
+      });
+    });
   }
 }
 
