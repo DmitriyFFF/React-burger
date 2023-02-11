@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import { AppHeader } from '../AppHeader/AppHeader';
 import styles from './App.module.css';
 import { useDispatch } from 'react-redux';
@@ -17,29 +17,15 @@ export const App = () => {
     <div className={styles.App}>
       <Router>
         <AppHeader />
-        <Switch>
-          <Route path="/" exact={true}>
-            <Main />
-          </Route>
-          <Route path="/login" exact={true}>
-            <Login />
-          </Route>
-          <Route path="/register" exact={true}>
-            <Register />
-          </Route>
-          <Route path="/forgot-password" exact={true}>
-            <ForgotPassword />
-          </Route>
-          <Route path="/forgot-password" exact={true}>
-            <ResetPassword />
-          </Route>
-          <Route path="/profile" exact={true}>
-            <Profile />
-          </Route>
-          <Route path="*">
-            <NotFound404 />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/forgot-password" element={<ResetPassword />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="*" element={<NotFound404 />} />
+        </Routes>
       </Router>
     </div>
   );
