@@ -24,7 +24,7 @@ export const PATCH_USER_REQUEST = "PATCH_USER_REQUEST";
 export const PATCH_USER_SUCCESS = "PATCH_USER_SUCCESS";
 export const PATCH_USER_FAIL = "PATCH_USER_FAIL";
 
-export function postUserData(email, password, name) {//???
+export function postUserData(name, email, password, ) {//???
   return function(dispatch) {
     dispatch({
       type: POST_USER_REGISTER_REQUEST,
@@ -33,9 +33,9 @@ export function postUserData(email, password, name) {//???
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
+        name: name,
         email: email,
-        password: password,
-        name: name
+        password: password
       }),
     })
     .then(res => {

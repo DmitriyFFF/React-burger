@@ -4,11 +4,14 @@ import { Input, EmailInput, PasswordInput } from "@ya.praktikum/react-developer-
 import styles from "./profile.module.css";
 
 export const Profile = () => {
-  const [form, setValue] = useState({ email: '', password: '' });
+  const [form, setForm] = useState({ email: '', password: '' });
   // const url = useLocation();
   // const setActiveLink = ({isActive}) => isActive ? 'activeLink' : ''
   const onChange = e => {
-    setValue({ ...form, [e.target.name]: e.target.value })
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value
+    })
   };
 
   // const [value, setValue] = React.useState('password')

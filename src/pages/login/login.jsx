@@ -1,12 +1,25 @@
 import React, { useState } from "react";
-import {Link} from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { EmailInput, Button, PasswordInput } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./login.module.css";
+import { postLogin } from "../../services/actions/auth";
 
 export const Login = () => {
-  const [form, setValue] = useState({ email: '', password: '' })
-  const onChange = e => {
-    setValue({ ...form, [e.target.name]: e.target.value })
+  const [form, setForm] = useState({ email: '', password: '' });
+  const dispatch = useDispatch();
+
+  const onChange = (e) => {
+    setForm({
+       ...form,
+       [e.target.name]: e.target.value
+    })
+  };
+
+  const onSubmit = (e) => {
+    console.log("111")//////////////////
+    e.preventDefault();
+    dispatch(postLogin(form.email, form.password))
   };
 
   // const [value, setValue] = React.useState('password')
@@ -16,7 +29,7 @@ export const Login = () => {
 
   return (
     <section className={styles.container}>
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={onSubmit}>
         <h1 className={`${styles.heading} text text_type_main-medium`}>Вход</h1>
         <EmailInput
           onChange={onChange}
@@ -33,7 +46,7 @@ export const Login = () => {
           placeholder="Пароль"
           extraClass="mt-6"
         />
-        <Button extraClass="mt-6 mb-20" type="primary" size="medium" htmlType="button">Войти</Button>
+        <Button extraClass="mt-6 mb-20" type="primary" size="medium" htmlType="submit">Войти</Button>
       </form>
       <div>
         <p className="text text_type_main-default text_color_inactive">{"Вы — новый пользователь? "}

@@ -2,11 +2,24 @@ import React, { useState } from "react";
 import {Link} from "react-router-dom";
 import { Input, EmailInput, Button, PasswordInput } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./register.module.css";
+import { useDispatch } from "react-redux";
+import { postUserData } from "../../services/actions/auth";
 
 export const Register = () => {
-  const [form, setValue] = useState({ name: '', email: '', password: '' })
+  const [form, setForm] = useState({ name: '', email: '', password: '' });
+  const dispatch = useDispatch();
+
   const onChange = e => {
-    setValue({ ...form, [e.target.name]: e.target.value })
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value
+    })
+  };
+
+  const onSubmit = (e) => {
+    console.log("111")//////////////////
+    e.preventDefault();
+    dispatch(postUserData(form.name, form.email, form.password ))
   };
 
   // const [value, setValue] = React.useState('password')
@@ -16,7 +29,7 @@ export const Register = () => {
 
   return (
     <section className={styles.container}>
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={onSubmit}>
         <h1 className={`${styles.heading} text text_type_main-medium`}>Регистрация</h1>
         <Input
           onChange={onChange}
@@ -41,7 +54,7 @@ export const Register = () => {
           placeholder="Пароль"
           extraClass="mt-6"
         />
-        <Button extraClass="mt-6 mb-20" type="primary" size="medium" htmlType="button"> Зарегистрироваться</Button>
+        <Button extraClass="mt-6 mb-20" type="primary" size="medium" htmlType="submit"> Зарегистрироваться</Button>
       </form>
       <div>
         <p className="text text_type_main-default text_color_inactive">{"Уже зарегистрированы? "}

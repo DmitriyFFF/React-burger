@@ -1,33 +1,52 @@
 import React, { useState } from "react";
-import {Link} from "react-router-dom";
-import { EmailInput, Button, PasswordInput } from "@ya.praktikum/react-developer-burger-ui-components";
+import { Link, useNavigate } from "react-router-dom";
+import { Input, Button, PasswordInput } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./reset-password.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { postResetPassword } from "../../services/actions/reset-password";
+
 
 export const ResetPassword = () => {
-  const [form, setValue] = useState({ email: '', password: '' })
+  const [form, setForm] = useState({ password: '', token: '' });
+  const { resetPasswordFailed } = useSelector(store => store.forgotPasswordReducer);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const onChange = e => {
-    setValue({ ...form, [e.target.name]: e.target.value })
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value
+    })
+  };
+
+  const onSubmit = (e) => {
+    console.log("111")//////////////////
+    e.preventDefault();
+    dispatch(postResetPassword(form.password, form.token));
+    if(!resetPasswordFailed) {
+      navigate({pathname:'/login'})
+    }
   };
 
   return (
     <section className={styles.container}>
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={onSubmit}>
         <h1 className={`${styles.heading} text text_type_main-medium`}>Восстановление пароля</h1>
-        <EmailInput
-          onChange={onChange}
-          value={form.email}
-          name={'email'}
-          placeholder="Введите новый пароль"
-          extraClass="mt-6"
-        />
         <PasswordInput
           onChange={onChange}
           value={form.password}
           name={'password'}
+          placeholder="Введите новый пароль"
+          extraClass="mt-6"
+        />
+        <Input
+          onChange={onChange}
+          value={form.token}
+          name={'token'}
           placeholder="Введите код из письма"
           extraClass="mt-6"
         />
-        <Button extraClass="mt-6 mb-20" type="primary" size="medium" htmlType="button">Сохранить</Button>
+        <Button extraClass="mt-6 mb-20" type="primary" size="medium" htmlType="submit">Сохранить</Button>
       </form>
       <div>
         <p className="text text_type_main-default text_color_inactive">{"Вспомнили пароль? "}
