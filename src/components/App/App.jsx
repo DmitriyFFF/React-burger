@@ -24,6 +24,7 @@ export const App = () => {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/profile1" element={<Profile />} />{/*Для теста, удалить позже */}
           <Route path="*" element={<NotFound404 />} />
         </Routes>
       </Router>

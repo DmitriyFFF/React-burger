@@ -27,10 +27,12 @@
 
 .link {
   text-decoration: none;
+  color: #8585AD;
 }
 
 .activeLink {
-  color: #000;
+  color: #f2f2f3;
+  text-decoration: none;
 }
 
 .form {

@@ -4,9 +4,9 @@ import { Input, EmailInput, PasswordInput } from "@ya.praktikum/react-developer-
 import styles from "./profile.module.css";
 
 export const Profile = () => {
-  const [form, setForm] = useState({ email: '', password: '' });
+  const [form, setForm] = useState({ name: '', email: '', password: '' });
   // const url = useLocation();
-  // const setActiveLink = ({isActive}) => isActive ? 'activeLink' : ''
+  const setActiveLink = ({isActive}) => isActive ? styles.activeLink : styles.link;
   const onChange = e => {
     setForm({
       ...form,
@@ -23,26 +23,14 @@ export const Profile = () => {
     <section className={styles.container}>
       <nav className={`${styles.wrapper} mr-15`}>
         <ul className={styles.list}>
-          <li className={styles.listItem}>
-            <NavLink
-              className={`${styles.link} text text_type_main-medium text_color_inactive`}
-              // activeClassName={styles.activeLink}
-              to="/profile">Профиль
-            </NavLink>
+          <li className={`${styles.listItem} text text_type_main-medium`}>
+            <NavLink className={setActiveLink} to="/profile">Профиль</NavLink>
           </li>
-          <li className={styles.listItem}>
-            <NavLink
-              className={`${styles.link} text text_type_main-medium text_color_inactive`}
-              // activeClassName={styles.activeLink}
-              to="">История заказов
-            </NavLink>
+          <li className={`${styles.listItem} text text_type_main-medium`}>
+            <NavLink className={setActiveLink} to="/profile1">История заказов</NavLink>{/* Изменить путь роута позже*/}
           </li>
-          <li className={styles.listItem}>
-            <NavLink
-              className={`${styles.link} text text_type_main-medium text_color_inactive`}
-              // activeClassName={styles.activeLink}
-              to="">Выход
-            </NavLink>
+          <li className={`${styles.listItem} text text_type_main-medium`}>
+            <NavLink className={setActiveLink} to="/">Выход</NavLink>
           </li>
         </ul>
         <p className="text text_type_main-small text_color_inactive mt-20">В&nbsp;этом разделе вы&nbsp;можете
