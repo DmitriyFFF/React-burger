@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, Navigate } from "react-router-dom";
 import { EmailInput, Button, PasswordInput } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./login.module.css";
 import { postLogin } from "../../services/actions/auth";
 
 export const Login = () => {
   const [form, setForm] = useState({ email: '', password: '' });
+  const { isAuthenticated } = useSelector(store => store.authReducer);
   const dispatch = useDispatch();
 
   const onChange = (e) => {
@@ -21,6 +22,12 @@ export const Login = () => {
     e.preventDefault();
     dispatch(postLogin(form.email, form.password))
   };
+
+  if (isAuthenticated) {
+    return (
+      <Navigate to='/' replace />
+    )
+  }
 
   // const [value, setValue] = React.useState('password')
   // const onChange = e => {

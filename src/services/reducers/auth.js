@@ -2,6 +2,7 @@ import { POST_USER_REGISTER_REQUEST, POST_USER_REGISTER_SUCCESS, POST_USER_REGIS
 
 const initialState = {
   user: null,
+  isAuthenticated: false,
   registerRequest: false,
   registerFailed: false,
   loginRequest: false,
@@ -29,6 +30,7 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.user,
+        isAuthenticated: true,
         registerRequest: false
       };
     }
@@ -50,6 +52,7 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.user,
+        isAuthenticated: true,
         loginRequest: false
       };
     }
@@ -71,6 +74,7 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         user: null,
+        isAuthenticated: false,
         logoutRequest: false//??
       };
     }
@@ -92,6 +96,7 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         //user: action.user,
+        isAuthenticated: true,
         tokenRequest: false
       };
     }
@@ -113,6 +118,7 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.user,
+        isAuthenticated: true,
         userRequest: false
       };
     }

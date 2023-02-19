@@ -2,7 +2,7 @@
   display: flex;
   /* flex-direction: column; */
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   margin-top: 120px;
 }
 
@@ -17,12 +17,14 @@
   flex-direction: column;
   align-self: flex-start;
   list-style: none;
+  margin: 0;
   padding: 0;
 }
 
 .listItem {
   display: flex;
   align-items: center;
+  line-height: 64px;
 }
 
 .link {
@@ -39,5 +41,23 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* margin-top: 120px; */
+}
+
+.text {
+  opacity: .4;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 480px;
+}
+
+.exitButton {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  margin-top: 20px;
 }

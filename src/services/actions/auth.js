@@ -24,7 +24,7 @@ export const PATCH_USER_REQUEST = "PATCH_USER_REQUEST";
 export const PATCH_USER_SUCCESS = "PATCH_USER_SUCCESS";
 export const PATCH_USER_FAIL = "PATCH_USER_FAIL";
 
-export function postUserData(name, email, password, ) {//???
+export function postUserData(name, email, password) {
   return function(dispatch) {
     dispatch({
       type: POST_USER_REGISTER_REQUEST,
@@ -39,8 +39,8 @@ export function postUserData(name, email, password, ) {//???
       }),
     })
     .then(res => {
-      setCookie('token', res.accessToken);//???
-      localStorage.setItem('refreshToken', res.refreshToken);//???
+      setCookie('token', res.accessToken);
+      localStorage.setItem('refreshToken', res.refreshToken);
       dispatch({
         type: POST_USER_REGISTER_SUCCESS,
         user: res.user
@@ -55,7 +55,7 @@ export function postUserData(name, email, password, ) {//???
   }
 }
 
-export function postLogin(email, password) {//???
+export function postLogin(email, password) {
   return function(dispatch) {
     dispatch({
       type: POST_USER_LOGIN_REQUEST,
@@ -69,8 +69,8 @@ export function postLogin(email, password) {//???
       }),
     })
     .then(res => {
-      setCookie('token', res.accessToken);//???
-      localStorage.setItem('refreshToken', res.refreshToken);//???
+      setCookie('token', res.accessToken);
+      localStorage.setItem('refreshToken', res.refreshToken);
       dispatch({
         type: POST_USER_LOGIN_SUCCESS,
         user: res.user
@@ -85,7 +85,7 @@ export function postLogin(email, password) {//???
   }
 }
 
-export function postLogout() {//???
+export function postLogout() {
   return function(dispatch) {
     dispatch({
       type: POST_USER_LOGOUT_REQUEST,
@@ -94,11 +94,11 @@ export function postLogout() {//???
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        token: localStorage.getItem('refreshToken')//????
+        token: localStorage.getItem('refreshToken')
       }),
     })
     .then(res => {
-      localStorage.removeItem('refreshToken');//???
+      localStorage.removeItem('refreshToken');
       deleteCookie('token', res.accessToken);//???
       dispatch({
         type: POST_USER_LOGOUT_SUCCESS
@@ -113,7 +113,7 @@ export function postLogout() {//???
   }
 }
 
-export function postToken(/*token*/) {//???
+export function postToken() {
   return function(dispatch) {
     dispatch({
       type: POST_TOKEN_REQUEST,
@@ -122,15 +122,14 @@ export function postToken(/*token*/) {//???
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        token: localStorage.getItem('refreshToken')//??
+        token: localStorage.getItem('refreshToken')
       }),
     })
     .then(res => {
-      setCookie('token', res.accessToken);//???
-      localStorage.setItem('refreshToken', res.refreshToken);//???
+      setCookie('token', res.accessToken);
+      localStorage.setItem('refreshToken', res.refreshToken);
       dispatch({
-        type: POST_TOKEN_SUCCESS,
-        user: res.user
+        type: POST_TOKEN_SUCCESS
       });
     })
     .catch(err => {
@@ -142,7 +141,7 @@ export function postToken(/*token*/) {//???
   }
 }
 
-export function getUserData() {//???
+export function getUserData() {
   return function(dispatch) {
     dispatch({
       type: GET_USER_REQUEST,
@@ -169,7 +168,7 @@ export function getUserData() {//???
   }
 }
 
-export function patchUserData(email, name) {//???
+export function patchUserData(email, name) {
   return function(dispatch) {
     dispatch({
       type: PATCH_USER_REQUEST,
