@@ -1,16 +1,23 @@
-import React, { useState } from "react";
-import { Navigate, NavLink, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Navigate, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Input, EmailInput, PasswordInput, Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./profile.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { postLogout } from "../../services/actions/auth";
+import { postLogout, patchUserData, getUserData } from "../../services/actions/auth";
 
 export const Profile = () => {
-  const [form, setForm] = useState({ name: '', email: '', password: '' });
+  const { user, isAuthenticated } = useSelector(state => state.authReducer);
+  const [form, setForm] = useState({ ...user, password: '' });
+  // const [isChanged, setIsChanged] = useState(false);
   // const url = useLocation();
-  const setActiveLink = ({isActive}) => isActive ? styles.activeLink : styles.link;
-  const { isAuthenticated } = useSelector(store => store.authReducer);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(getUserData());
+  // }, [dispatch]);
+
+  const setActiveLink = ({isActive}) => isActive ? styles.activeLink : styles.link;
 
   const onChange = e => {
     setForm({
@@ -19,15 +26,29 @@ export const Profile = () => {
     })
   };
 
+  const onSubmit = (e) => {
+    console.log("111")//////////////////
+    e.preventDefault();
+    dispatch(patchUserData(form.email, form.name))
+  };
+
   const logout = () => {
     dispatch(postLogout());
+    if(isAuthenticated) {
+      navigate({pathname: '/login'});
+    }
   }
 
-  if (!isAuthenticated) {
-    return (
-      <Navigate to='/login' replace />
-    )
-  }
+  // useEffect(() => {
+  //   if (!isAuthenticated) {
+  //     // form.name = user.name;
+  //     // form.email = user.email;
+  //     // form.password = user.password;
+  //     // return (
+  //     //   <Navigate to='/login' replace />
+  //     // )
+  //   }
+  // }, [isAuthenticated, form, user.name, user.email, user.password] )
 
   // const [value, setValue] = React.useState('password')
   // const onChange = e => {
@@ -52,7 +73,7 @@ export const Profile = () => {
         <p className={`${styles.text} text text_type_main-default text_color_inactive mt-20`}>В&nbsp;этом разделе вы&nbsp;можете
 изменить свои персональные данные</p>
       </nav>
-      <form className={styles.form} >
+      <form className={styles.form} onSubmit={onSubmit}>
         <Input
           onChange={onChange}
           value={form.name}
@@ -80,9 +101,14 @@ export const Profile = () => {
           icon="EditIcon"
         />
         <div className={styles.buttonContainer}>
-          <Button extraClass="mt-6" type="secondary" size="medium" htmlType="button">Отмена</Button>
-          <Button extraClass="mt-6" type="primary" size="medium" htmlType="submit">Сохранить</Button>
-        </div>
+            <Button extraClass="mt-6" type="secondary" size="medium" htmlType="button">Отмена</Button>
+            <Button extraClass="mt-6" type="primary" size="medium" htmlType="submit">Сохранить</Button>
+          </div>
+        {/* {isChanged && (
+
+          )
+        } */}
+
       </form>
     </section>
   );

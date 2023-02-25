@@ -5,12 +5,14 @@ import styles from './App.module.css';
 import { useDispatch } from 'react-redux';
 import { getIngredients } from '../../services/actions/ingredients';
 import { Login, Register, Main, ForgotPassword, ResetPassword, Profile, NotFound404 } from '../../pages';
+import { getUserData } from '../../services/actions/auth';
 
 export const App = () => {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
     dispatch(getIngredients());
+    dispatch(getUserData());
   }, [dispatch]);
 
   return (
@@ -24,7 +26,7 @@ export const App = () => {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/profile1" element={<Profile />} />{/*Для теста, удалить позже */}
+          {/* <Route path="/profile1" element={<Profile />} />Для теста, удалить позже */}
           <Route path="*" element={<NotFound404 />} />
         </Routes>
       </Router>

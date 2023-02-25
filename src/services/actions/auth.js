@@ -99,7 +99,7 @@ export function postLogout() {
     })
     .then(res => {
       localStorage.removeItem('refreshToken');
-      deleteCookie('token', res.accessToken);//???
+      deleteCookie('token');//, res.accessToken???
       dispatch({
         type: POST_USER_LOGOUT_SUCCESS
       });
@@ -150,25 +150,35 @@ export function getUserData() {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + getCookie('token')
+        Authorization: getCookie('token')//'Bearer ' +
       }
     })
     .then(res => {
       dispatch({
         type: GET_USER_SUCCESS,
+        // name: res.user.name,
+        // email: res.user.email
         user: res.user
       });
     })
     .catch(err => {
-      console.log(err)
+      console.log(err);
       dispatch({
         type: GET_USER_FAIL
       });
+      // if (localStorage.getItem('refreshToken')) {
+      //   dispatch(postToken());
+      //   //dispatch(getUserData());
+      // } else {
+      //   dispatch({
+      //     type: GET_USER_FAIL
+      //   });
+      // }
     });
   }
 }
 
-export function patchUserData(email, name) {
+export function patchUserData(name, email) {
   return function(dispatch) {
     dispatch({
       type: PATCH_USER_REQUEST,
@@ -177,10 +187,11 @@ export function patchUserData(email, name) {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + getCookie('token')},
+        Authorization: getCookie('token')//'Bearer ' +
+      },
       body: JSON.stringify({
-        email: email,
-        name: name
+        name: name,
+        email: email
       }),
     })
     .then(res => {

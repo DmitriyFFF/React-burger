@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { Input, EmailInput, Button, PasswordInput } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./register.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { postUserData } from "../../services/actions/auth";
 
 export const Register = () => {
   const [form, setForm] = useState({ name: '', email: '', password: '' });
+  const { registerFailed } = useSelector(store => store.authReducer);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onChange = e => {
     setForm({
@@ -19,7 +21,10 @@ export const Register = () => {
   const onSubmit = (e) => {
     console.log("111")//////////////////
     e.preventDefault();
-    dispatch(postUserData(form.name, form.email, form.password ))
+    dispatch(postUserData(form.name, form.email, form.password));
+    if(!registerFailed) {
+      navigate({pathname:'/login'})
+    }
   };
 
   // const [value, setValue] = React.useState('password')
