@@ -34,10 +34,14 @@ export const Profile = () => {
 
   const logout = () => {
     dispatch(postLogout());
-    if(isAuthenticated) {
-      navigate({pathname: '/login'});
-    }
-  }
+    // if(!isAuthenticated) {
+    //   navigate({pathname: '/login'});
+    // }
+  };
+
+  const cancelForm = () => {
+    setForm({ ...user });
+  };
 
   // useEffect(() => {
   //   if (!isAuthenticated) {
@@ -101,7 +105,7 @@ export const Profile = () => {
           icon="EditIcon"
         />
         <div className={styles.buttonContainer}>
-            <Button extraClass="mt-6" type="secondary" size="medium" htmlType="button">Отмена</Button>
+            <Button extraClass="mt-6" type="secondary" size="medium" htmlType="button" onClick={() => cancelForm()}>Отмена</Button>
             <Button extraClass="mt-6" type="primary" size="medium" htmlType="submit">Сохранить</Button>
           </div>
         {/* {isChanged && (
