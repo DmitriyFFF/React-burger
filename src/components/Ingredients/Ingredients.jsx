@@ -10,7 +10,7 @@ export const Ingredients = ({data, title}) => {
       <h2 className="text text_type_main-medium mb-6">{title}</h2>
       <ul className={styles.ingredients}>
         {data.map(item =>
-          <IngredientItem card={item} key={item._id} />
+          <IngredientItem card={item} key={item._id} /*id={item._id}*/ />
         )}
       </ul>
     </div>

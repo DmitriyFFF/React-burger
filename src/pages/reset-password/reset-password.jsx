@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Input, Button, PasswordInput } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./reset-password.module.css";
@@ -8,7 +8,8 @@ import { postResetPassword } from "../../services/actions/reset-password";
 
 export const ResetPassword = () => {
   const [form, setForm] = useState({ password: '', token: '' });
-  const { resetPasswordFailed } = useSelector(store => store.forgotPasswordReducer);
+  // const { resetPasswordFailed } = useSelector(store => store.resetPasswordReducer);
+  // const { isAuthenticated } = useSelector(state => state.authReducer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -20,13 +21,20 @@ export const ResetPassword = () => {
   };
 
   const onSubmit = (e) => {
-    console.log("111")//////////////////
     e.preventDefault();
     dispatch(postResetPassword(form.password, form.token));
-    if(!resetPasswordFailed) {
-      navigate({pathname:'/login'})
-    }
+    navigate({pathname:'/login'})
   };
+
+
+  // useEffect(() => {
+  //   if(!resetPasswordFailed) {
+  //     navigate({pathname:'/login'})
+  //   } else if (!isAuthenticated) {
+  //     navigate({pathname: '/'})
+  //   }
+  // },[navigate, resetPasswordFailed, isAuthenticated])
+
 
   return (
     <section className={styles.container}>

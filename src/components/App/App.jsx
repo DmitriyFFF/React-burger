@@ -1,26 +1,50 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import { AppHeader } from '../AppHeader/AppHeader';
 import styles from './App.module.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getIngredients } from '../../services/actions/ingredients';
-import { Login, Register, Main, ForgotPassword, ResetPassword, Profile, NotFound404 } from '../../pages';
+import { Login, Register, Main, ForgotPassword, ResetPassword, Profile, NotFound404, Ingredient } from '../../pages';
 import { getUserData } from '../../services/actions/auth';
 import { ProtectedRouteElement } from '../ProtectedRoute/ProtectedRoute';
 import { AuthorizedRouteElement } from '../AuthorizedRoute/AuthorizedRoute';
+// import { OPEN_MODAL, CLOSE_MODAL } from '../../services/actions/modal.js';
+import { Modal } from '../Modal/Modal.jsx';
+import { IngredientDetails } from '../IngredientDetails/IngredientDetails.jsx';
+import { closeModal } from '../../services/actions/modal';
 
 export const App = () => {
   const dispatch = useDispatch();
+  const modalIsOpen = useSelector(store => store.modalReducer.open)
+  // const [isOpen, setIsOpen] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch(getIngredients());
     dispatch(getUserData());
   }, [dispatch]);
 
+  // const handleClose = () => {
+  //   dispatch({
+  //     type: CLOSE_MODAL
+  //   });
+  //   setIsOpen(false);
+  // };
+  const handleClose = () => {
+    // dispatch({
+    //   type: CLOSE_MODAL
+    // });
+    dispatch(closeModal());
+    //setIsOpen(false);
+    // navigate({pathname: '/'})
+  }
+
+
   return (
     <div className={styles.App}>
-      <Router>
-        <AppHeader />
+      {/* <Router>
+
+      </Router> */}
+      <AppHeader />
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/" element={<AuthorizedRouteElement />}>
@@ -32,10 +56,31 @@ export const App = () => {
           <Route path="/" element={<ProtectedRouteElement />}>
             <Route path="/profile" element={<Profile />} />
           </Route>
-          {/* <Route path="/profile1" element={<Profile />} />Для теста, удалить позже */}
+          <Route path="/ingredients/:id" element={<Ingredient />} />
           <Route path="*" element={<NotFound404 />} />
         </Routes>
-      </Router>
+        {/* {modalIsOpen &&
+          <Routes>
+            <Route path='/ingredient/:id' element ={
+              <Modal
+                onClose={handleClose}
+                title="Детали ингредиента">
+                  <IngredientDetails />
+              </Modal>
+              }>
+            </Route>
+          </Routes>} */}
+        {/* {isOpen &&
+          <Routes>
+            <Route path='/ingredient/:id' element ={
+              <Modal
+                onClose={handleClose}
+                title="Детали ингредиента">
+                  <IngredientDetails />
+              </Modal>
+              }>
+            </Route>
+          </Routes>} */}
     </div>
   );
 }
