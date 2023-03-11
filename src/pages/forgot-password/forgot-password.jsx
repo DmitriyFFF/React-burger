@@ -19,7 +19,6 @@ export const ForgotPassword = () => {
   };
 
   const onSubmit = (e) => {
-    console.log("111")//////////////////
     e.preventDefault();
     dispatch(postForgotPassword(form.email));
     if(!forgotPasswordFailed) {

@@ -9,8 +9,8 @@ export const Login = () => {
   const [form, setForm] = useState({ email: '', password: '' });
   const { isAuthenticated } = useSelector(store => store.authReducer);
   const dispatch = useDispatch();
-  const location = useLocation();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const from = location.state?.from || "/";
   // navigate(from, {replace: true});
@@ -36,12 +36,6 @@ export const Login = () => {
       // )
     }
   }, [navigate, isAuthenticated, from])
-
-
-  // const [value, setValue] = React.useState('password')
-  // const onChange = e => {
-  //   setValue(e.target.value)
-  // };
 
   return (
     <section className={styles.container}>

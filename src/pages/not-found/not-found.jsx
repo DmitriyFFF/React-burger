@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import styles from "./not-found.module.css";
 
 export const NotFound404 = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  // const onClick = () => {
-  //   navigate.back();
-  // }
+  const goBack = () => {
+    navigate(-1);
+  }
 
   return (
     <section className={styles.container}>
@@ -15,7 +15,7 @@ export const NotFound404 = () => {
       <div className={styles.heading}>
         <p className="text text_type_main-medium">Страница не найдена</p>
       </div>
-      <Button extraClass="mt-6 mb-20" type="primary" size="medium" htmlType="button">Назад</Button>
+      <Button extraClass="mt-6 mb-20" type="primary" size="medium" htmlType="button" onClick={goBack}>Назад</Button>
     </section>
   );
 };

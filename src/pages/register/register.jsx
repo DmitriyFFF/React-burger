@@ -19,18 +19,12 @@ export const Register = () => {
   };
 
   const onSubmit = (e) => {
-    console.log("111")//////////////////
     e.preventDefault();
     dispatch(postUserData(form.name, form.email, form.password));
     if(!registerFailed) {
       navigate({pathname:'/login'})
     }
   };
-
-  // const [value, setValue] = React.useState('password')
-  // const onChange = e => {
-  //   setValue(e.target.value)
-  // };
 
   return (
     <section className={styles.container}>

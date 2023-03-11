@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route, useNavigate, useLocation} from 'react-router-dom';
 import { AppHeader } from '../AppHeader/AppHeader';
 import styles from './App.module.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,8 +15,17 @@ import { closeModal } from '../../services/actions/modal';
 
 export const App = () => {
   const dispatch = useDispatch();
-  const modalIsOpen = useSelector(store => store.modalReducer.open)
+  // const modalIsOpen = useSelector(store => store.modalReducer.open);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const state = location.state && location.state.background;
+  // const state = location.state as { backgroundLocation?: Location };
+
+  // const background = location.state?.background;
+  // const background = location.state && location.state.background;
+  // const modal  = location.state && location.state.fromCardClick;
   // const [isOpen, setIsOpen] = useState(false);
+  // console.log(modalIsOpen)
 
   useEffect(() => {
     dispatch(getIngredients());
@@ -36,6 +45,7 @@ export const App = () => {
     dispatch(closeModal());
     //setIsOpen(false);
     // navigate({pathname: '/'})
+    navigate(-1);
   }
 
 
@@ -45,7 +55,7 @@ export const App = () => {
 
       </Router> */}
       <AppHeader />
-        <Routes>
+        <Routes location={state || location}>
           <Route path="/" element={<Main />} />
           <Route path="/" element={<AuthorizedRouteElement />}>
             <Route path="/login" element={<Login />} />
@@ -59,9 +69,32 @@ export const App = () => {
           <Route path="/ingredients/:id" element={<Ingredient />} />
           <Route path="*" element={<NotFound404 />} />
         </Routes>
-        {/* {modalIsOpen &&
+        { state &&
           <Routes>
-            <Route path='/ingredient/:id' element ={
+            <Route path="/ingredients/:id" element={
+              <Modal
+                onClose={handleClose}
+                title="Детали ингредиента">
+                  <IngredientDetails />
+              </Modal>
+              }
+            />
+          </Routes>
+
+        }
+        {/* {!!background && (
+          <Route
+            path="/ingredients/:id"
+            children={
+              <Modal handleClose={handleClose}>
+                <IngredientDetails />
+              </Modal>
+            }
+          />
+        )} */}
+        {/* {modalIsOpen && (
+          <Routes>
+            <Route path='/ingredients/:id' children={
               <Modal
                 onClose={handleClose}
                 title="Детали ингредиента">
@@ -69,7 +102,9 @@ export const App = () => {
               </Modal>
               }>
             </Route>
-          </Routes>} */}
+          </Routes>
+          )
+        } */}
         {/* {isOpen &&
           <Routes>
             <Route path='/ingredient/:id' element ={

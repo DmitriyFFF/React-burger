@@ -75,29 +75,30 @@ export const IngredientDetails = () => {
     <>
     {loadedIngredient ? (
       <section className={styles.content}>
-      <img className={styles.image} src={loadedIngredient.image} alt={loadedIngredient.name} />
-      <h2 className={`${styles.title} text text_type_main-medium mt-4`}>{loadedIngredient.name}</h2>
-      <ul className={`${styles.container} mt-8 mb-15`}>
-        <li className={styles.detailItem}>
-          <h3 className="text text_type_main-default">Калории,ккал</h3>
-          <p className="text text_type_digits-default mt-2">{loadedIngredient.calories}</p>
-        </li>
-        <li className={styles.detailItem}>
-          <h3 className="text text_type_main-default">Белки, г</h3>
-          <p className="text text_type_digits-default mt-2">{loadedIngredient.proteins}</p>
-        </li>
-        <li className={styles.detailItem}>
-          <h3 className="text text_type_main-default">Жиры, г</h3>
-          <p className="text text_type_digits-default mt-2">{loadedIngredient.fat}</p>
-        </li>
-        <li className={styles.detailItem}>
-          <h3 className="text text_type_main-default">Углеводы, г</h3>
-          <p className="text text_type_digits-default mt-2">{loadedIngredient.carbohydrates}</p>
-        </li>
-      </ul>
+        <img className={styles.image} src={loadedIngredient.image} alt={loadedIngredient.name} />
+        <h2 className={`${styles.title} text text_type_main-medium mt-4`}>{loadedIngredient.name}</h2>
+        <ul className={`${styles.container} mt-8 mb-15`}>
+          <li className={styles.detailItem}>
+            <h3 className="text text_type_main-default">Калории,ккал</h3>
+            <p className="text text_type_digits-default mt-2">{loadedIngredient.calories}</p>
+          </li>
+          <li className={styles.detailItem}>
+            <h3 className="text text_type_main-default">Белки, г</h3>
+            <p className="text text_type_digits-default mt-2">{loadedIngredient.proteins}</p>
+          </li>
+          <li className={styles.detailItem}>
+            <h3 className="text text_type_main-default">Жиры, г</h3>
+            <p className="text text_type_digits-default mt-2">{loadedIngredient.fat}</p>
+          </li>
+          <li className={styles.detailItem}>
+            <h3 className="text text_type_main-default">Углеводы, г</h3>
+            <p className="text text_type_digits-default mt-2">{loadedIngredient.carbohydrates}</p>
+          </li>
+        </ul>
       </section>
     ) : (
-      <h3>aaaaaa</h3>
+      <h3 className="text text_type_main-large mt-8">Идет загрузка...</h3>
+      // null
     )}
 
     </>

@@ -12,8 +12,8 @@ import styles from './IngredientItem.module.css';
 export const IngredientItem = ({card}) => {
   const { bun, ingredients }  = useSelector(state => state.constructorReducer);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
+  // const navigate = useNavigate();
+  // const [isOpen, setIsOpen] = useState(false);
 
   const count = useMemo(() => {
     if (card.type === 'bun') {
@@ -37,19 +37,19 @@ export const IngredientItem = ({card}) => {
     //   type: OPEN_MODAL
     // });
     dispatch(loadIngredient(card))
-    dispatch(openModal());
-    setIsOpen(true);
+    // dispatch(openModal());
+    // setIsOpen(true);
     // navigate({pathname: `/ingredients/${card._id}`})
   };
 
-  const handleClose = () => {
+  // const handleClose = () => {
     // dispatch({
     //   type: CLOSE_MODAL
     // });
-    dispatch(closeModal());
-    setIsOpen(false);
+    // dispatch(closeModal());
+    // setIsOpen(false);
     // navigate({pathname: '/'})
-  }
+  // }
 
   // <Link className={styles.ingredientLink} to={`/ingredients/${id}`}>
   // </Link>
@@ -57,26 +57,29 @@ export const IngredientItem = ({card}) => {
     <>
       <li
         className={styles.card}
-        onClick={handleOpen}
+        onClick={() => handleOpen()}
         ref={dragRef}
         style={{ opacity }}
       >
-        {count > 0 &&
+        {/* <Link className={styles.ingredientLink} to={`/ingredients/${card._id}`}> */}
+          {count > 0 &&
           <Counter count={count} size="default" />
-        }
-        <img className={styles.cardImage} src={card.image} alt={card.name} />
-        <div className={`${styles.priceContainer} mt-1 mb-1`}>
-          <p className={`${styles.price} text text_type_digits-default`}>{card.price}</p>
-          <CurrencyIcon type="primary" />
-        </div>
-        <p className={`${styles.cardName} text text_type_main-default`}>{card.name}</p>
+          }
+          <img className={styles.cardImage} src={card.image} alt={card.name} />
+          <div className={`${styles.priceContainer} mt-1 mb-1`}>
+            <p className={`${styles.price} text text_type_digits-default`}>{card.price}</p>
+            <CurrencyIcon type="primary" />
+          </div>
+          <p className={`${styles.cardName} text text_type_main-default`}>{card.name}</p>
+        {/* </Link> */}
+
       </li>
-      {isOpen &&
+      {/* {isOpen &&
         <Modal
           onClose={handleClose}
           title="Детали ингредиента">
             <IngredientDetails />
-        </Modal>}
+        </Modal>} */}
     </>
   );
 }
