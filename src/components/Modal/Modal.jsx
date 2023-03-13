@@ -4,14 +4,10 @@ import PropTypes from 'prop-types';
 import { ModalOverlay } from '../ModalOverlay/ModalOverlay';
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './Modal.module.css';
-// import { useNavigate } from 'react-router-dom';
-
 
 const modalRoot = document.getElementById("react-modals");
 
 export const Modal =({ children, title, onClose }) => {
-  // let navigate = useNavigate();
-  // let { id } = useParams();
 
   useEffect(() => {
     const handleEscClose = (evt) => {

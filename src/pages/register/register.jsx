@@ -35,16 +35,16 @@ export const Register = () => {
           value={form.name}
           name={'name'}
           placeholder="Имя"
-          /*isIcon={true}*/
           extraClass="mt-6"
+          required
         />
         <EmailInput
           onChange={onChange}
           value={form.email}
           name={'email'}
           placeholder="E-mail"
-          /*isIcon={true}*/
           extraClass="mt-6"
+          required
         />
         <PasswordInput
           onChange={onChange}
@@ -52,8 +52,9 @@ export const Register = () => {
           name={'password'}
           placeholder="Пароль"
           extraClass="mt-6"
+          required
         />
-        <Button extraClass="mt-6 mb-20" type="primary" size="medium" htmlType="submit"> Зарегистрироваться</Button>
+        <Button extraClass="mt-6 mb-20" type="primary" size="medium" htmlType="submit">Зарегистрироваться</Button>
       </form>
       <div>
         <p className="text text_type_main-default text_color_inactive">{"Уже зарегистрированы? "}

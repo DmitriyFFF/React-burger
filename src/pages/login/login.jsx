@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { EmailInput, Button, PasswordInput } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./login.module.css";
 import { postLogin } from "../../services/actions/auth";
@@ -11,9 +11,7 @@ export const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-
   const from = location.state?.from || "/";
-  // navigate(from, {replace: true});
 
   const onChange = (e) => {
     setForm({
@@ -23,17 +21,13 @@ export const Login = () => {
   };
 
   const onSubmit = (e) => {
-    console.log("111")//////////////////
     e.preventDefault();
-    dispatch(postLogin(form.email, form.password))
+    dispatch(postLogin(form.email, form.password));
   };
 
   useEffect(() => {
     if (isAuthenticated) {
       navigate(from, {replace: true});
-      // return (
-      //   <Navigate to='/profile' replace />
-      // )
     }
   }, [navigate, isAuthenticated, from])
 
@@ -46,7 +40,6 @@ export const Login = () => {
           value={form.email}
           name={'email'}
           placeholder="E-mail"
-          /*isIcon={true}*/
           extraClass="mt-6"
         />
         <PasswordInput

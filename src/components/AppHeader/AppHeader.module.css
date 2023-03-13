@@ -1,9 +1,6 @@
 .header {
   width: 100%;
   background-color: var(--bg-color-header);
-  /* display: flex;
-  justify-content: space-between;
-  align-items: center; */
 }
 
 .container {
@@ -17,6 +14,8 @@
 
 .menuContainer {
   display: flex;
+  flex-direction: row;
+  align-self: flex-start;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -24,14 +23,18 @@
 
 .menuItem {
   display: flex;
-  /* cursor: pointer; */
+  align-items: center;
+  line-height: 24px;
 }
 
 .link {
   display: flex;
   text-decoration: none;
-  color: inherit;
+  color: var(--bg-color-scroll-thumb);
 }
 
-/* .active_link {
-} */
+.activeLink {
+  display: flex;
+  color: var(--active-text-color);
+  text-decoration: none;
+}

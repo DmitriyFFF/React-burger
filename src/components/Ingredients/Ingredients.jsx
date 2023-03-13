@@ -18,7 +18,7 @@ export const Ingredients = ({data, title}) => {
             to={`/ingredients/${item._id}`}
             state={{background: location}}
           >
-            <IngredientItem card={item} key={item._id} /*id={item._id}*/ />
+            <IngredientItem card={item} key={item._id} />
           </Link>
         ))}
       </ul>
@@ -30,7 +30,4 @@ Ingredients.propTypes = {
   data: PropTypes.arrayOf(ingredientType).isRequired,
   title: PropTypes.string
 };
-
-  //   <Link key={i.id} to={{ pathname: `/img/${i.id}`, state: { background: location } }} >
-  //  </Link>
 

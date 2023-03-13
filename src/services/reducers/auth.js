@@ -75,7 +75,7 @@ export const authReducer = (state = initialState, action) => {
         ...state,
         user: null,
         isAuthenticated: false,
-        logoutRequest: false//??
+        logoutRequest: false
       };
     }
     case POST_USER_LOGOUT_FAIL: {
@@ -95,7 +95,6 @@ export const authReducer = (state = initialState, action) => {
     case POST_TOKEN_SUCCESS: {
       return {
         ...state,
-        //user: action.user,
         isAuthenticated: true,
         tokenRequest: false
       };

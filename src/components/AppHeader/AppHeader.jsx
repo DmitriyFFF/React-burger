@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Logo, BurgerIcon, ListIcon, ProfileIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./AppHeader.module.css";
 
@@ -12,31 +12,35 @@ const AppHeaderLogo = () => {
 }
 
 const NavigationMenu = () => {
+  const setActiveLink = ({isActive}) => isActive ? styles.activeLink : styles.link;
+
   return (
     <ul className={styles.menuContainer}>
       <li className={`${styles.menuItem} pt-4 pr-5 pb-4 mr-1`}>
-        <Link to="/" className={styles.link}>
+        <NavLink to="/" className={setActiveLink}>
           <BurgerIcon type="primary"/>
           <p className="text text_type_main-default pl-2">Конструктор</p>
-        </Link>
+        </NavLink>
       </li>
       <li className={`${styles.menuItem} pt-4 pr-5 pb-4 pl-5`}>
-        <Link to="/" className={styles.link}>
+        <NavLink to="*" className={setActiveLink}>
           <ListIcon type="secondary"/>
-          <p className="text text_type_main-default text_color_inactive pl-2">Лента заказов</p>
-        </Link>
+          <p className="text text_type_main-default pl-2">Лента заказов</p>
+        </NavLink>
       </li>
     </ul>
   );
 }
 
 const Profile = () => {
+  const setActiveLink = ({isActive}) => isActive ? styles.activeLink : styles.link;
+
   return (
     <div className={styles.menuItem}>
-      <Link to="/profile" className={styles.link}>
+      <NavLink to="/profile" className={setActiveLink}>
         <ProfileIcon type="secondary"/>
-        <p className="text text_type_main-default text_color_inactive pl-2">Личный кабинет</p>
-      </Link>
+        <p className="text text_type_main-default pl-2">Личный кабинет</p>
+      </NavLink>
     </div>
   );
 }

@@ -36,6 +36,7 @@ export const ForgotPassword = () => {
           name={'email'}
           placeholder="Укажите e-mail"
           extraClass="mt-6"
+          required
         />
         <Button extraClass="mt-6 mb-20" type="primary" size="medium" htmlType="submit">Восстановить</Button>
       </form>

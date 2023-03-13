@@ -99,7 +99,7 @@ export function postLogout() {
     })
     .then(res => {
       localStorage.removeItem('refreshToken');
-      deleteCookie('token');//, res.accessToken???
+      deleteCookie('token');
       dispatch({
         type: POST_USER_LOGOUT_SUCCESS
       });
@@ -150,14 +150,12 @@ export function getUserData() {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: getCookie('token')//'Bearer ' +
+        Authorization: getCookie('token')
       }
     })
     .then(res => {
       dispatch({
         type: GET_USER_SUCCESS,
-        // name: res.user.name,
-        // email: res.user.email
         user: res.user
       });
     })
@@ -166,14 +164,6 @@ export function getUserData() {
       dispatch({
         type: GET_USER_FAIL
       });
-      // if (localStorage.getItem('refreshToken')) {
-      //   dispatch(postToken());
-      //   //dispatch(getUserData());
-      // } else {
-      //   dispatch({
-      //     type: GET_USER_FAIL
-      //   });
-      // }
     });
   }
 }
@@ -187,7 +177,7 @@ export function patchUserData(name, email) {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: getCookie('token')//'Bearer ' +
+        Authorization: getCookie('token')
       },
       body: JSON.stringify({
         name: name,

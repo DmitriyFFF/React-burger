@@ -20,7 +20,6 @@ export const resetPasswordReducer = (state = initialState, action) => {
         ...state,
         user: action.user,
         resetPasswordRequest: false
-        //resetPasswordFailed: false
       };
     }
     case RESET_PASSWORD_FAIL: {

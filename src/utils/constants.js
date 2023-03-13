@@ -18,10 +18,6 @@ export const request = async (url, options) => {
   return fetch(url, options).then(checkResponse).then(checkSuccess);
 };
 
-// export const getIngredient = async () => {
-//   return request(`${baseUrl}/ingredients`);
-// }
-
 export const ingredientsId = [
   "60d3b41abdacab0026a733c6",
   "60d3b41abdacab0026a733c7",

@@ -4,7 +4,7 @@ export const RESET_PASSWORD_REQUEST = "RESET_PASSWORD_REQUEST";
 export const RESET_PASSWORD_SUCCESS = "RESET_PASSWORD_SUCCESS";
 export const RESET_PASSWORD_FAIL = "RESET_PASSWORD_FAIL";
 
-export function postResetPassword(password, token) {//????
+export function postResetPassword(password, token) {
   return function(dispatch) {
     dispatch({
       type: RESET_PASSWORD_REQUEST,
@@ -13,14 +13,14 @@ export function postResetPassword(password, token) {//????
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        password: password,//??
+        password: password,
         token: token
       }),
     })
       .then(res => {
         dispatch({
           type: RESET_PASSWORD_SUCCESS,
-          user: res.user//??
+          user: res.user
         });
       })
       .catch(err => {

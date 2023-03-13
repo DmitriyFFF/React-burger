@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Input, Button, PasswordInput } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./reset-password.module.css";
@@ -8,8 +8,7 @@ import { postResetPassword } from "../../services/actions/reset-password";
 
 export const ResetPassword = () => {
   const [form, setForm] = useState({ password: '', token: '' });
-  // const { resetPasswordFailed } = useSelector(store => store.resetPasswordReducer);
-  // const { isAuthenticated } = useSelector(state => state.authReducer);
+  const { resetPasswordFailed } = useSelector(store => store.resetPasswordReducer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -23,18 +22,10 @@ export const ResetPassword = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     dispatch(postResetPassword(form.password, form.token));
-    navigate({pathname:'/login'})
+    if (!resetPasswordFailed) {
+      navigate({pathname:'/login'})
+    }
   };
-
-
-  // useEffect(() => {
-  //   if(!resetPasswordFailed) {
-  //     navigate({pathname:'/login'})
-  //   } else if (!isAuthenticated) {
-  //     navigate({pathname: '/'})
-  //   }
-  // },[navigate, resetPasswordFailed, isAuthenticated])
-
 
   return (
     <section className={styles.container}>
@@ -46,6 +37,7 @@ export const ResetPassword = () => {
           name={'password'}
           placeholder="Введите новый пароль"
           extraClass="mt-6"
+          required
         />
         <Input
           onChange={onChange}
@@ -53,6 +45,7 @@ export const ResetPassword = () => {
           name={'token'}
           placeholder="Введите код из письма"
           extraClass="mt-6"
+          required
         />
         <Button extraClass="mt-6 mb-20" type="primary" size="medium" htmlType="submit">Сохранить</Button>
       </form>
