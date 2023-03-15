@@ -7,3 +7,4 @@ export const ProtectedRouteElement = () => {
 
   return isAuthenticated ? <Outlet /> : <Navigate to="/login" state={{ from: location }} />;
 }
+

@@ -1,26 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import {Link, useNavigate} from "react-router-dom";
 import { EmailInput, Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./forgot-password.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { postForgotPassword } from "../../services/actions/forgot-password";
+import { useForm } from "../../hooks/useForm";
 
 export const ForgotPassword = () => {
-  const [form, setForm] = useState({ email: '' });
+  const { values, handleChange } = useForm({ email: '' });
   const { forgotPasswordFailed } = useSelector(store => store.forgotPasswordReducer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const onChange = e => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value
-    })
-  };
-
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(postForgotPassword(form.email));
+    dispatch(postForgotPassword(values.email));
     if(!forgotPasswordFailed) {
       navigate({pathname:'/reset-password'})
     }
@@ -31,8 +25,8 @@ export const ForgotPassword = () => {
       <form className={styles.form} onSubmit={onSubmit}>
         <h1 className={`${styles.heading} text text_type_main-medium`}>Восстановление пароля</h1>
         <EmailInput
-          onChange={onChange}
-          value={form.email}
+          onChange={handleChange}
+          value={values.email}
           name={'email'}
           placeholder="Укажите e-mail"
           extraClass="mt-6"

@@ -1,26 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import {Link, useNavigate} from "react-router-dom";
 import { Input, EmailInput, Button, PasswordInput } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./register.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { postUserData } from "../../services/actions/auth";
+import { useForm } from "../../hooks/useForm";
 
 export const Register = () => {
-  const [form, setForm] = useState({ name: '', email: '', password: '' });
+  const { values, handleChange } = useForm({ name: '', email: '', password: '' });
   const { registerFailed } = useSelector(store => store.authReducer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const onChange = e => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value
-    })
-  };
-
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(postUserData(form.name, form.email, form.password));
+    dispatch(postUserData(values.name, values.email, values.password));
     if(!registerFailed) {
       navigate({pathname:'/login'})
     }
@@ -31,24 +25,24 @@ export const Register = () => {
       <form className={styles.form} onSubmit={onSubmit}>
         <h1 className={`${styles.heading} text text_type_main-medium`}>Регистрация</h1>
         <Input
-          onChange={onChange}
-          value={form.name}
+          onChange={handleChange}
+          value={values.name}
           name={'name'}
           placeholder="Имя"
           extraClass="mt-6"
           required
         />
         <EmailInput
-          onChange={onChange}
-          value={form.email}
+          onChange={handleChange}
+          value={values.email}
           name={'email'}
           placeholder="E-mail"
           extraClass="mt-6"
           required
         />
         <PasswordInput
-          onChange={onChange}
-          value={form.password}
+          onChange={handleChange}
+          value={values.password}
           name={'password'}
           placeholder="Пароль"
           extraClass="mt-6"

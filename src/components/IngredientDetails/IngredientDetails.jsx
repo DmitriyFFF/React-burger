@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { ingredientType } from '../../utils/types';
 import { loadIngredient } from '../../services/actions/modal';
 import styles from './IngredientDetails.module.css';
 
@@ -50,4 +49,3 @@ export const IngredientDetails = () => {
   )
 };
 
-IngredientDetails.propTypes = ingredientType.isRequired;

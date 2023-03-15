@@ -34,8 +34,8 @@ export const App = () => {
       <AppHeader />
         <Routes location={state || location}>
           <Route path="/" element={<Main />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/" element={<AuthorizedRouteElement />}>
-            <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/reset-password" element={<ResetPassword />} />
