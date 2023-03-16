@@ -11,6 +11,7 @@ import { AuthorizedRouteElement } from '../AuthorizedRoute/AuthorizedRoute';
 import { Modal } from '../Modal/Modal.jsx';
 import { IngredientDetails } from '../IngredientDetails/IngredientDetails.jsx';
 import { closeModal } from '../../services/actions/modal';
+import { Feed } from '../../pages/feed/feed';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ export const App = () => {
             <Route path="/profile" element={<Profile />} />
           </Route>
           <Route path="/ingredients/:id" element={<Ingredient />} />
+          <Route path="/feed" element={<Feed />} />
           <Route path="*" element={<NotFound404 />} />
         </Routes>
         { state &&

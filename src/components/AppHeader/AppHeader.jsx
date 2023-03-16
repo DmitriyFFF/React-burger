@@ -23,7 +23,7 @@ const NavigationMenu = () => {
         </NavLink>
       </li>
       <li className={`${styles.menuItem} pt-4 pr-5 pb-4 pl-5`}>
-        <NavLink to="*" className={setActiveLink}>
+        <NavLink to="/feed" className={setActiveLink}>
           <ListIcon type="secondary"/>
           <p className="text text_type_main-default pl-2">Лента заказов</p>
         </NavLink>
