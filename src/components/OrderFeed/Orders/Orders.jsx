@@ -11,9 +11,17 @@ export const Orders = () => {
   // console.log(orders)
   // const location = useLocation();
   return (
-    <div className={`${styles.content} mb-10`}>
+    <section className={`${styles.content} mb-10`}>
       <h2 className="text text_type_main-medium mt-10 mb-5">Лента заказов</h2>
       <ul className={styles.orderList}>
+        <Link
+            className={styles.orderLink}
+            // key={item._id}
+            to={'/feed/:id'}
+            // state={{background: location}}
+          >
+            <OrderItem />
+        </Link>
         <OrderItem />
         <OrderItem />
         <OrderItem />
@@ -31,6 +39,6 @@ export const Orders = () => {
           </Link>
         ))} */}
       </ul>
-    </div>
+    </section>
   );
 }

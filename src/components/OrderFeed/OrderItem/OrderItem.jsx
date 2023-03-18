@@ -7,7 +7,7 @@ export const OrderItem = () => {
     <li className={styles.order}>
       <div className={styles.orderContainer}>
         <div className={styles.info}>
-          <p className="text text_type_digits-default">111111111</p>
+          <p className="text text_type_digits-default">#111111111</p>
           <p className="text text_type_main-default">22.22.22</p>
         </div>
         <h3 className={`${styles.name} text text_type_main-medium`}>Name</h3>

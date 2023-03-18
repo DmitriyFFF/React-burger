@@ -1,10 +1,11 @@
 .content {
   display: flex;
   flex-direction: column;
-  max-width: 608px;
+  max-width: 860px;
   width: calc(100% - 16px);
+  margin-top: 40px;
   /* margin: 8px auto; */
-  min-height: 912px;
+  min-height: 916px;
 }
 
 .orderList {
@@ -19,7 +20,7 @@
   /* margin-right: 8px; */
   overflow-y: scroll;
   position: relative;
-  max-height: 812px;
+  max-height: 868px;
   list-style: none;
 }
 
@@ -38,7 +39,7 @@
 
 .orderList::-webkit-scrollbar-thumb {
   width: 8px;
-  height: 640px;
+  height: 696px;
   background: var(--bg-color-scroll-thumb);
 }
 
