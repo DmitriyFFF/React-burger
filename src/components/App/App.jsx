@@ -11,6 +11,7 @@ import { AuthorizedRouteElement } from '../AuthorizedRoute/AuthorizedRoute';
 import { Modal } from '../Modal/Modal.jsx';
 import { IngredientDetails } from '../IngredientDetails/IngredientDetails.jsx';
 import { closeModal } from '../../services/actions/modal';
+import { OrderInfo } from '../OrderFeed/OrderInfo/OrderInfo';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,10 @@ export const App = () => {
     dispatch(getIngredients());
     dispatch(getUserData());
   }, [dispatch]);
+
+  useEffect(() => {
+    location.state = null
+  },[location])
 
 
   const handleClose = () => {
@@ -42,7 +47,7 @@ export const App = () => {
           </Route>
           <Route path="/" element={<ProtectedRouteElement />}>
             <Route path="/profile/*" element={<Profile />} />
-            {/* <Route path="/profile/orders" element={<Profile />} /> */}
+            <Route path="/profile/orders/:id" element={<Order />} />
           </Route>
           <Route path="/ingredients/:id" element={<Ingredient />} />
           <Route path="/feed" element={<Feed />} />
@@ -56,6 +61,22 @@ export const App = () => {
                 onClose={handleClose}
                 title="Детали ингредиента">
                   <IngredientDetails />
+              </Modal>
+              }
+            />
+            <Route path="/feed/:id" element={
+              <Modal
+                onClose={handleClose}
+                title="Номер заказа">
+                  <OrderInfo />
+              </Modal>
+              }
+            />
+            <Route path="/profile/orders/:id" element={
+              <Modal
+                onClose={handleClose}
+                title="Номер заказа">
+                  <OrderInfo />
               </Modal>
               }
             />

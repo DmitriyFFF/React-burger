@@ -9,7 +9,7 @@ import styles from './ProfileOrders.module.css';
 export const ProfileOrders = () => {
   // const {orders} = useSelector(store => store.ordersReducer);
   // console.log(orders)
-  // const location = useLocation();
+  const location = useLocation();
   return (
     <section className={`${styles.content} mb-10`}>
       {/* <h2 className="text text_type_main-medium mt-10 mb-5">Лента заказов</h2> */}
@@ -17,7 +17,15 @@ export const ProfileOrders = () => {
         <Link
             className={styles.orderLink}
             // key={item._id}
-            to={'/feed/:id'}
+            to={'/profile/orders/:id'}
+            state={{background: location}}
+          >
+            <OrderItem />
+        </Link>
+        <Link
+            className={styles.orderLink}
+            // key={item._id}
+            to={'/profile/orders/:id'}
             // state={{background: location}}
           >
             <OrderItem />
@@ -25,7 +33,7 @@ export const ProfileOrders = () => {
         <Link
             className={styles.orderLink}
             // key={item._id}
-            to={'/feed/:id'}
+            to={'/profile/orders/:id'}
             // state={{background: location}}
           >
             <OrderItem />
@@ -33,7 +41,7 @@ export const ProfileOrders = () => {
         <Link
             className={styles.orderLink}
             // key={item._id}
-            to={'/feed/:id'}
+            to={'/profile/orders/:id'}
             // state={{background: location}}
           >
             <OrderItem />
@@ -41,7 +49,7 @@ export const ProfileOrders = () => {
         <Link
             className={styles.orderLink}
             // key={item._id}
-            to={'/feed/:id'}
+            to={'/profile/orders/:id'}
             // state={{background: location}}
           >
             <OrderItem />
@@ -49,15 +57,7 @@ export const ProfileOrders = () => {
         <Link
             className={styles.orderLink}
             // key={item._id}
-            to={'/feed/:id'}
-            // state={{background: location}}
-          >
-            <OrderItem />
-        </Link>
-        <Link
-            className={styles.orderLink}
-            // key={item._id}
-            to={'/feed/:id'}
+            to={'/profile/orders/:id'}
             // state={{background: location}}
           >
             <OrderItem />

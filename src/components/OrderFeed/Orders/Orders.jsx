@@ -9,7 +9,7 @@ import styles from './Orders.module.css';
 export const Orders = () => {
   // const {orders} = useSelector(store => store.ordersReducer);
   // console.log(orders)
-  // const location = useLocation();
+  const location = useLocation();
   return (
     <section className={`${styles.content} mb-10`}>
       <h2 className="text text_type_main-medium mt-10 mb-5">Лента заказов</h2>
@@ -18,7 +18,7 @@ export const Orders = () => {
             className={styles.orderLink}
             // key={item._id}
             to={'/feed/:id'}
-            // state={{background: location}}
+            state={{background: location}}
           >
             <OrderItem />
         </Link>

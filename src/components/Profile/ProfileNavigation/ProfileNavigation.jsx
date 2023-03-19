@@ -16,7 +16,7 @@ export const ProfileNavigation = () => {
     <nav className={`${styles.navigation} mr-15`}>
       <ul className={styles.list}>
         <li className={`${styles.listItem} text text_type_main-medium`}>
-          <NavLink className={setActiveLink} to="/profile">Профиль</NavLink>
+          <NavLink className={setActiveLink} to="/profile" end>Профиль</NavLink>
         </li>
         <li className={`${styles.listItem} text text_type_main-medium`}>
           <NavLink className={setActiveLink} to="/profile/orders">История заказов</NavLink>
