@@ -6,6 +6,7 @@ import { orderReducer } from "./order";
 import { forgotPasswordReducer } from "./forgot-password";
 import { resetPasswordReducer } from "./reset-password";
 import { authReducer } from "./auth";
+import { wsReducer } from "./wsReducer";
 
 export const rootReducer = combineReducers({
   constructorReducer,
@@ -14,5 +15,6 @@ export const rootReducer = combineReducers({
   modalReducer,
   forgotPasswordReducer,
   resetPasswordReducer,
-  authReducer
+  authReducer,
+  wsReducer
 });
