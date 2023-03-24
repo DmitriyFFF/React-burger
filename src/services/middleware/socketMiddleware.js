@@ -9,13 +9,16 @@ export const socketMiddleware = (wsUrl, wsActions) => {
       const { type, payload } = action;
       const { wsInit, wsSendOrder, onOpen, onClose, onError, onMessage } = wsActions;//order=message
       // const { user } = getState().user;
-      const token = getCookie('accessToken');
+      // const token = getCookie('accessToken');
+      const accessToken = window.localStorage.getItem("accessToken");
+      // console.log(wsSendOrder)
 
-      if (type === wsInit && token) {
-        socket = new WebSocket(`${wsUrl}?token=${token}`);
-        console.log(socket.readyState)
+      if (type === wsInit && accessToken) {
+        socket = new WebSocket(`${wsUrl}?token=${accessToken}`);
+        // console.log(socket)
       } else if (type === wsInit /*&& !token*/) {
         socket = new WebSocket(wsUrl);
+        // console.log(socket)
       }
       if (socket) {
         socket.onopen = event => {
@@ -39,7 +42,7 @@ export const socketMiddleware = (wsUrl, wsActions) => {
         };
 
         if (type === wsSendOrder) {//order=message
-          const order = { ...payload, token: token };
+          const order = { ...payload, token: accessToken };
           socket.send(JSON.stringify(order));
         }
       }

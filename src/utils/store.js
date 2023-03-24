@@ -10,10 +10,9 @@ import {
   WS_GET_ORDER,//order=message
   WS_SEND_ORDER//order=message
 } from '../services/actions/wsAction';
+import { wsUrl } from './constants';
 
-const wsUrl = 'wss://norma.nomoreparties.space/orders/all';
-
-const wsActions = {
+export const wsActions = {
   wsInit: WS_CONNECTION_START,
   wsSendOrder: WS_SEND_ORDER,//order=message
   onOpen: WS_CONNECTION_SUCCESS,

@@ -12,6 +12,7 @@ import { Modal } from '../Modal/Modal.jsx';
 import { IngredientDetails } from '../IngredientDetails/IngredientDetails.jsx';
 import { closeModal } from '../../services/actions/modal';
 import { OrderInfo } from '../OrderFeed/OrderInfo/OrderInfo';
+import { getOrders } from '../../services/actions/order';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ export const App = () => {
   useEffect(() => {
     dispatch(getIngredients());
     dispatch(getUserData());
+    dispatch(getOrders());
   }, [dispatch]);
 
   useEffect(() => {
