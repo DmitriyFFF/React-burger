@@ -1,9 +1,9 @@
-import { OPEN_MODAL, CLOSE_MODAL, LOAD_INGREDIENT } from "../actions/modal";
+import { OPEN_MODAL, CLOSE_MODAL, LOAD_INGREDIENT, LOAD_ORDER } from "../actions/modal";
 
 const initialState = {
   open: false,
-  loadedIngredient: null
-
+  loadedIngredient: null,
+  loadedOrder: null
 };
 
 export const modalReducer = (state = initialState, action) => {
@@ -24,6 +24,12 @@ export const modalReducer = (state = initialState, action) => {
       return {
         ...state,
         loadedIngredient: action.loadedIngredient
+      };
+    }
+    case LOAD_ORDER: {
+      return {
+        ...state,
+        loadedOrder: action.loadedOrder
       };
     }
     default: {

@@ -7,6 +7,7 @@ import { forgotPasswordReducer } from "./forgot-password";
 import { resetPasswordReducer } from "./reset-password";
 import { authReducer } from "./auth";
 import { wsReducer } from "./wsReducer";
+import { wsAuthReducer } from "./wsAuthReducer";
 
 export const rootReducer = combineReducers({
   constructorReducer,
@@ -16,5 +17,6 @@ export const rootReducer = combineReducers({
   forgotPasswordReducer,
   resetPasswordReducer,
   authReducer,
-  wsReducer
+  wsReducer,
+  wsAuthReducer
 });

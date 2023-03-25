@@ -7,14 +7,25 @@ import { OrderItem } from '../../OrderFeed/OrderItem/OrderItem';
 import styles from './ProfileOrders.module.css';
 
 export const ProfileOrders = () => {
-  // const {orders} = useSelector(store => store.ordersReducer);
-  // console.log(orders)
+  const orders = useSelector(store => store.wsAuthReducer.orders);
+  console.log(orders)
   const location = useLocation();
+
   return (
     <section className={`${styles.content} mb-10`}>
       {/* <h2 className="text text_type_main-medium mt-10 mb-5">Лента заказов</h2> */}
       <ul className={styles.orderList}>
-        <Link
+      {orders.map(item =>(
+          <Link
+            className={styles.orderLink}
+            key={item._id}
+            to={`/profile/orders/${item._id}`}
+            state={{background: location}}
+          >
+            <OrderItem order={item} key={item._id} />
+          </Link>
+        ))}
+        {/* <Link
             className={styles.orderLink}
             // key={item._id}
             to={'/profile/orders/:id'}
@@ -61,13 +72,7 @@ export const ProfileOrders = () => {
             // state={{background: location}}
           >
             <OrderItem />
-        </Link>
-        {/* <OrderItem />
-        <OrderItem />
-        <OrderItem />
-        <OrderItem />
-        <OrderItem />
-        <OrderItem /> */}
+        </Link> */}
         {/* {orders.map(item =>(
           <Link
             className={styles.orderLink}

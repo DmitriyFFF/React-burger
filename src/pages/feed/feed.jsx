@@ -7,7 +7,7 @@ import styles from './feed.module.css';
 
 export const Feed = () => {
   const dispatch = useDispatch();
-  const {orders} = useSelector(store => store.orderReducer);
+  // const {orders} = useSelector(store => store.orderReducer);
 
   useEffect(() => {
     dispatch(wsConnectionSuccess());

@@ -67,18 +67,14 @@ export const App = () => {
               }
             />
             <Route path="/feed/:id" element={
-              <Modal
-                onClose={handleClose}
-                title="Номер заказа">
-                  <OrderInfo />
+              <Modal onClose={handleClose}>
+                <OrderInfo />
               </Modal>
               }
             />
             <Route path="/profile/orders/:id" element={
-              <Modal
-                onClose={handleClose}
-                title="Номер заказа">
-                  <OrderInfo />
+              <Modal onClose={handleClose}>
+                <OrderInfo />
               </Modal>
               }
             />

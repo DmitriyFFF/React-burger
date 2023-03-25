@@ -1,49 +1,49 @@
 import {
   // WS_USER_NAME_UPDATE,
-  WS_CONNECTION_SUCCESS,
-  WS_CONNECTION_ERROR,
-  WS_CONNECTION_CLOSED,
-  WS_GET_ORDER//order=message
-} from '../actions/wsAction';
+  WS_AUTH_CONNECTION_SUCCESS,
+  WS_AUTH_CONNECTION_ERROR,
+  WS_AUTH_CONNECTION_CLOSED,
+  WS_AUTH_GET_ORDER//order=message
+} from '../actions/wsAuthAction';
 
 const initialState = {
-  wsConnected: false,
+  wsAuthConnected: false,
   orders: [],//order=message
   error: undefined,
   total: 0,
   totalToday: 0
 };
 
-export const wsReducer = (state = initialState, action) => {
+export const wsAuthReducer = (state = initialState, action) => {
   switch (action.type) {
-    case WS_CONNECTION_SUCCESS:
+    case WS_AUTH_CONNECTION_SUCCESS:
       return {
         ...state,
         error: undefined,
-        wsConnected: true
+        wsAuthConnected: true
       };
 
-    case WS_CONNECTION_ERROR:
+    case WS_AUTH_CONNECTION_ERROR:
       return {
         ...state,
         error: action.payload,
-        wsConnected: false,
+        wsAuthConnected: false,
         total: 0,
         totalToday: 0,
         orders: []
       };
 
-    case WS_CONNECTION_CLOSED:
+    case WS_AUTH_CONNECTION_CLOSED:
       return {
         ...state,
         error: undefined,
-        wsConnected: false,
+        wsAuthConnected: false,
         total: 0,
         totalToday: 0,
         orders: []
       };
 
-    case WS_GET_ORDER://order=message
+    case WS_AUTH_GET_ORDER://order=message
       return {
         ...state,
         error: undefined,

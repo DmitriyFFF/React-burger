@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react";
 import { CurrencyIcon, FormattedDate } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from './OrderItem.module.css';
 import { useDispatch, useSelector } from "react-redux";
-import { OPEN_MODAL } from "../../../services/actions/modal";
+import { loadOrder, OPEN_MODAL } from "../../../services/actions/modal";
 
 export const OrderItem = ({order}) => {
   // const [isOpen, setIsOpen] = useState(false);
@@ -28,9 +28,10 @@ export const OrderItem = ({order}) => {
   );
 
   const handleOpen = () => {
-    dispatch({
-      type: OPEN_MODAL
-    });
+    dispatch(loadOrder(order));
+    // dispatch({
+    //   type: OPEN_MODAL
+    // });
     // setIsOpen(true);
   };
   return (

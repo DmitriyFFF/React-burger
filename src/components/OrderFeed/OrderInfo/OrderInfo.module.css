@@ -43,34 +43,35 @@
 
 .ingredientList::-webkit-scrollbar-thumb {
   width: 8px;
-  height: 194px;
+  height: 140px;
   background: var(--bg-color-scroll-thumb);
 }
 
-.image {
+/* .image {
   width: 64px;
   height: 64px;
   background-color: #00CCCC;
-}
-
-/* .orderId {
-  padding: 0;
-  text-align: center;
 } */
 
-.ingredient {
+.orderNumber {
+  position: absolute;
+  top: 60px;
+  left: 40px;
+}
+
+/* .ingredient {
   display: flex;
   justify-content: space-between;
   align-items: center;
   list-style: none;
   padding: 0;
   margin: 0;
-}
+} */
 
-.ingredientPrice {
+/* .ingredientPrice {
   display: flex;
   margin-right: 24px;
-}
+} */
 
 .timePrice {
   display: flex;

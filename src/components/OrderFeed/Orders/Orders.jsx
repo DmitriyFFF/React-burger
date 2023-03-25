@@ -7,7 +7,7 @@ import { OrderItem } from '../OrderItem/OrderItem.jsx';
 import styles from './Orders.module.css';
 
 export const Orders = () => {
-  const {orders} = useSelector(store => store.orderReducer);
+  const { orders } = useSelector(store => store.wsReducer);
   // console.log(orders)
   const location = useLocation();
   return (
@@ -24,21 +24,6 @@ export const Orders = () => {
             <OrderItem order={item} key={item._id} />
           </Link>
         ))}
-        {/* <Link
-            className={styles.orderLink}
-            // key={item._id}
-            to={'/feed/:id'}
-            state={{background: location}}
-          >
-            <OrderItem />
-        </Link> */}
-        {/* <OrderItem />
-        <OrderItem />
-        <OrderItem />
-        <OrderItem />
-        <OrderItem />
-        <OrderItem /> */}
-
       </ul>
     </section>
   );

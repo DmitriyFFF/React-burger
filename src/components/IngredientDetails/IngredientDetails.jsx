@@ -6,7 +6,7 @@ import styles from './IngredientDetails.module.css';
 
 export const IngredientDetails = () => {
   const { ingredients } = useSelector(store => store.ingredientsReducer);
-  const { loadedIngredient } = useSelector(store => store.modalReducer)
+  const { loadedIngredient } = useSelector(store => store.modalReducer);
   const { id } = useParams();
   const dispatch = useDispatch();
 

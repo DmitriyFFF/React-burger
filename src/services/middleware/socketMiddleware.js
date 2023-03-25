@@ -1,6 +1,6 @@
 import { getCookie } from "../../utils/constants";
 
-export const socketMiddleware = (wsUrl, wsActions) => {
+export const socketMiddleware = (wsUrl, wsActions, isLoggedIn) => {
   return store => {
     let socket = null;
 
@@ -13,13 +13,14 @@ export const socketMiddleware = (wsUrl, wsActions) => {
       const accessToken = window.localStorage.getItem("accessToken");
       // console.log(wsSendOrder)
 
-      if (type === wsInit && accessToken) {
-        socket = new WebSocket(`${wsUrl}?token=${accessToken}`);
+      if (type === wsInit) {
+        socket = new WebSocket(`${wsUrl}/all`);
         // console.log(socket)
-      } else if (type === wsInit /*&& !token*/) {
-        socket = new WebSocket(wsUrl);
+      } else if (type === wsInit && isLoggedIn) {
+        socket = new WebSocket(`${wsUrl}?token=${accessToken.split('Bearer ')[1]}`);
         // console.log(socket)
       }
+
       if (socket) {
         socket.onopen = event => {
           dispatch({ type: onOpen, payload: event });

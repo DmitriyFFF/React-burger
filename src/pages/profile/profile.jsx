@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 // import {  NavLink } from "react-router-dom";
 // import { Input, EmailInput, PasswordInput, Button } from "@ya.praktikum/react-developer-burger-ui-components";
@@ -7,9 +8,18 @@ import { Routes, Route } from "react-router-dom";
 import { ProfileForm } from "../../components/Profile/ProfileForm/ProfileForm";
 import { ProfileNavigation } from "../../components/Profile/ProfileNavigation/ProfileNavigation";
 import { ProfileOrders } from "../../components/Profile/ProfileOrders/ProfileOrders";
+import { wsAuthConnectionClosed, wsAuthConnectionSuccess } from "../../services/actions/wsAuthAction";
 import styles from "./profile.module.css";
 
 export const Profile = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(wsAuthConnectionSuccess());
+    return () => {
+      dispatch(wsAuthConnectionClosed());
+    };
+  }, [dispatch]);
 
   return (
     <section className={styles.container}>
