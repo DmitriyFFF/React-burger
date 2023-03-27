@@ -1,6 +1,7 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
+import { wsConnectionClosed, wsConnectionSuccess } from '../../../services/actions/wsAction.js';
 import { OrderItem } from '../OrderItem/OrderItem.jsx';
 // import PropTypes from 'prop-types';
 // import { ingredientType } from '../../utils/types.js';
@@ -8,8 +9,18 @@ import styles from './Orders.module.css';
 
 export const Orders = () => {
   const { orders } = useSelector(store => store.wsReducer);
+  const dispatch = useDispatch();
+
   // console.log(orders)
   const location = useLocation();
+
+  useEffect(() => {
+    dispatch(wsConnectionSuccess());
+    return () => {
+      dispatch(wsConnectionClosed());
+    };
+  }, [dispatch]);
+
   return (
     <section className={`${styles.content} mb-10`}>
       <h2 className="text text_type_main-medium mt-10 mb-5">Лента заказов</h2>

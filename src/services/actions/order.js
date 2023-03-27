@@ -1,4 +1,4 @@
-import { request, baseUrl } from "../../utils/constants";
+import { request, baseUrl, getCookie } from "../../utils/constants";
 
 export const POST_ORDER_REQUEST = "POST_ORDER_REQUEST";
 export const POST_ORDER_SUCCESS = "POST_ORDER_SUCCESS";
@@ -10,22 +10,26 @@ export const GET_ORDERS_FAIL = "GET_ORDERS_FAIL";
 
 export const CLEAR_ORDER = "CLEAR_ORDER"
 
-export function postOrder(ingredientsId) {
+export function postOrder(ingredients) {
   return function(dispatch) {
     dispatch({
       type: POST_ORDER_REQUEST,
     });
     request(`${baseUrl}/orders`, {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: getCookie('token')
+      },
       body: JSON.stringify({
-        ingredients: ingredientsId
+        ingredients: ingredients
       }),
     })
     .then(res => {
       dispatch({
         type: POST_ORDER_SUCCESS,
-        order: res.order.number
+        order: res.order.number,
+        // orders: res.orders
       });
     })
     .catch(err => {
@@ -50,7 +54,7 @@ export function getOrders() {
       dispatch({
         type: GET_ORDERS_SUCCESS,
         orders: res.orders,
-        // order: res.order
+        order: res.order
       });
     })
     .catch(err => {

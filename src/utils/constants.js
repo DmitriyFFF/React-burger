@@ -1,5 +1,43 @@
+import {
+  WS_CONNECTION_CLOSED,
+  WS_CONNECTION_ERROR,
+  WS_CONNECTION_OPEN,
+  WS_CONNECTION_SUCCESS,
+  WS_GET_ORDER,//order=message
+  WS_SEND_ORDER//order=message
+} from '../services/actions/wsAction';
+import {
+  WS_AUTH_CONNECTION_CLOSED,
+  WS_AUTH_CONNECTION_ERROR,
+  WS_AUTH_CONNECTION_OPEN,
+  WS_AUTH_CONNECTION_SUCCESS,
+  WS_AUTH_GET_ORDER,//order=message
+  WS_AUTH_SEND_ORDER//order=message
+} from '../services/actions/wsAuthAction';
+
+
 export const baseUrl = 'https://norma.nomoreparties.space/api';
-export const wsUrl = 'wss://norma.nomoreparties.space/orders';
+export const wsUrl = 'wss://norma.nomoreparties.space/orders/all';
+export const wsAuthUrl = 'wss://norma.nomoreparties.space/orders';
+
+export const wsActions = {
+  wsInit: WS_CONNECTION_SUCCESS,
+  onError: WS_CONNECTION_ERROR,
+  onOpen: WS_CONNECTION_OPEN,
+  onClose: WS_CONNECTION_CLOSED,
+  onMessage: WS_GET_ORDER,
+  wsSendOrder: WS_SEND_ORDER//order=message
+};
+
+export const wsAuthActions = {
+  wsInit: WS_AUTH_CONNECTION_SUCCESS,
+  onError: WS_AUTH_CONNECTION_ERROR,
+  onOpen: WS_AUTH_CONNECTION_OPEN,
+  onClose: WS_AUTH_CONNECTION_CLOSED,
+  onMessage: WS_AUTH_GET_ORDER,
+  wsSendOrder: WS_AUTH_SEND_ORDER//order=message
+};
+
 
 const checkResponse = (res) => {
   if (res.ok) {

@@ -9,17 +9,29 @@ export const socketMiddleware = (wsUrl, wsActions, isLoggedIn) => {
       const { type, payload } = action;
       const { wsInit, wsSendOrder, onOpen, onClose, onError, onMessage } = wsActions;//order=message
       // const { user } = getState().user;
-      // const token = getCookie('accessToken');
-      const accessToken = window.localStorage.getItem("accessToken");
-      // console.log(wsSendOrder)
+      const accessToken = getCookie('token');
+      // const accessToken = isLoggedIn ? `?token=${getCookie('token')?.replace('Bearer ', '')}` : '';
+      // const accessToken = window.localStorage.getItem("accessToken");
+      // console.log(accessToken)
 
       if (type === wsInit) {
-        socket = new WebSocket(`${wsUrl}/all`);
-        // console.log(socket)
-      } else if (type === wsInit && isLoggedIn) {
-        socket = new WebSocket(`${wsUrl}?token=${accessToken.split('Bearer ')[1]}`);
-        // console.log(socket)
-      }
+				if (isLoggedIn) {
+					socket = new WebSocket(`${wsUrl}?token=${accessToken.replace('Bearer ', '')}`);
+          // console.log(socket)
+				} else {
+					socket = new WebSocket(wsUrl);
+          // console.log(socket)
+				}
+			}
+
+      // if (type === wsInit) {
+      //   socket = new WebSocket(wsUrl);
+      //   console.log(socket)
+      // }
+      // if (type === wsInit && isLoggedIn) {
+      //   socket = new WebSocket(`${wsUrl}${accessToken}`);
+      //   console.log(socket)
+      // }
 
       if (socket) {
         socket.onopen = event => {
@@ -43,8 +55,8 @@ export const socketMiddleware = (wsUrl, wsActions, isLoggedIn) => {
         };
 
         if (type === wsSendOrder) {//order=message
-          const order = { ...payload, token: accessToken };
-          socket.send(JSON.stringify(order));
+          const data = { ...payload };
+          socket.send(JSON.stringify(data));
         }
       }
 

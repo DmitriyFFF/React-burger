@@ -20,23 +20,26 @@ export const orderReducer = (state = initialState, action) => {
     case POST_ORDER_SUCCESS: {
       return {
         ...state,
-        orderFailed: false,
         order: action.order,
+        orders: action.orders,
+        orderFailed: false,
         orderRequest: false
       };
     }
     case POST_ORDER_FAIL: {
       return {
         ...state,
-        orderFailed: true,
         order: null,
+        orders: [],
+        orderFailed: true,
         orderRequest: false
       };
     }
     case CLEAR_ORDER: {
       return {
         ...state,
-        order: null
+        order: null,
+        orders: []
       };
     }
     case GET_ORDERS_REQUEST: {

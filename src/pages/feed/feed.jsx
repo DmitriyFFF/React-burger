@@ -6,15 +6,15 @@ import { wsConnectionSuccess, wsConnectionClosed } from '../../services/actions/
 import styles from './feed.module.css';
 
 export const Feed = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   // const {orders} = useSelector(store => store.orderReducer);
 
-  useEffect(() => {
-    dispatch(wsConnectionSuccess());
-    return () => {
-      dispatch(wsConnectionClosed());
-    };
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(wsConnectionSuccess());
+  //   return () => {
+  //     dispatch(wsConnectionClosed());
+  //   };
+  // }, [dispatch]);
   // console.log(orders)
 
   return (

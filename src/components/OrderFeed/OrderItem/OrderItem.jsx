@@ -28,10 +28,10 @@ export const OrderItem = ({order}) => {
   );
 
   const handleOpen = () => {
-    dispatch(loadOrder(order));
-    // dispatch({
-    //   type: OPEN_MODAL
-    // });
+    // dispatch(loadOrder(order));
+    dispatch({
+      type: OPEN_MODAL
+    });
     // setIsOpen(true);
   };
   return (

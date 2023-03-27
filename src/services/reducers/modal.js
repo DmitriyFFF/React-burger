@@ -26,12 +26,12 @@ export const modalReducer = (state = initialState, action) => {
         loadedIngredient: action.loadedIngredient
       };
     }
-    case LOAD_ORDER: {
-      return {
-        ...state,
-        loadedOrder: action.loadedOrder
-      };
-    }
+    // case LOAD_ORDER: {
+    //   return {
+    //     ...state,
+    //     loadedOrder: action.loadedOrder
+    //   };
+    // }
     default: {
       return state;
     }

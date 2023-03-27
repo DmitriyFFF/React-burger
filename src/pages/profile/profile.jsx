@@ -12,14 +12,14 @@ import { wsAuthConnectionClosed, wsAuthConnectionSuccess } from "../../services/
 import styles from "./profile.module.css";
 
 export const Profile = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(wsAuthConnectionSuccess());
-    return () => {
-      dispatch(wsAuthConnectionClosed());
-    };
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(wsAuthConnectionSuccess());
+  //   return () => {
+  //     dispatch(wsAuthConnectionClosed());
+  //   };
+  // }, [dispatch]);
 
   return (
     <section className={styles.container}>
