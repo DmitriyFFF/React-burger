@@ -1,11 +1,11 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
+import { ingredientType } from '../../../utils/types.js';
 import { CurrencyIcon, FormattedDate } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from './OrderItem.module.css';
 import { useDispatch, useSelector } from "react-redux";
-import { loadOrder, OPEN_MODAL } from "../../../services/actions/modal";
+import { loadOrder } from "../../../services/actions/modal";
 
 export const OrderItem = ({order}) => {
-  // const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const ingredients = useSelector(store => store.ingredientsReducer.ingredients);
 
@@ -16,7 +16,6 @@ export const OrderItem = ({order}) => {
       })
     })
   }, [ingredients, order.ingredients]);
-  // console.log(orderIngredients)
 
   const ingredientsHidden = orderIngredients.length > 6 ? orderIngredients.length - 6 : null;
 
@@ -28,12 +27,9 @@ export const OrderItem = ({order}) => {
   );
 
   const handleOpen = () => {
-    // dispatch(loadOrder(order));
-    dispatch({
-      type: OPEN_MODAL
-    });
-    // setIsOpen(true);
+    dispatch(loadOrder(order));
   };
+
   return (
     <>
       <li className={styles.order} onClick={() => handleOpen()}>
@@ -54,14 +50,6 @@ export const OrderItem = ({order}) => {
                     <span className={`${styles.spanImage} text text_type_main-default`}>+{ingredientsHidden}</span>
                   )}
                 </li>
-              // index < 5 ? (
-              //   <div className={styles.imageBorderBox}  key={index}>
-              //     <img className={styles.image} src={item.image} alt={item.name}/>
-              //   </div>) :
-              //   <div className={styles.imageBorderBox}  key={index}>
-              //     <img className={styles.image} src={item.image} alt={item.name}/>
-              //     <span className={`${styles.spanImage} text text_type_main-default`}>{`+${orderIngredients.length - 5}`}</span>
-              //   </div>
               )}
             </ul>
             <div className={`${styles.priceContainer} mt-1 mb-1`}>
@@ -74,3 +62,7 @@ export const OrderItem = ({order}) => {
     </>
   )
 }
+
+OrderItem.propTypes = {
+  order: ingredientType
+};

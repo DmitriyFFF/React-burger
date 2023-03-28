@@ -4,7 +4,6 @@ import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-co
 import styles from './ConstructorOrder.module.css';
 import { Modal } from '../Modal/Modal';
 import { OrderDetails } from '../OrderDetails/OrderDetails';
-// import { ingredientsId } from '../../utils/constants';
 import { useDispatch, useSelector } from 'react-redux';
 import { CLEAR_ORDER, postOrder } from '../../services/actions/order';
 import { CLOSE_MODAL } from '../../services/actions/modal';
@@ -15,11 +14,9 @@ export const ConstructorOrder = ({totalPrice}) => {
   const[isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const { isAuthenticated } = useSelector(store => store.authReducer);
-  // const allIngredients = useSelector(state => state.constructorReducer.ingredients);
 
   const { bun, ingredients } = useSelector(state => state.constructorReducer);
   const dispatch = useDispatch();
-  // const addedIngredients = [...ingredients];
 
   const handleClose = () => {
     dispatch({
@@ -36,9 +33,7 @@ export const ConstructorOrder = ({totalPrice}) => {
 
   const handlePostOrder = () => {
     if (isAuthenticated) {
-      // const orderIngredients = allIngredients.map((item) => item._id);
       dispatch(postOrder(ingredients, bun));
-      // console.log(ingredients, bun)
       setIsOpen(true);
     } else {
       navigate({pathname:'/login'})

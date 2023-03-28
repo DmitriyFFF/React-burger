@@ -1,16 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-// import PropTypes from 'prop-types';
-// import { ingredientType } from '../../utils/types.js';
 import styles from './OrdersStats.module.css';
-// import { Link, useLocation } from 'react-router-dom';
 
 export const OrdersStats = () => {
-  // const { orders } = useSelector(store => store.orderReducer);
   const data = useSelector(store => store.wsReducer);
   const { orders, total, totalToday } = data;
-  // console.log(data)
-  // const location = useLocation();
+
   return (
     <section className={`${styles.content} mb-10`}>
       <div className={styles.orders}>

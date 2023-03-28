@@ -7,6 +7,5 @@
 .content {
   display: flex;
   width: calc(100% - 40px * 2);
-  /* max-width: 1240px; */
   margin: 0 auto;
 }

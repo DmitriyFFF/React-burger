@@ -4,7 +4,7 @@ import { AppHeader } from '../AppHeader/AppHeader';
 import styles from './App.module.css';
 import { useDispatch } from 'react-redux';
 import { getIngredients } from '../../services/actions/ingredients';
-import { Login, Register, Main, ForgotPassword, ResetPassword, Profile, NotFound404, Ingredient, Feed, Order } from '../../pages';
+import { Login, Register, Main, ForgotPassword, ResetPassword, Profile, NotFound404, Ingredient, Feed } from '../../pages';
 import { getUserData } from '../../services/actions/auth';
 import { ProtectedRouteElement } from '../ProtectedRoute/ProtectedRoute';
 import { AuthorizedRouteElement } from '../AuthorizedRoute/AuthorizedRoute';
@@ -12,7 +12,6 @@ import { Modal } from '../Modal/Modal.jsx';
 import { IngredientDetails } from '../IngredientDetails/IngredientDetails.jsx';
 import { closeModal } from '../../services/actions/modal';
 import { OrderInfo } from '../OrderFeed/OrderInfo/OrderInfo';
-import { getOrders } from '../../services/actions/order';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -23,13 +22,7 @@ export const App = () => {
   useEffect(() => {
     dispatch(getIngredients());
     dispatch(getUserData());
-    // dispatch(getOrders());//проверить(удалить)
   }, [dispatch]);
-
-  useEffect(() => {
-    location.state = null
-  },[location])//проверить(удалить)
-
 
   const handleClose = () => {
     dispatch(closeModal());
@@ -51,8 +44,6 @@ export const App = () => {
           <Route path="/profile/*" element={<Profile />} />
           <Route path="/profile/orders/:id" element={<OrderInfo />} />
         </Route>
-        {/* <Route path="/" element={<ProtectedRouteElement />}>
-        </Route> */}
         <Route path="/ingredients/:id" element={<Ingredient />} />
         <Route path="/feed" element={<Feed />} />
         <Route path="/feed/:id" element={<OrderInfo />} />
@@ -74,14 +65,12 @@ export const App = () => {
             </Modal>
             }
           />
-          {/* <Route path="/" element={<ProtectedRouteElement />}> */}
-            <Route path="/profile/orders/:id" element={
-              <Modal onClose={handleClose}>
-                <OrderInfo />
-              </Modal>
-              }
-            />
-          {/* </Route> */}
+          <Route path="/profile/orders/:id" element={
+            <Modal onClose={handleClose}>
+              <OrderInfo />
+            </Modal>
+            }
+          />
         </Routes>
       }
     </div>

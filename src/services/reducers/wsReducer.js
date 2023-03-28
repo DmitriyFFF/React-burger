@@ -2,12 +2,12 @@ import {
   WS_CONNECTION_SUCCESS,
   WS_CONNECTION_ERROR,
   WS_CONNECTION_CLOSED,
-  WS_GET_ORDER//order=message
+  WS_GET_ORDER
 } from '../actions/wsAction';
 
 const initialState = {
   wsConnected: false,
-  orders: [],//order=message
+  orders: [],
   error: undefined,
   total: 0,
   totalToday: 0
@@ -42,21 +42,14 @@ export const wsReducer = (state = initialState, action) => {
         orders: []
       };
 
-    case WS_GET_ORDER://order=message
+    case WS_GET_ORDER:
       return {
         ...state,
         error: undefined,
         orders: action.payload.orders,
         total: action.payload.total,
         totalToday: action.payload.totalToday
-        // orders: action.payload,//order=message
-        // orders: [...state.orders, action.payload]
       };
-    // case WS_USER_NAME_UPDATE://????
-    //   return {
-    //     ...state,
-    //     user: action.payload
-    //   };
 
     default:
       return state;

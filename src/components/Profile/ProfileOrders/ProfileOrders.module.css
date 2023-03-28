@@ -4,7 +4,6 @@
   max-width: 860px;
   width: calc(100% - 16px);
   margin-top: 40px;
-  /* margin: 8px auto; */
   min-height: 916px;
 }
 
@@ -17,20 +16,11 @@
   margin: 0;
   padding: 0;
   padding-right: 8px;
-  /* margin-right: 8px; */
   overflow-y: scroll;
   position: relative;
   max-height: 868px;
   list-style: none;
 }
-
-/* .menu {
-  overflow-y: scroll;
-  position: relative;
-  max-height: 664px;
-  list-style: none;
-  padding: 0;
-} */
 
 .orderList::-webkit-scrollbar {
   width: 8px;

@@ -30,10 +30,6 @@
   overflow-y: scroll;
   position: relative;
   max-height: 312px;
-  /* display: flex;
-  justify-content: space-between;
-  padding: 0;
-  min-height: 56px; */
 }
 
 .ingredientList::-webkit-scrollbar {
@@ -47,31 +43,11 @@
   background: var(--bg-color-scroll-thumb);
 }
 
-/* .image {
-  width: 64px;
-  height: 64px;
-  background-color: #00CCCC;
-} */
-
 .orderNumber {
   position: absolute;
   top: 60px;
   left: 40px;
 }
-
-/* .ingredient {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-} */
-
-/* .ingredientPrice {
-  display: flex;
-  margin-right: 24px;
-} */
 
 .timePrice {
   display: flex;
@@ -84,9 +60,4 @@
 .orderPrice {
   display: flex;
   align-items: center;
-  /* margin-right: 24px; */
 }
-
-/* .detailItem:last-of-type {
-  margin-right: 0;
-} */

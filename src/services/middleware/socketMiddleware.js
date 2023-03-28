@@ -7,31 +7,16 @@ export const socketMiddleware = (wsUrl, wsActions, isLoggedIn) => {
     return next => action => {
       const { dispatch } = store;
       const { type, payload } = action;
-      const { wsInit, wsSendOrder, onOpen, onClose, onError, onMessage } = wsActions;//order=message
-      // const { user } = getState().user;
+      const { wsInit, wsSendOrder, onOpen, onClose, onError, onMessage } = wsActions;
       const accessToken = getCookie('token');
-      // const accessToken = isLoggedIn ? `?token=${getCookie('token')?.replace('Bearer ', '')}` : '';
-      // const accessToken = window.localStorage.getItem("accessToken");
-      // console.log(accessToken)
 
       if (type === wsInit) {
 				if (isLoggedIn) {
 					socket = new WebSocket(`${wsUrl}?token=${accessToken.replace('Bearer ', '')}`);
-          // console.log(socket)
 				} else {
 					socket = new WebSocket(wsUrl);
-          // console.log(socket)
 				}
 			}
-
-      // if (type === wsInit) {
-      //   socket = new WebSocket(wsUrl);
-      //   console.log(socket)
-      // }
-      // if (type === wsInit && isLoggedIn) {
-      //   socket = new WebSocket(`${wsUrl}${accessToken}`);
-      //   console.log(socket)
-      // }
 
       if (socket) {
         socket.onopen = event => {
@@ -54,7 +39,7 @@ export const socketMiddleware = (wsUrl, wsActions, isLoggedIn) => {
           dispatch({ type: onClose, payload: event });
         };
 
-        if (type === wsSendOrder) {//order=message
+        if (type === wsSendOrder) {
           const data = { ...payload };
           socket.send(JSON.stringify(data));
         }

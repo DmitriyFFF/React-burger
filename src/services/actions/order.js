@@ -28,8 +28,7 @@ export function postOrder(ingredients) {
     .then(res => {
       dispatch({
         type: POST_ORDER_SUCCESS,
-        order: res.order.number,
-        // orders: res.orders
+        order: res.order.number
       });
     })
     .catch(err => {

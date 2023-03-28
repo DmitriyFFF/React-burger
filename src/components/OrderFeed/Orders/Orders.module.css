@@ -3,7 +3,6 @@
   flex-direction: column;
   max-width: 608px;
   width: calc(100% - 16px);
-  /* margin: 8px auto; */
   min-height: 912px;
 }
 
@@ -16,20 +15,11 @@
   margin: 0;
   padding: 0;
   padding-right: 8px;
-  /* margin-right: 8px; */
   overflow-y: scroll;
   position: relative;
   max-height: 812px;
   list-style: none;
 }
-
-/* .menu {
-  overflow-y: scroll;
-  position: relative;
-  max-height: 664px;
-  list-style: none;
-  padding: 0;
-} */
 
 .orderList::-webkit-scrollbar {
   width: 8px;

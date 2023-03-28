@@ -2,15 +2,13 @@ import {
   WS_AUTH_CONNECTION_SUCCESS,
   WS_AUTH_CONNECTION_ERROR,
   WS_AUTH_CONNECTION_CLOSED,
-  WS_AUTH_GET_ORDER//order=message
+  WS_AUTH_GET_ORDER
 } from '../actions/wsAuthAction';
 
 const initialState = {
   wsConnected: false,
-  ordersAuth: [],//order=message
-  error: undefined,
-  // total: 0,
-  // totalToday: 0
+  ordersAuth: [],
+  error: undefined
 };
 
 export const wsAuthReducer = (state = initialState, action) => {
@@ -26,31 +24,21 @@ export const wsAuthReducer = (state = initialState, action) => {
       return {
         ...state,
         error: action.payload,
-        wsConnected: false,
-        // orders: [],
-        // total: 0,
-        // totalToday: 0,
+        wsConnected: false
       };
 
     case WS_AUTH_CONNECTION_CLOSED:
       return {
         ...state,
         error: undefined,
-        wsConnected: false,
-        // orders: [],
-        // total: 0,
-        // totalToday: 0,
+        wsConnected: false
       };
 
-    case WS_AUTH_GET_ORDER://order=message
+    case WS_AUTH_GET_ORDER:
       return {
         ...state,
         error: undefined,
-        ordersAuth: action.payload.orders,
-        // total: action.payload.total,
-        // totalToday: action.payload.totalToday
-        // orders: action.payload,//order=message
-        // orders: [...state.orders, action.payload]
+        ordersAuth: action.payload.orders
       };
 
     default:

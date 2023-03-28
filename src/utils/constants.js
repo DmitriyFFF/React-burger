@@ -3,16 +3,16 @@ import {
   WS_CONNECTION_ERROR,
   WS_CONNECTION_OPEN,
   WS_CONNECTION_SUCCESS,
-  WS_GET_ORDER,//order=message
-  WS_SEND_ORDER//order=message
+  WS_GET_ORDER,
+  WS_SEND_ORDER
 } from '../services/actions/wsAction';
 import {
   WS_AUTH_CONNECTION_CLOSED,
   WS_AUTH_CONNECTION_ERROR,
   WS_AUTH_CONNECTION_OPEN,
   WS_AUTH_CONNECTION_SUCCESS,
-  WS_AUTH_GET_ORDER,//order=message
-  WS_AUTH_SEND_ORDER//order=message
+  WS_AUTH_GET_ORDER,
+  WS_AUTH_SEND_ORDER
 } from '../services/actions/wsAuthAction';
 
 
@@ -26,7 +26,7 @@ export const wsActions = {
   onOpen: WS_CONNECTION_OPEN,
   onClose: WS_CONNECTION_CLOSED,
   onMessage: WS_GET_ORDER,
-  wsSendOrder: WS_SEND_ORDER//order=message
+  wsSendOrder: WS_SEND_ORDER
 };
 
 export const wsAuthActions = {
@@ -35,7 +35,7 @@ export const wsAuthActions = {
   onOpen: WS_AUTH_CONNECTION_OPEN,
   onClose: WS_AUTH_CONNECTION_CLOSED,
   onMessage: WS_AUTH_GET_ORDER,
-  wsSendOrder: WS_AUTH_SEND_ORDER//order=message
+  wsSendOrder: WS_AUTH_SEND_ORDER
 };
 
 
