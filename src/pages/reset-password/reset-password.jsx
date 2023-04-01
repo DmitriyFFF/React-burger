@@ -25,7 +25,7 @@ export const ResetPassword = () => {
     if (!forgotPasswordRequest) {
         navigate('/forgot-password')
     }
-  }, [navigate]);
+  }, [navigate, forgotPasswordRequest]);
 
   return (
     <section className={styles.container}>

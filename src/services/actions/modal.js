@@ -32,7 +32,7 @@ export const loadOrder = (order) => {
   return function(dispatch) {
     dispatch({
       type: LOAD_ORDER,
-      loadedOrder: order
+      order: order
     })
   }
 }

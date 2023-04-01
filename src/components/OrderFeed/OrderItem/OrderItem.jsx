@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { ingredientType } from '../../../utils/types.js';
+import PropTypes from 'prop-types';
 import { CurrencyIcon, FormattedDate } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from './OrderItem.module.css';
 import { useDispatch, useSelector } from "react-redux";
@@ -9,30 +9,27 @@ export const OrderItem = ({order}) => {
   const dispatch = useDispatch();
   const ingredients = useSelector(store => store.ingredientsReducer.ingredients);
 
-  const orderIngredients = useMemo(() => {
-    return order.ingredients.map((id) => {
-      return ingredients.find ((item) => {
-        return id === item._id
-      })
-    })
-  }, [ingredients, order.ingredients]);
+  const orderIngredients = ingredients.filter((item) => order?.ingredients.includes(item._id));
 
   const ingredientsHidden = orderIngredients.length > 6 ? orderIngredients.length - 6 : null;
 
   const orderPrice = useMemo(() => {
-    return orderIngredients.reduce((prev, item) =>
-      (prev + item.price), 0)
-    },
+    return orderIngredients.reduce((prev, item) => {
+      if (item.type === 'bun') {
+        return (prev + item.price * 2);
+      }
+      return (prev + item.price);
+    }, 0)},
     [orderIngredients]
   );
 
-  const handleOpen = () => {
+  const handleOpen = (order) => {
     dispatch(loadOrder(order));
   };
 
   return (
     <>
-      <li className={styles.order} onClick={() => handleOpen()}>
+      <li className={styles.order} onClick={() => handleOpen(order)}>
         <div className={styles.orderContainer}>
           <div className={styles.info}>
             <p className="text text_type_digits-default">#{order.number}</p>
@@ -64,5 +61,5 @@ export const OrderItem = ({order}) => {
 }
 
 OrderItem.propTypes = {
-  order: ingredientType
+  order: PropTypes.object
 };

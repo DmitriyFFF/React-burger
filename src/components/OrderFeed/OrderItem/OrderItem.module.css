@@ -82,4 +82,11 @@
   padding: 0;
 }
 
+.orderLink {
+  text-decoration: none;
+  color: inherit;
+  background-color: var(--bg-color-header);
+  border-radius: 40px;
+}
+
 

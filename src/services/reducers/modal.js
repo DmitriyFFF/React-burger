@@ -3,7 +3,7 @@ import { OPEN_MODAL, CLOSE_MODAL, LOAD_INGREDIENT, LOAD_ORDER } from "../actions
 const initialState = {
   open: false,
   loadedIngredient: null,
-  loadedOrder: null
+  order: null
 };
 
 export const modalReducer = (state = initialState, action) => {
@@ -29,7 +29,7 @@ export const modalReducer = (state = initialState, action) => {
     case LOAD_ORDER: {
       return {
         ...state,
-        loadedOrder: action.loadedOrder
+        order: action.order
       };
     }
     default: {

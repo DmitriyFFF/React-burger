@@ -1,0 +1,8 @@
+.order {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 640px;
+  padding-top: 120px;
+}
+

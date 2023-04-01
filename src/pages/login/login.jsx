@@ -21,7 +21,7 @@ export const Login = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate(from, {replace: true});
+      navigate(-1);
     }
   }, [navigate, isAuthenticated, from]);
 

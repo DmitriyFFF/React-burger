@@ -12,7 +12,7 @@ export const socketMiddleware = (wsUrl, wsActions, isLoggedIn) => {
 
       if (type === wsInit) {
 				if (isLoggedIn) {
-					socket = new WebSocket(`${wsUrl}?token=${accessToken.replace('Bearer ', '')}`);
+					socket = new WebSocket(`${wsUrl}?token=${accessToken?.replace('Bearer ', '')}`);
 				} else {
 					socket = new WebSocket(wsUrl);
 				}
