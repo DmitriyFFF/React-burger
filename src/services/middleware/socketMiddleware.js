@@ -1,6 +1,6 @@
 import { getCookie } from "../../utils/constants";
 
-export const socketMiddleware = (wsUrl, wsActions, isLoggedIn) => {
+export const socketMiddleware = (wsUrl, wsActions, withToken) => {
   return store => {
     let socket = null;
 
@@ -11,7 +11,7 @@ export const socketMiddleware = (wsUrl, wsActions, isLoggedIn) => {
       const accessToken = getCookie('token');
 
       if (type === wsInit) {
-				if (isLoggedIn) {
+				if (withToken) {
 					socket = new WebSocket(`${wsUrl}?token=${accessToken?.replace('Bearer ', '')}`);
 				} else {
 					socket = new WebSocket(wsUrl);
