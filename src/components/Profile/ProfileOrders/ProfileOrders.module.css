@@ -1,0 +1,41 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  max-width: 860px;
+  width: calc(100% - 16px);
+  margin-top: 40px;
+  min-height: 916px;
+}
+
+.orderList {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  text-align: center;
+  padding-left: 0;
+  margin: 0;
+  padding: 0;
+  padding-right: 8px;
+  overflow-y: scroll;
+  position: relative;
+  max-height: 868px;
+  list-style: none;
+}
+
+.orderList::-webkit-scrollbar {
+  width: 8px;
+  background: var(--bg-color-scroll);
+}
+
+.orderList::-webkit-scrollbar-thumb {
+  width: 8px;
+  height: 696px;
+  background: var(--bg-color-scroll-thumb);
+}
+
+.orderLink {
+  text-decoration: none;
+  color: inherit;
+  background-color: var(--bg-color-header);
+  border-radius: 40px;
+}

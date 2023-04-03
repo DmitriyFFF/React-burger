@@ -1,0 +1,44 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+  max-width: 584px;
+  margin: 100px 0 0 56px;
+  color: var(--active-text-color);
+}
+
+.orders {
+  display: flex;
+  justify-content: space-between;
+  width: 584px;
+}
+
+.numberOrders {
+  display: flex;
+  flex-direction: column;
+  width: 272px;
+}
+
+.ordersList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.readyItem {
+  color: var(--aquamarine-text-color);
+}
+
+.totalOrders {
+  display: flex;
+  flex-direction: column;
+  width: 584px;
+}
+
+.total {
+  text-shadow: 0 4px 32px rgba(51, 51, 255, 0.5), 0 0 8px rgba(51, 51, 255, 0.25), 0 0 16px rgba(51, 51, 255, 0.25);
+}

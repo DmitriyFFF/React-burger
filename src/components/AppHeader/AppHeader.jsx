@@ -1,41 +1,54 @@
-import React from 'react';
-import { Logo, BurgerIcon, ListIcon, ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import appHeaderStyles from './AppHeader.module.css';
+import React from "react";
+import { Link, NavLink } from "react-router-dom";
+import { Logo, BurgerIcon, ListIcon, ProfileIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import styles from "./AppHeader.module.css";
 
 const AppHeaderLogo = () => {
   return (
-    <Logo />
+    <Link to="/">
+      <Logo />
+    </Link>
   );
 }
 
 const NavigationMenu = () => {
+  const setActiveLink = ({isActive}) => isActive ? styles.activeLink : styles.link;
+
   return (
-    <ul className={appHeaderStyles.menuContainer}>
-      <li className={`${appHeaderStyles.menuItem} pt-4 pr-5 pb-4 mr-1`}>
-        <BurgerIcon type="primary"/>
-        <p className="text text_type_main-default pl-2">Конструктор</p>
+    <ul className={styles.menuContainer}>
+      <li className={`${styles.menuItem} pt-4 pr-5 pb-4 mr-1`}>
+        <NavLink to="/" className={setActiveLink}>
+          <BurgerIcon type="primary"/>
+          <p className="text text_type_main-default pl-2">Конструктор</p>
+        </NavLink>
       </li>
-      <li className={`${appHeaderStyles.menuItem} pt-4 pr-5 pb-4 pl-5`}>
-        <ListIcon type="secondary"/>
-        <p className="text text_type_main-default text_color_inactive pl-2">Лента заказов</p>
+      <li className={`${styles.menuItem} pt-4 pr-5 pb-4 pl-5`}>
+        <NavLink to="/feed" className={setActiveLink}>
+          <ListIcon type="secondary"/>
+          <p className="text text_type_main-default pl-2">Лента заказов</p>
+        </NavLink>
       </li>
     </ul>
   );
 }
 
 const Profile = () => {
+  const setActiveLink = ({isActive}) => isActive ? styles.activeLink : styles.link;
+
   return (
-    <div className={appHeaderStyles.menuItem}>
-      <ProfileIcon type="secondary"/>
-      <p className="text text_type_main-default text_color_inactive pl-2">Личный кабинет</p>
+    <div className={styles.menuItem}>
+      <NavLink to="/profile" className={setActiveLink}>
+        <ProfileIcon type="secondary"/>
+        <p className="text text_type_main-default pl-2">Личный кабинет</p>
+      </NavLink>
     </div>
   );
 }
 
 export const AppHeader = () => {
   return (
-    <header className={appHeaderStyles.header}>
-      <div className={`${appHeaderStyles.container} pt-4 pb-4`}>
+    <header className={styles.header}>
+      <div className={`${styles.container} pt-4 pb-4`}>
         <NavigationMenu />
         <AppHeaderLogo />
         <Profile />

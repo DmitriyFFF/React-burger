@@ -26,4 +26,5 @@
   background-color: var(--bg-color-header);
   border: none;
   padding: 0;
+  cursor: pointer;
 }

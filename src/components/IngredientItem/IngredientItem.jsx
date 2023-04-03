@@ -1,17 +1,14 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useDrag } from 'react-dnd/dist/hooks/index.js';
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { ingredientType } from '../../utils/types.js';
-import { Modal } from '../Modal/Modal.jsx';
-import { IngredientDetails } from '../IngredientDetails/IngredientDetails.jsx';
-import { OPEN_MODAL, CLOSE_MODAL } from '../../services/actions/modal.js';
+import {  loadIngredient } from '../../services/actions/modal.js';
 import styles from './IngredientItem.module.css';
 
 export const IngredientItem = ({card}) => {
   const { bun, ingredients }  = useSelector(state => state.constructorReducer);
   const dispatch = useDispatch();
-  const [isOpen, setIsOpen] = useState(false);
 
   const count = useMemo(() => {
     if (card.type === 'bun') {
@@ -31,24 +28,14 @@ export const IngredientItem = ({card}) => {
   });
 
   const handleOpen = () => {
-    dispatch({
-      type: OPEN_MODAL
-    });
-    setIsOpen(true);
+    dispatch(loadIngredient(card));
   };
-
-  const handleClose = () => {
-    dispatch({
-      type: CLOSE_MODAL
-    });
-    setIsOpen(false);
-  }
 
   return (
     <>
       <li
         className={styles.card}
-        onClick={handleOpen}
+        onClick={() => handleOpen()}
         ref={dragRef}
         style={{ opacity }}
       >
@@ -62,12 +49,6 @@ export const IngredientItem = ({card}) => {
         </div>
         <p className={`${styles.cardName} text text_type_main-default`}>{card.name}</p>
       </li>
-      {isOpen &&
-        <Modal
-          onClose={handleClose}
-          title="Детали ингредиента">
-            <IngredientDetails {...card} />
-        </Modal>}
     </>
   );
 }
