@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { IngredientItem } from '../IngredientItem/IngredientItem.jsx';
-import { ingredientType } from '../../utils/types.js';
+import { ingredientType } from '../../utils/types.ts';
 import styles from './Ingredients.module.css';
 import { Link, useLocation } from 'react-router-dom';
 

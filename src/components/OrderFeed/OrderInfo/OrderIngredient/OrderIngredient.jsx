@@ -1,5 +1,5 @@
 import React from "react";
-import { ingredientType } from '../../../../utils/types.js';
+import { ingredientType } from '../../../../utils/types.ts';
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from './OrderIngredient.module.css';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ingredientType } from '../../../utils/types.js';
+import { ingredientType } from '../../../utils/types.ts';
 import { Link, useLocation } from 'react-router-dom';
 import { OrderItem } from '../OrderItem/OrderItem.jsx';
 import styles from './Orders.module.css';

@@ -1,12 +1,13 @@
-import React, { useMemo } from 'react';
+import React, { FC, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useDrag } from 'react-dnd/dist/hooks/index.js';
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { ingredientType } from '../../utils/types.js';
+// import { ingredientType } from '../../utils/types.js';
+import { TIngredient, TIngredientProps } from '../../utils/types.js';
 import {  loadIngredient } from '../../services/actions/modal.js';
 import styles from './IngredientItem.module.css';
 
-export const IngredientItem = ({card}) => {
+export const IngredientItem: FC<TIngredientProps> = ({card}) => {
   const { bun, ingredients }  = useSelector(state => state.constructorReducer);
   const dispatch = useDispatch();
 
@@ -14,7 +15,7 @@ export const IngredientItem = ({card}) => {
     if (card.type === 'bun') {
       return bun && bun._id === card._id ? 2 : 0;
     } else {
-      return ingredients.filter(ingredient => ingredient._id === card._id).length
+      return ingredients.filter((ingredient: TIngredient) => ingredient._id === card._id).length
     }},
     [bun, ingredients, card]
   );
@@ -53,7 +54,7 @@ export const IngredientItem = ({card}) => {
   );
 }
 
-IngredientItem.propTypes = {
-  card: ingredientType.isRequired
-};
+// IngredientItem.propTypes = {
+//   card: ingredientType.isRequired
+// };
 

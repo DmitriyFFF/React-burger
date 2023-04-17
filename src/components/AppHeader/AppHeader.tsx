@@ -1,7 +1,12 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Logo, BurgerIcon, ListIcon, ProfileIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import { TActiveLink } from "../../utils/types";
 import styles from "./AppHeader.module.css";
+
+// type TActiveLink = {
+//   isActive: boolean;
+// };
 
 const AppHeaderLogo = () => {
   return (
@@ -12,7 +17,7 @@ const AppHeaderLogo = () => {
 }
 
 const NavigationMenu = () => {
-  const setActiveLink = ({isActive}) => isActive ? styles.activeLink : styles.link;
+  const setActiveLink = ({isActive}: TActiveLink) => isActive ? styles.activeLink : styles.link;
 
   return (
     <ul className={styles.menuContainer}>
@@ -33,7 +38,7 @@ const NavigationMenu = () => {
 }
 
 const Profile = () => {
-  const setActiveLink = ({isActive}) => isActive ? styles.activeLink : styles.link;
+  const setActiveLink = ({isActive}: TActiveLink) => isActive ? styles.activeLink : styles.link;
 
   return (
     <div className={styles.menuItem}>

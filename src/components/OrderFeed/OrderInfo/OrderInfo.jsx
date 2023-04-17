@@ -18,6 +18,17 @@ export const OrderInfo = ({modalIsOpen}) => {
 
   const activeOrder = location.pathname === `/profile/orders/${id}` ? orderAuth : order;
 
+  // const orderIngredients = useMemo(() => ingredients?.filter((item) => activeOrder?.ingredients.includes(item._id)), [activeOrder.ingredients, ingredients]);
+
+  // const calcIngredients = useMemo(() => activeOrder.ingredients?.map((element) => {
+  //   if(element!== null && element!== undefined) {
+  //     const calcItem = ingredients?.filter((item) => element && item._id ===element);
+  //     return calcItem[0]
+  //   }
+  // }), [activeOrder.ingredients, ingredients])
+
+  // console.log(calcIngredients)
+
   const orderIngredients = ingredients.filter((item) => activeOrder?.ingredients.includes(item._id));
 
   const orderPrice = useMemo(() => {
