@@ -37,3 +37,9 @@ export type TIngredientProps = {
 export type TActiveLink = {
   isActive: boolean;
 };
+
+export type TUser = {
+  name: string;
+  email: string;
+  password: string;
+};
