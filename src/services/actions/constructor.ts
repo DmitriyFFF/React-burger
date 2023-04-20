@@ -5,31 +5,31 @@ export const DELETE_INGREDIENT: 'DELETE_INGREDIENT' = 'DELETE_INGREDIENT';
 export const MOVE_INGREDIENT: 'MOVE_INGREDIENT' = 'MOVE_INGREDIENT';
 export const CLEAR_INGREDIENTS: 'CLEAR_INGREDIENTS' = 'CLEAR_INGREDIENTS';
 
-export interface IAddIngredient {
+export interface IAddIngredientAction {
   readonly type: typeof ADD_INGREDIENT;
   readonly payload: TIngredient;
 }
 
-export interface IDeleteIngredient {
+export interface IDeleteIngredientAction {
   readonly type: typeof DELETE_INGREDIENT;
   readonly payload: TIngredient;
 }
 
-export interface IMoveIngredient {
+export interface IMoveIngredientAction {
   readonly type: typeof MOVE_INGREDIENT;
 }
 
-export interface IClearIngredients {
+export interface IClearIngredientsAction {
   readonly type: typeof CLEAR_INGREDIENTS;
 }
 
 export type TConstructorActions =
-  | IAddIngredient
-  | IDeleteIngredient
-  | IMoveIngredient
-  | IClearIngredients;
+  | IAddIngredientAction
+  | IDeleteIngredientAction
+  | IMoveIngredientAction
+  | IClearIngredientsAction;
 
-export const addIngredient = (payload: TIngredient): IAddIngredient => ({//: ReadonlyArray<TIngredient> возможно заменить
+export const addIngredient = (payload: TIngredient): IAddIngredientAction => ({//: ReadonlyArray<TIngredient> возможно заменить
   type: ADD_INGREDIENT,
   payload: {
     ...payload,
@@ -37,15 +37,15 @@ export const addIngredient = (payload: TIngredient): IAddIngredient => ({//: Rea
   }
 });
 
-export const deleteIngredient = (payload: TIngredient): IDeleteIngredient => ({//: ReadonlyArray<TIngredient> возможно заменить
+export const deleteIngredient = (payload: TIngredient): IDeleteIngredientAction => ({//: ReadonlyArray<TIngredient> возможно заменить
   type: DELETE_INGREDIENT,
   payload
 });
 
-export const moveIngredient = (): IMoveIngredient => ({
+export const moveIngredient = (): IMoveIngredientAction => ({
   type: MOVE_INGREDIENT
 });
 
-export const clearIngredients = (): IClearIngredients => ({
+export const clearIngredients = (): IClearIngredientsAction => ({
   type: CLEAR_INGREDIENTS
 });

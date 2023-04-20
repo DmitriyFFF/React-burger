@@ -4,7 +4,7 @@ import { useDrag } from 'react-dnd/dist/hooks/index.js';
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 // import { ingredientType } from '../../utils/types.js';
 import { TIngredient, TIngredientProps } from '../../utils/types.js';
-import {  loadIngredient } from '../../services/actions/modal.js';
+import {  loadIngredient } from '../../services/actions/modal';
 import styles from './IngredientItem.module.css';
 
 export const IngredientItem: FC<TIngredientProps> = ({card}) => {

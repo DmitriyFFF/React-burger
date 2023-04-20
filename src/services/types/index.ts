@@ -6,13 +6,15 @@ import { TForgotPasswordActions } from '../actions/forgot-password';
 import { TResetPasswordActions } from '../actions/reset-password';
 import { TIngredientsActions } from '../actions/ingredients';
 import { TConstructorActions } from '../actions/constructor';
+import { TModalActions } from '../actions/modal';
 
 type TApplicationActions =
   | TAuthActions
   | TForgotPasswordActions
   | TResetPasswordActions
   | TIngredientsActions
-  | TConstructorActions;
+  | TConstructorActions
+  | TModalActions;
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
