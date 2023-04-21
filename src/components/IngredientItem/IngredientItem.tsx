@@ -1,15 +1,17 @@
 import React, { FC, useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../../hooks/hooks';
 import { useDrag } from 'react-dnd/dist/hooks/index.js';
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 // import { ingredientType } from '../../utils/types.js';
-import { TIngredient, TIngredientProps } from '../../utils/types.js';
-import {  loadIngredient } from '../../services/actions/modal';
+import { TIngredient, TIngredientProps } from '../../utils/types';
+import { loadIngredient } from '../../services/actions/modal';
 import styles from './IngredientItem.module.css';
 
 export const IngredientItem: FC<TIngredientProps> = ({card}) => {
   const { bun, ingredients }  = useSelector(state => state.constructorReducer);
   const dispatch = useDispatch();
+  // console.log(card)
 
   const count = useMemo(() => {
     if (card.type === 'bun') {

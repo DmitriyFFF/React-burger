@@ -4,7 +4,7 @@ import { ingredientType } from '../../../utils/types.ts';
 import { Link, useLocation } from 'react-router-dom';
 import { OrderItem } from '../../OrderFeed/OrderItem/OrderItem';
 import styles from './ProfileOrders.module.css';
-import { wsAuthConnectionClosed, wsAuthConnectionSuccess } from '../../../services/actions/wsAuthAction.js';
+import { wsAuthConnectionClosed, wsAuthConnectionSuccess } from '../../../services/actions/wsAuthAction';
 import { useDispatch } from 'react-redux';
 
 export const ProfileOrders = ({profileOrders}) => {
