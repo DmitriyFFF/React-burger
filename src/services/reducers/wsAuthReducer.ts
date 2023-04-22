@@ -1,9 +1,17 @@
+import { TOrder } from '../../utils/types';
 import {
   WS_AUTH_CONNECTION_SUCCESS,
   WS_AUTH_CONNECTION_ERROR,
   WS_AUTH_CONNECTION_CLOSED,
-  WS_AUTH_GET_ORDER
+  WS_AUTH_GET_ORDER,
+  TWsAuthAction
 } from '../actions/wsAuthAction';
+
+export type TWsAuthState = {
+  wsConnected: boolean;
+  ordersAuth: Array<TOrder>;
+  error: string | undefined;
+}
 
 const initialState = {
   wsConnected: false,
@@ -11,7 +19,7 @@ const initialState = {
   error: undefined
 };
 
-export const wsAuthReducer = (state = initialState, action) => {
+export const wsAuthReducer = (state = initialState, action: TWsAuthAction): TWsAuthState => {
   switch (action.type) {
     case WS_AUTH_CONNECTION_SUCCESS:
       return {
@@ -23,7 +31,7 @@ export const wsAuthReducer = (state = initialState, action) => {
     case WS_AUTH_CONNECTION_ERROR:
       return {
         ...state,
-        error: action.payload,
+        error: action.error,
         wsConnected: false
       };
 
@@ -38,7 +46,7 @@ export const wsAuthReducer = (state = initialState, action) => {
       return {
         ...state,
         error: undefined,
-        ordersAuth: action.payload.orders
+        ordersAuth: action.orders
       };
 
     default:

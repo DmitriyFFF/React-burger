@@ -18,7 +18,7 @@ export interface IPostOrderRequestAction {
 
 export interface IPostOrderSuccessAction {
   readonly type: typeof POST_ORDER_SUCCESS;
-  readonly order: TOrder;
+  order: TOrder;
 }
 
 export interface IPostOrderFailAction {
@@ -31,8 +31,8 @@ export interface IGetOrdersRequestAction {
 
 export interface IGetOrdersSuccessAction {
   readonly type: typeof GET_ORDERS_SUCCESS;
-  readonly orders: ReadonlyArray<TOrder>;
-  readonly order: TOrder;
+  orders: Array<TOrder>;
+  order: TOrder;
 }
 
 export interface IGetOrdersFailAction {

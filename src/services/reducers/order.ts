@@ -1,4 +1,14 @@
-import { POST_ORDER_FAIL, POST_ORDER_REQUEST, POST_ORDER_SUCCESS, CLEAR_ORDER, GET_ORDERS_FAIL, GET_ORDERS_REQUEST, GET_ORDERS_SUCCESS } from '../actions/order';
+import { TOrder } from '../../utils/types';
+import { POST_ORDER_FAIL, POST_ORDER_REQUEST, POST_ORDER_SUCCESS, CLEAR_ORDER, GET_ORDERS_FAIL, GET_ORDERS_REQUEST, GET_ORDERS_SUCCESS, TOrderActions } from '../actions/order';
+
+export type TOrderState = {
+  orders: Array<TOrder>;
+  order: TOrder | null;
+  orderRequest: boolean;
+  orderFailed: boolean;
+  getOrdersRequest: boolean;
+  getOrdersFailed: boolean;
+}
 
 const initialState = {
   orders: [],
@@ -9,7 +19,7 @@ const initialState = {
   getOrdersFailed: false
 };
 
-export const orderReducer = (state = initialState, action) => {
+export const orderReducer = (state = initialState, action: TOrderActions): TOrderState => {
   switch (action.type) {
     case POST_ORDER_REQUEST: {
       return {
@@ -21,7 +31,7 @@ export const orderReducer = (state = initialState, action) => {
       return {
         ...state,
         order: action.order,
-        orders: action.orders,
+        // orders: action.orders,
         orderFailed: false,
         orderRequest: false
       };
@@ -30,7 +40,7 @@ export const orderReducer = (state = initialState, action) => {
       return {
         ...state,
         order: null,
-        orders: [],
+        // orders: [],
         orderFailed: true,
         orderRequest: false
       };

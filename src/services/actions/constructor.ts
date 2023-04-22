@@ -17,6 +17,8 @@ export interface IDeleteIngredientAction {
 
 export interface IMoveIngredientAction {
   readonly type: typeof MOVE_INGREDIENT;
+  readonly dragIndex: number;
+  readonly hoverIndex: number;
 }
 
 export interface IClearIngredientsAction {
@@ -42,8 +44,10 @@ export const deleteIngredient = (payload: TIngredient): IDeleteIngredientAction 
   payload
 });
 
-export const moveIngredient = (): IMoveIngredientAction => ({
-  type: MOVE_INGREDIENT
+export const moveIngredient = (dragIndex: number, hoverIndex: number): IMoveIngredientAction => ({
+  type: MOVE_INGREDIENT,
+  dragIndex,
+  hoverIndex
 });
 
 export const clearIngredients = (): IClearIngredientsAction => ({

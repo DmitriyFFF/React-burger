@@ -17,6 +17,7 @@ export interface IWsAuthConnectionSuccessAction {
 
 export interface IWsAuthConnectionErrorAction {
   readonly type: typeof WS_AUTH_CONNECTION_ERROR;
+  readonly error: string;
 }
 
 export interface IWsAuthConnectionClosedAction {
@@ -25,7 +26,7 @@ export interface IWsAuthConnectionClosedAction {
 
 export interface IWsAuthGetOrderAction {
   readonly type: typeof WS_AUTH_GET_ORDER;
-  order: TOrder;
+  orders: Array<TOrder>;
 }
 
 export interface IWsAuthSendOrderAction {
@@ -47,9 +48,10 @@ export const wsAuthConnectionSuccess = (): IWsAuthConnectionSuccessAction => {
   };
 };
 
-export const wsAuthConnectionError = (): IWsAuthConnectionErrorAction => {
+export const wsAuthConnectionError = (error: string): IWsAuthConnectionErrorAction => {
   return {
-    type: WS_AUTH_CONNECTION_ERROR
+    type: WS_AUTH_CONNECTION_ERROR,
+    error
   };
 };
 
@@ -65,14 +67,14 @@ export const wsAuthConnectionClosed = (): IWsAuthConnectionClosedAction => {
   };
 };
 
-export const wsAuthGetOrder = (order: TOrder): IWsAuthGetOrderAction => {
+export const wsAuthGetOrder = (orders: Array<TOrder>): IWsAuthGetOrderAction => {
   return {
     type: WS_AUTH_GET_ORDER,
-    order
+    orders
   };
 };
 
-export const wsAuthSendOrder = (order: TOrder): IWsAuthSendOrderAction => {
+export const wsAuthSendOrder = (order: TOrder): IWsAuthSendOrderAction => {// Удалить??
   return {
     type: WS_AUTH_SEND_ORDER,
     order

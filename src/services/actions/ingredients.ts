@@ -22,6 +22,7 @@ export interface IGetIngredientsFailAction {
 
 export interface ISetIngredientTabAction {
   readonly type: typeof SET_INGREDIENT_TAB;
+  readonly tab: string;
 }
 
 export type TIngredientsActions =
@@ -43,8 +44,9 @@ export const getIngredientsFail = (): IGetIngredientsFailAction => ({
   type: GET_INGREDIENTS_FAIL
 });
 
-export const setIngredientFail = (): ISetIngredientTabAction => ({
-  type: SET_INGREDIENT_TAB
+export const setIngredientTab = (tab: string): ISetIngredientTabAction => ({// нужен ли tab???
+  type: SET_INGREDIENT_TAB,
+  tab
 });
 
 export const getIngredients: AppThunk = () => {

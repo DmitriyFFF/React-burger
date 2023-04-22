@@ -17,6 +17,7 @@ export interface IWsConnectionSuccessAction {
 
 export interface IWsConnectionErrorAction {
   readonly type: typeof WS_CONNECTION_ERROR;
+  readonly error: string;
 }
 
 export interface IWsConnectionClosedAction {
@@ -25,7 +26,9 @@ export interface IWsConnectionClosedAction {
 
 export interface IWsGetOrderAction {
   readonly type: typeof WS_GET_ORDER;
-  order: TOrder;
+  orders: Array<TOrder>;
+  total: number;
+  totalToday: number;
 }
 
 export interface IWsSendOrderAction {
@@ -47,9 +50,10 @@ export const wsConnectionSuccess = (): IWsConnectionSuccessAction => {
   };
 };
 
-export const wsConnectionError = (): IWsConnectionErrorAction => {
+export const wsConnectionError = (error: string): IWsConnectionErrorAction => {
   return {
-    type: WS_CONNECTION_ERROR
+    type: WS_CONNECTION_ERROR,
+    error
   };
 };
 
@@ -65,14 +69,16 @@ export const wsConnectionClosed = (): IWsConnectionClosedAction => {
   };
 };
 
-export const wsGetOrder = (order: TOrder): IWsGetOrderAction => {
+export const wsGetOrder = (orders: Array<TOrder>, total: number, totalToday: number): IWsGetOrderAction => {
   return {
     type: WS_GET_ORDER,
-    order
+    orders,
+    total,
+    totalToday
   };
 };
 
-export const wsSendOrder = (order: TOrder): IWsSendOrderAction => {
+export const wsSendOrder = (order: TOrder): IWsSendOrderAction => {// Удалить??
   return {
     type: WS_SEND_ORDER,
     order

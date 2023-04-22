@@ -1,9 +1,19 @@
+import { TOrder } from '../../utils/types';
 import {
   WS_CONNECTION_SUCCESS,
   WS_CONNECTION_ERROR,
   WS_CONNECTION_CLOSED,
-  WS_GET_ORDER
+  WS_GET_ORDER,
+  TWsAction
 } from '../actions/wsAction';
+
+export type TWsState = {
+  wsConnected: boolean;
+  orders: Array<TOrder>;
+  error: string | undefined;
+  total: number;
+  totalToday: number;
+}
 
 const initialState = {
   wsConnected: false,
@@ -13,7 +23,7 @@ const initialState = {
   totalToday: 0
 };
 
-export const wsReducer = (state = initialState, action) => {
+export const wsReducer = (state = initialState, action: TWsAction): TWsState => {
   switch (action.type) {
     case WS_CONNECTION_SUCCESS:
       return {
@@ -25,7 +35,7 @@ export const wsReducer = (state = initialState, action) => {
     case WS_CONNECTION_ERROR:
       return {
         ...state,
-        error: action.payload,
+        error: action.error,
         wsConnected: false,
         total: 0,
         totalToday: 0,
@@ -46,9 +56,9 @@ export const wsReducer = (state = initialState, action) => {
       return {
         ...state,
         error: undefined,
-        orders: action.payload.orders,
-        total: action.payload.total,
-        totalToday: action.payload.totalToday
+        orders: action.orders,
+        total: action.total,
+        totalToday: action.totalToday
       };
 
     default:
