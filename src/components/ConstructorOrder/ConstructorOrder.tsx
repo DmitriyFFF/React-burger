@@ -1,21 +1,23 @@
-import React, {useState} from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, FC } from 'react';
+// import PropTypes from 'prop-types';
 import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './ConstructorOrder.module.css';
 import { Modal } from '../Modal/Modal';
 import { OrderDetails } from '../OrderDetails/OrderDetails';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../../hooks/hooks';
 import { CLEAR_ORDER, postOrder } from '../../services/actions/order';
 import { CLOSE_MODAL } from '../../services/actions/modal';
 import { CLEAR_INGREDIENTS } from '../../services/actions/constructor';
 import { useNavigate } from 'react-router-dom';
+import { TConstructorPrice } from '../../utils/types';
 
-export const ConstructorOrder = ({totalPrice}) => {
+export const ConstructorOrder: FC<TConstructorPrice> = ({totalPrice}) => {
   const[isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const { isAuthenticated } = useSelector(store => store.authReducer);
 
-  const { bun, ingredients } = useSelector(state => state.constructorReducer);
+  const { bun, ingredients } = useSelector(store => store.constructorReducer);
   const dispatch = useDispatch();
 
   const handleClose = () => {
@@ -63,6 +65,6 @@ export const ConstructorOrder = ({totalPrice}) => {
   )
 }
 
-ConstructorOrder.propTypes = {
-  totalPrice: PropTypes.number.isRequired
-};
+// ConstructorOrder.propTypes = {
+//   totalPrice: PropTypes.number.isRequired
+// };

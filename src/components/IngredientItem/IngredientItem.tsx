@@ -9,7 +9,7 @@ import { loadIngredient } from '../../services/actions/modal';
 import styles from './IngredientItem.module.css';
 
 export const IngredientItem: FC<TIngredientProps> = ({card}) => {
-  const { bun, ingredients }  = useSelector(state => state.constructorReducer);
+  const { bun, ingredients }  = useSelector(store => store.constructorReducer);
   const dispatch = useDispatch();
   // console.log(card)
 

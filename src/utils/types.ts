@@ -45,6 +45,26 @@ export type TIngredientProps = {
   card: TIngredient;
 };
 
+export type TIngredientsProps = {
+  data: Array<TIngredient>;
+  title: string;
+};
+
+export type TConstructorItemProps = {
+  ingredient: TIngredient;
+  index: number;
+  // key: string;
+  deleteIngredient: (key: string) => void;
+}
+
+export type TConstructorPrice = {
+  totalPrice: number;
+}
+
+export type TDropItem = {
+  index: number;
+}
+
 export type TActiveLink = {
   isActive: boolean;
 };

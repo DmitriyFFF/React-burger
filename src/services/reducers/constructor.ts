@@ -27,7 +27,7 @@ export const constructorReducer = (state = initialState, action: TConstructorAct
     case DELETE_INGREDIENT: {
       return {
         ...state,
-        ingredients: state.ingredients.filter((ingredient: TIngredient) => ingredient.key !== action.payload.key)
+        ingredients: state.ingredients.filter((ingredient: TIngredient) => ingredient.key !== action.key)
       };
     }
     case MOVE_INGREDIENT: {

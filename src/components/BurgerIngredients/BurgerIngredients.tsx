@@ -1,20 +1,22 @@
-import React, { useState, useMemo, useEffect } from 'react';
-import { Ingredients } from '../Ingredients/Ingredients.jsx';
-import { useSelector } from 'react-redux';
+import React, { useState, useMemo, useEffect, FC } from 'react';
+import { Ingredients } from '../Ingredients/Ingredients';
+// import { useSelector } from 'react-redux';
+import { useSelector } from '../../hooks/hooks';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './BurgerIngredients.module.css';
 import { useInView } from 'react-intersection-observer';
+import { TIngredient } from '../../utils/types';
 
-export const BurgerIngredients = () => {
+export const BurgerIngredients: FC = () => {
   const [current, setCurrent] = useState('Булки')
   const [bunRef, inViewBun] = useInView({threshold: .1});
   const [sauceRef, inViewSauce] = useInView({threshold: .1});
   const [mainRef, inViewMain] = useInView({threshold: .5});
-  const ingredients = useSelector(state => state.ingredientsReducer.ingredients);
+  const ingredients = useSelector(store => store.ingredientsReducer.ingredients);
 
-  const buns = useMemo(() => ingredients.filter(item => item.type === 'bun'), [ingredients]);
-  const sauces = useMemo(() => ingredients.filter(item => item.type === 'sauce'), [ingredients]);
-  const mains = useMemo(() => ingredients.filter(item => item.type === 'main'), [ingredients]);
+  const buns = useMemo(() => ingredients.filter((item: TIngredient) => item.type === 'bun'), [ingredients]);
+  const sauces = useMemo(() => ingredients.filter((item: TIngredient) => item.type === 'sauce'), [ingredients]);
+  const mains = useMemo(() => ingredients.filter((item: TIngredient) => item.type === 'main'), [ingredients]);
 
   useEffect(() => {
     if (inViewBun) {
