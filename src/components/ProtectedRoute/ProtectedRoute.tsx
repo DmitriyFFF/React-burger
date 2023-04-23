@@ -1,7 +1,9 @@
-import { useSelector } from 'react-redux';
+import React, { FC } from 'react';
+import { useSelector } from '../../hooks/hooks';
+// import { useSelector } from 'react-redux';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
-export const ProtectedRoute = () => {
+export const ProtectedRoute: FC = () => {
   const location = useLocation();
   const { isAuthenticated } = useSelector(store => store.authReducer);
 

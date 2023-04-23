@@ -1,13 +1,15 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { FC } from "react";
+import { useDispatch } from "../../../hooks/hooks";
+// import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { postLogout } from "../../../services/actions/auth";
 import styles from "./ProfileNavigation.module.css";
+import { TActiveLink } from "../../../utils/types";
 
-export const ProfileNavigation = () => {
+export const ProfileNavigation: FC = () => {
   const dispatch = useDispatch();
 
-  const setActiveLink = ({isActive}) => isActive ? styles.activeLink : styles.link;
+  const setActiveLink = ({isActive}: TActiveLink) => isActive ? styles.activeLink : styles.link;
   const logout = () => {
     dispatch(postLogout());
   };

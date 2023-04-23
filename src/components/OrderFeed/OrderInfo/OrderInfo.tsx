@@ -1,20 +1,22 @@
 import { CurrencyIcon, FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components';
-import React, { useMemo } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useMemo, FC } from 'react';
+import { useSelector } from '../../../hooks/hooks';
+// import { useSelector } from 'react-redux';
 import { useLocation, useParams } from 'react-router-dom';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import styles from './OrderInfo.module.css';
 import { OrderIngredient } from './OrderIngredient/OrderIngredient';
+import { TIngredient, TModalOpen, TOrder } from '../../../utils/types';
 
-export const OrderInfo = ({modalIsOpen}) => {
+export const OrderInfo: FC<TModalOpen> = ({modalIsOpen}) => {
   const location = useLocation();
   const { id } = useParams();
   const ingredients = useSelector(store => store.ingredientsReducer.ingredients);
   const { orders } = useSelector(store => store.wsReducer);
   const { ordersAuth } = useSelector(store => store.wsAuthReducer);
 
-  const order = orders?.find ((item) => item._id === id);
-  const orderAuth = ordersAuth?.find ((item) => item._id === id);
+  const order = orders?.find ((item: TOrder) => item._id === id);
+  const orderAuth = ordersAuth?.find ((item: TOrder) => item._id === id);
 
   const activeOrder = location.pathname === `/profile/orders/${id}` ? orderAuth : order;
 
@@ -29,10 +31,10 @@ export const OrderInfo = ({modalIsOpen}) => {
 
   // console.log(calcIngredients)
 
-  const orderIngredients = ingredients.filter((item) => activeOrder?.ingredients.includes(item._id));
+  const orderIngredients = ingredients.filter((item: TIngredient) => activeOrder?.ingredients.includes(item._id));
 
   const orderPrice = useMemo(() => {
-    return orderIngredients.reduce((prev, item) => {
+    return orderIngredients.reduce((prev: number, item: TIngredient) => {
       if (item.type === 'bun') {
         return (prev + item.price * 2);
       }
@@ -61,7 +63,7 @@ export const OrderInfo = ({modalIsOpen}) => {
           <div className={styles.ingredientContainer}>
             <p className="text text_type_main-medium mb-6">Состав:</p>
             <ul className={styles.ingredientList}>
-              {orderIngredients.map((item, index) => (
+              {orderIngredients.map((item: TIngredient, index: number) => (
                 <OrderIngredient ingredient={item} order={activeOrder} key={index}/>
                 ))
               }
@@ -73,7 +75,7 @@ export const OrderInfo = ({modalIsOpen}) => {
             </p>
             <div className={styles.orderPrice}>
               <p className="text text_type_digits-default mr-2">{orderPrice}</p>
-              <CurrencyIcon/>
+              <CurrencyIcon type='primary'/>
             </div>
           </div>
         </section>
@@ -82,7 +84,7 @@ export const OrderInfo = ({modalIsOpen}) => {
   )
 };
 
-OrderInfo.propTypes = {
-  modalIsOpen: PropTypes.bool
-};
+// OrderInfo.propTypes = {
+//   modalIsOpen: PropTypes.bool
+// };
 

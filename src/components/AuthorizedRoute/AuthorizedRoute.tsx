@@ -1,7 +1,9 @@
-import { useSelector } from 'react-redux';
+import React, { FC } from 'react';
+import { useSelector } from '../../hooks/hooks';
+// import { useSelector } from 'react-redux';
 import { Navigate, Outlet, } from 'react-router-dom';
 
-export const AuthorizedRoute = () => {
+export const AuthorizedRoute: FC = () => {
   const { isAuthenticated } = useSelector(store => store.authReducer);
 
   return !isAuthenticated ? <Outlet /> : <Navigate to="/" />;

@@ -1,16 +1,17 @@
-import React, { useState } from "react";
-import { Input, EmailInput, PasswordInput, Button } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState, FC, FormEvent, ChangeEvent } from "react";
+import { Input, PasswordInput, Button } from "@ya.praktikum/react-developer-burger-ui-components";
+import { useDispatch, useSelector } from "../../../hooks/hooks";
+// import { useDispatch, useSelector } from "react-redux";
 import { patchUserData } from "../../../services/actions/auth";
 import styles from "./ProfileForm.module.css";
 
-export const ProfileForm = () => {
-  const { user } = useSelector(state => state.authReducer);
+export const ProfileForm: FC = () => {
+  const { user } = useSelector(store => store.authReducer);
   const [form, setForm] = useState({ ...user, password: '******' });
   const [isChanged, setIsChanged] = useState(false);
   const dispatch = useDispatch();
 
-  const onChange = e => {
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value
@@ -18,7 +19,7 @@ export const ProfileForm = () => {
     setIsChanged(true);
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(patchUserData(form.name, form.email));
     setIsChanged(false);
@@ -32,13 +33,15 @@ export const ProfileForm = () => {
   return (
     <form className={styles.form} onSubmit={onSubmit}>
       <Input
+        type={'text'}
         onChange={onChange}
         value={form.name}
         name={'name'}
         placeholder="Имя"
         icon="EditIcon"
       />
-      <EmailInput
+      <Input
+        type={'email'}
         onChange={onChange}
         value={form.email}
         name={'email'}

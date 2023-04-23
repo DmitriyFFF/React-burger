@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { ReactNode } from 'react';
 
 export const ingredientType = PropTypes.shape({
   _id: PropTypes.string,
@@ -55,15 +56,21 @@ export type TConstructorItemProps = {
   index: number;
   // key: string;
   deleteIngredient: (key: string) => void;
-}
+};
 
 export type TConstructorPrice = {
   totalPrice: number;
-}
+};
 
 export type TDropItem = {
   index: number;
-}
+};
+
+export type TModalProps = {
+  children: ReactNode;
+  title?: string;
+  onClose: () => void;
+};
 
 export type TActiveLink = {
   isActive: boolean;
@@ -73,4 +80,22 @@ export type TUser = {
   name: string;
   email: string;
   password: string;
+};
+
+export type TOrderIngredient = {
+  ingredient: TIngredient;
+  order: TOrder;
+};
+
+export type TModalOpen = {
+  modalIsOpen: boolean;
+};
+
+export type TOrderItem = {
+  order: TOrder;
+};
+
+export type TOrders = {
+  feedOrders: Array<TOrder>;
+  profileOrders: Array<TOrder>;
 };

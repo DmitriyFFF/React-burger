@@ -1,18 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { ingredientType } from '../../../utils/types.ts';
+import React, { FC } from 'react';
+// import PropTypes from 'prop-types';
+import { TOrder, TOrders } from '../../../utils/types.js';
 import { Link, useLocation } from 'react-router-dom';
-import { OrderItem } from '../OrderItem/OrderItem.jsx';
+import { OrderItem } from '../OrderItem/OrderItem';
 import styles from './Orders.module.css';
 
-export const Orders = ({feedOrders}) => {
+export const Orders: FC<TOrders> = ({feedOrders}) => {
   const location = useLocation();
 
   return (
     <section className={`${styles.content} mb-10`}>
       <h2 className="text text_type_main-medium mt-10 mb-5">Лента заказов</h2>
       <ul className={styles.orderList}>
-      {feedOrders?.map(item =>(
+      {feedOrders?.map((item: TOrder) =>(
           <Link
             className={styles.orderLink}
             key={item._id}
@@ -27,6 +27,6 @@ export const Orders = ({feedOrders}) => {
   );
 }
 
-Orders.propTypes = {
-  feedOrders: PropTypes.arrayOf(ingredientType)
-};
+// Orders.propTypes = {
+//   feedOrders: PropTypes.arrayOf(ingredientType)
+// };

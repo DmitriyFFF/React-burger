@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { ingredientType } from '../../../utils/types.ts';
+import React, { useEffect, FC } from 'react';
+// import PropTypes from 'prop-types';
+import { TOrder, TOrders } from '../../../utils/types.js';
 import { Link, useLocation } from 'react-router-dom';
 import { OrderItem } from '../../OrderFeed/OrderItem/OrderItem';
 import styles from './ProfileOrders.module.css';
 import { wsAuthConnectionClosed, wsAuthConnectionSuccess } from '../../../services/actions/wsAuthAction';
 import { useDispatch } from 'react-redux';
 
-export const ProfileOrders = ({profileOrders}) => {
+export const ProfileOrders: FC<TOrders> = ({profileOrders}) => {
   const location = useLocation();
   const dispatch = useDispatch();
 
@@ -21,7 +21,7 @@ export const ProfileOrders = ({profileOrders}) => {
   return (
     <section className={`${styles.content} mb-10`}>
       <ul className={styles.orderList}>
-      {profileOrders?.map(item =>(
+      {profileOrders?.map((item: TOrder) =>(
         <Link
           className={styles.orderLink}
           key={item._id}
@@ -36,6 +36,6 @@ export const ProfileOrders = ({profileOrders}) => {
   );
 }
 
-ProfileOrders.propTypes = {
-  profileOrders: PropTypes.arrayOf(ingredientType)
-};
+// ProfileOrders.propTypes = {
+//   profileOrders: PropTypes.arrayOf(ingredientType)
+// };

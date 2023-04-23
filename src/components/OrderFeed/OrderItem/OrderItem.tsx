@@ -1,20 +1,22 @@
-import React, { useMemo } from "react";
-import PropTypes from 'prop-types';
+import React, { useMemo, FC } from "react";
+// import PropTypes from 'prop-types';
 import { CurrencyIcon, FormattedDate } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from './OrderItem.module.css';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "../../../hooks/hooks";
+// import { useDispatch, useSelector } from "react-redux";
 import { loadOrder } from "../../../services/actions/modal";
+import { TIngredient, TOrder, TOrderItem } from "../../../utils/types";
 
-export const OrderItem = ({order}) => {
+export const OrderItem: FC<TOrderItem> = ({order}) => {
   const dispatch = useDispatch();
   const ingredients = useSelector(store => store.ingredientsReducer.ingredients);
 
-  const orderIngredients = ingredients.filter((item) => order?.ingredients.includes(item._id));
+  const orderIngredients = ingredients.filter((item: TIngredient) => order?.ingredients.includes(item._id));
 
-  const ingredientsHidden = orderIngredients.length > 6 ? orderIngredients.length - 6 : null;
+  const ingredientsHidden = orderIngredients.length > 6 ? orderIngredients.length - 6 : 0;
 
   const orderPrice = useMemo(() => {
-    return orderIngredients.reduce((prev, item) => {
+    return orderIngredients.reduce((prev: number, item: TIngredient) => {
       if (item.type === 'bun') {
         return (prev + item.price * 2);
       }
@@ -23,7 +25,7 @@ export const OrderItem = ({order}) => {
     [orderIngredients]
   );
 
-  const handleOpen = (order) => {
+  const handleOpen = (order: TOrder) => {
     dispatch(loadOrder(order));
   };
 
@@ -40,7 +42,7 @@ export const OrderItem = ({order}) => {
           <h3 className={`${styles.name} text text_type_main-medium`}>{order.name}</h3>
           <div className={styles.components}>
             <ul className={styles.images}>
-              {orderIngredients.slice(0, 6).map((item, index) =>
+              {orderIngredients.slice(0, 6).map((item: TIngredient, index: number) =>
                 <li className={styles.imageBorderBox} key={index}>
                   <img className={styles.image} src={item.image} alt={item.name}/>
                   {index === 0 && ingredientsHidden > 0 && (
@@ -60,6 +62,6 @@ export const OrderItem = ({order}) => {
   )
 }
 
-OrderItem.propTypes = {
-  order: PropTypes.object
-};
+// OrderItem.propTypes = {
+//   order: PropTypes.object
+// };

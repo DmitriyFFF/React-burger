@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect, FC } from 'react';
+import { useDispatch, useSelector } from '../../hooks/hooks';
+// import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { loadIngredient } from '../../services/actions/modal';
 import styles from './IngredientDetails.module.css';
+import { TIngredient } from '../../utils/types';
 
-export const IngredientDetails = () => {
+export const IngredientDetails: FC = () => {
   const { ingredients } = useSelector(store => store.ingredientsReducer);
   const { loadedIngredient } = useSelector(store => store.modalReducer);
   const { id } = useParams();
@@ -12,7 +14,7 @@ export const IngredientDetails = () => {
 
   useEffect(() => {
     if (!loadedIngredient) {
-      const ingredient = ingredients.find(item => item._id === id);
+      const ingredient = ingredients.find((item: TIngredient) => item._id === id);
       dispatch(loadIngredient(ingredient));
     }
   }, [dispatch, ingredients, loadedIngredient, id])
