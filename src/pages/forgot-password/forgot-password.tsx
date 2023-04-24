@@ -1,18 +1,19 @@
-import React from "react";
+import React, { FC, FormEvent } from "react";
 import {Link, useNavigate} from "react-router-dom";
 import { EmailInput, Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./forgot-password.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "../../hooks/hooks";
+// import { useDispatch, useSelector } from "react-redux";
 import { postForgotPassword } from "../../services/actions/forgot-password";
 import { useForm } from "../../hooks/useForm";
 
-export const ForgotPassword = () => {
+export const ForgotPassword: FC = () => {
   const { values, handleChange } = useForm({ email: '' });
   const { forgotPasswordFailed } = useSelector(store => store.forgotPasswordReducer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const onSubmit = (e) => {
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(postForgotPassword(values.email));
     if(!forgotPasswordFailed) {

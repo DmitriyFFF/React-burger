@@ -96,6 +96,15 @@ export type TOrderItem = {
 };
 
 export type TOrders = {
-  feedOrders: Array<TOrder>;
-  profileOrders: Array<TOrder>;
+  feedOrders?: Array<TOrder>;
+  profileOrders?: Array<TOrder>;
+};
+
+export type TWsMiddleware = {
+  wsInit: string;
+  onError: string;
+  onOpen: string;
+  onClose: string;
+  onMessage: string;
+  wsSendOrder: string;
 };

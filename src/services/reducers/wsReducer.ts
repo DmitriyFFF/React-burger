@@ -4,7 +4,7 @@ import {
   WS_CONNECTION_ERROR,
   WS_CONNECTION_CLOSED,
   WS_GET_ORDER,
-  TWsAction
+  TWsActions
 } from '../actions/wsAction';
 
 export type TWsState = {
@@ -23,7 +23,7 @@ const initialState = {
   totalToday: 0
 };
 
-export const wsReducer = (state = initialState, action: TWsAction): TWsState => {
+export const wsReducer = (state = initialState, action: TWsActions): TWsState => {
   switch (action.type) {
     case WS_CONNECTION_SUCCESS:
       return {

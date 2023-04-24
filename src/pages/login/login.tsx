@@ -1,12 +1,13 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, FC, FormEvent } from "react";
+import { useDispatch, useSelector } from "../../hooks/hooks";
+// import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { EmailInput, Button, PasswordInput } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./login.module.css";
 import { postLogin } from "../../services/actions/auth";
 import { useForm } from "../../hooks/useForm";
 
-export const Login = () => {
+export const Login: FC = () => {
   const { values, handleChange } = useForm({ email: '', password: '' });
   const { isAuthenticated } = useSelector(store => store.authReducer);
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ export const Login = () => {
   const location = useLocation();
   const from = location.state?.from || "/";
 
-  const onSubmit = (e) => {
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(postLogin(values.email, values.password));
   };

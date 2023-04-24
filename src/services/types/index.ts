@@ -7,6 +7,9 @@ import { TResetPasswordActions } from '../actions/reset-password';
 import { TIngredientsActions } from '../actions/ingredients';
 import { TConstructorActions } from '../actions/constructor';
 import { TModalActions } from '../actions/modal';
+import { TOrderActions } from '../actions/order';
+import { TWsActions } from '../actions/wsAction';
+import { TWsAuthActions } from '../actions/wsAuthAction';
 
 type TApplicationActions =
   | TAuthActions
@@ -14,7 +17,10 @@ type TApplicationActions =
   | TResetPasswordActions
   | TIngredientsActions
   | TConstructorActions
-  | TModalActions;
+  | TModalActions
+  | TOrderActions
+  | TWsActions
+  | TWsAuthActions;
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

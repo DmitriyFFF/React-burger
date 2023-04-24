@@ -34,7 +34,7 @@ export interface IWsAuthSendOrderAction {
   order: TOrder;
 }
 
-export type TWsAuthAction =
+export type TWsAuthActions =
   | IWsAuthConnectionOpenAction
   | IWsAuthConnectionSuccessAction
   | IWsAuthConnectionErrorAction

@@ -4,7 +4,7 @@ import {
   WS_AUTH_CONNECTION_ERROR,
   WS_AUTH_CONNECTION_CLOSED,
   WS_AUTH_GET_ORDER,
-  TWsAuthAction
+  TWsAuthActions
 } from '../actions/wsAuthAction';
 
 export type TWsAuthState = {
@@ -19,7 +19,7 @@ const initialState = {
   error: undefined
 };
 
-export const wsAuthReducer = (state = initialState, action: TWsAuthAction): TWsAuthState => {
+export const wsAuthReducer = (state = initialState, action: TWsAuthActions): TWsAuthState => {
   switch (action.type) {
     case WS_AUTH_CONNECTION_SUCCESS:
       return {

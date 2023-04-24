@@ -1,8 +1,9 @@
+import React, { FC } from "react";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useNavigate } from "react-router-dom";
 import styles from "./not-found.module.css";
 
-export const NotFound404 = () => {
+export const NotFound404: FC = () => {
   const navigate = useNavigate();
 
   const goBack = () => {

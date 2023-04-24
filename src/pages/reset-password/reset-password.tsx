@@ -1,19 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useEffect, FC, FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Input, Button, PasswordInput } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./reset-password.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "../../hooks/hooks";
+// import { useDispatch, useSelector } from "react-redux";
 import { postResetPassword } from "../../services/actions/reset-password";
 import { useForm } from "../../hooks/useForm";
 
-export const ResetPassword = () => {
+export const ResetPassword: FC = () => {
   const { values, handleChange } = useForm({ password: '', token: '' });
   const { resetPasswordFailed } = useSelector(store => store.resetPasswordReducer);
   const { forgotPasswordRequest } = useSelector(store => store.forgotPasswordReducer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const onSubmit = (e) => {
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(postResetPassword(values.password, values.token));
     if (!resetPasswordFailed) {
@@ -25,7 +26,7 @@ export const ResetPassword = () => {
     if (!forgotPasswordRequest) {
         navigate('/forgot-password')
     }
-  }, [navigate, forgotPasswordRequest]);
+  }, [navigate]);
 
   return (
     <section className={styles.container}>

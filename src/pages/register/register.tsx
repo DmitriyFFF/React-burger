@@ -1,18 +1,19 @@
-import React from "react";
+import React, { FC, FormEvent } from "react";
 import {Link, useNavigate} from "react-router-dom";
 import { Input, EmailInput, Button, PasswordInput } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./register.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "../../hooks/hooks";
+// import { useDispatch, useSelector } from "react-redux";
 import { postUserData } from "../../services/actions/auth";
 import { useForm } from "../../hooks/useForm";
 
-export const Register = () => {
+export const Register: FC = () => {
   const { values, handleChange } = useForm({ name: '', email: '', password: '' });
   const { registerFailed } = useSelector(store => store.authReducer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const onSubmit = (e) => {
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(postUserData(values.name, values.email, values.password));
     if(!registerFailed) {
