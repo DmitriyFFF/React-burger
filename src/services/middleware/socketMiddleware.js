@@ -1,7 +1,10 @@
 import { getCookie } from "../../utils/constants";
+// import { TWsMiddleware } from "../../utils/types";
+// import { Middleware, MiddlewareAPI } from "redux";
+
 
 export const socketMiddleware = (wsUrl, wsActions, withToken) => {
-  return store => {
+  return (store) => {
     let socket = null;
 
     return next => action => {
