@@ -74,7 +74,8 @@ export const App: FC = () => {
               <Modal onClose={handleClose}>
                 <OrderInfo modalIsOpen={true}/>
               </Modal>
-            } />
+            }
+          />
           </Route>
         </Routes>
       }

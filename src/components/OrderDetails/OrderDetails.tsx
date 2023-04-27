@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { useSelector } from '../../hooks/hooks';
 // import { useSelector } from 'react-redux';
 import styles from './OrderDetails.module.css';
 
-export const OrderDetails = () => {
-  const orderNumber = useSelector(store => store.orderReducer.order);
-  const { orderRequest, orderFailed } = useSelector(store => store.orderReducer)
+export const OrderDetails: FC = () => {
+  // const orderNumber = useSelector(store => store.orderReducer);
+  const { orderNumber, orderRequest, orderFailed } = useSelector(store => store.orderReducer)
 
   return (
     <section className={`${styles.order} pt-4 pb-30`}>

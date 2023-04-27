@@ -1,11 +1,11 @@
 import { getCookie } from "../../utils/constants";
-// import { TWsMiddleware } from "../../utils/types";
-// import { Middleware, MiddlewareAPI } from "redux";
+import { TWsMiddleware } from "../../utils/types";
+import { Middleware, MiddlewareAPI } from "redux";
 
 
-export const socketMiddleware = (wsUrl, wsActions, withToken) => {
-  return (store) => {
-    let socket = null;
+export const socketMiddleware = (wsUrl: string, wsActions: TWsMiddleware, withToken: boolean): Middleware => {
+  return (store: MiddlewareAPI) => {
+    let socket: WebSocket | null = null;
 
     return next => action => {
       const { dispatch } = store;

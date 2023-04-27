@@ -4,10 +4,11 @@ import { useDispatch, useSelector } from "../../../hooks/hooks";
 // import { useDispatch, useSelector } from "react-redux";
 import { patchUserData } from "../../../services/actions/auth";
 import styles from "./ProfileForm.module.css";
+// import { TFormState } from "../../../utils/types";
 
 export const ProfileForm: FC = () => {
   const { user } = useSelector(store => store.authReducer);
-  const [form, setForm] = useState({ ...user, password: '******' });
+  const [form, setForm] = useState<{ [key: string]: string }>({ ...user, password: '******' });
   const [isChanged, setIsChanged] = useState(false);
   const dispatch = useDispatch();
 

@@ -1,14 +1,14 @@
 import { request, baseUrl, getCookie } from "../../utils/constants";
-import { TIngredient, TOrder } from "../../utils/types";
+import { TIngredient, TOrder, TOrderNumber } from "../../utils/types";
 import { AppDispatch, AppThunk } from "../types";
 
 export const POST_ORDER_REQUEST: "POST_ORDER_REQUEST" = "POST_ORDER_REQUEST";
 export const POST_ORDER_SUCCESS: "POST_ORDER_SUCCESS" = "POST_ORDER_SUCCESS";
 export const POST_ORDER_FAIL: "POST_ORDER_FAIL" = "POST_ORDER_FAIL";
 
-export const GET_ORDERS_REQUEST: "GET_ORDERS_REQUEST" = "GET_ORDERS_REQUEST";
-export const GET_ORDERS_SUCCESS: "GET_ORDERS_SUCCESS" = "GET_ORDERS_SUCCESS";
-export const GET_ORDERS_FAIL: "GET_ORDERS_FAIL" = "GET_ORDERS_FAIL";
+// export const GET_ORDERS_REQUEST: "GET_ORDERS_REQUEST" = "GET_ORDERS_REQUEST";
+// export const GET_ORDERS_SUCCESS: "GET_ORDERS_SUCCESS" = "GET_ORDERS_SUCCESS";
+// export const GET_ORDERS_FAIL: "GET_ORDERS_FAIL" = "GET_ORDERS_FAIL";
 
 export const CLEAR_ORDER: "CLEAR_ORDER" = "CLEAR_ORDER";
 
@@ -18,26 +18,26 @@ export interface IPostOrderRequestAction {
 
 export interface IPostOrderSuccessAction {
   readonly type: typeof POST_ORDER_SUCCESS;
-  order: TOrder;
+  readonly orderNumber: number;
 }
 
 export interface IPostOrderFailAction {
   readonly type: typeof POST_ORDER_FAIL;
 }
 
-export interface IGetOrdersRequestAction {
-  readonly type: typeof GET_ORDERS_REQUEST;
-}
+// export interface IGetOrdersRequestAction {
+//   readonly type: typeof GET_ORDERS_REQUEST;
+// }
 
-export interface IGetOrdersSuccessAction {
-  readonly type: typeof GET_ORDERS_SUCCESS;
-  orders: Array<TOrder>;
-  order: TOrder;
-}
+// export interface IGetOrdersSuccessAction {
+//   readonly type: typeof GET_ORDERS_SUCCESS;
+//   orders: Array<TOrder>;
+//   order: TOrder;
+// }
 
-export interface IGetOrdersFailAction {
-  readonly type: typeof GET_ORDERS_FAIL;
-}
+// export interface IGetOrdersFailAction {
+//   readonly type: typeof GET_ORDERS_FAIL;
+// }
 
 export interface IClearOrderAction {
   readonly type: typeof CLEAR_ORDER;
@@ -47,18 +47,18 @@ export type TOrderActions =
   | IPostOrderRequestAction
   | IPostOrderSuccessAction
   | IPostOrderFailAction
-  | IGetOrdersRequestAction
-  | IGetOrdersSuccessAction
-  | IGetOrdersFailAction
+  // | IGetOrdersRequestAction
+  // | IGetOrdersSuccessAction
+  // | IGetOrdersFailAction
   | IClearOrderAction;
 
 export const postOrderRequestAction = (): IPostOrderRequestAction => ({
   type: POST_ORDER_REQUEST
 });
 
-export const postOrderSuccessAction = (order: TOrder): IPostOrderSuccessAction => ({
+export const postOrderSuccessAction = (orderNumber: number): IPostOrderSuccessAction => ({
   type: POST_ORDER_SUCCESS,
-  order
+  orderNumber
 });
 
 export const postOrderFailAction = (): IPostOrderFailAction => ({

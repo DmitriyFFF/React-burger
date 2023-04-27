@@ -15,7 +15,6 @@ import {
   WS_AUTH_SEND_ORDER
 } from '../services/actions/wsAuthAction';
 
-
 export const baseUrl = 'https://norma.nomoreparties.space/api';
 export const wsUrl = 'wss://norma.nomoreparties.space/orders/all';
 export const wsAuthUrl = 'wss://norma.nomoreparties.space/orders';
@@ -52,7 +51,7 @@ const checkSuccess = (res: any) => {
   return Promise.reject(`Ошибка: ${res.status}`);
 }
 
-export const request = async (url: string, options?: object) => {
+export const request = async (url: string, options?: any) => {
   return fetch(url, options).then(checkResponse).then(checkSuccess);
 };
 

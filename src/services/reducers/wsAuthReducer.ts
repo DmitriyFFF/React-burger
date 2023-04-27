@@ -13,7 +13,7 @@ export type TWsAuthState = {
   error: string | undefined;
 }
 
-const initialState = {
+const initialState: TWsAuthState = {
   wsConnected: false,
   ordersAuth: [],
   error: undefined

@@ -1,20 +1,20 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { ReactNode } from 'react';
 
-export const ingredientType = PropTypes.shape({
-  _id: PropTypes.string,
-  name: PropTypes.string,
-  type: PropTypes.string,
-  proteins: PropTypes.number,
-  fat: PropTypes.number,
-  carbohydrates: PropTypes.number,
-  calories: PropTypes.number,
-  price: PropTypes.number,
-  image: PropTypes.string,
-  image_mobile: PropTypes.string,
-  image_large: PropTypes.string,
-  __v: PropTypes.number,
-});
+// export const ingredientType = PropTypes.shape({
+//   _id: PropTypes.string,
+//   name: PropTypes.string,
+//   type: PropTypes.string,
+//   proteins: PropTypes.number,
+//   fat: PropTypes.number,
+//   carbohydrates: PropTypes.number,
+//   calories: PropTypes.number,
+//   price: PropTypes.number,
+//   image: PropTypes.string,
+//   image_mobile: PropTypes.string,
+//   image_large: PropTypes.string,
+//   __v: PropTypes.number,
+// });
 
 export type TIngredient = {
   _id: string;
@@ -40,6 +40,16 @@ export type TOrder = {
   createdAt: string;
   updatedAt: string;
   number: number;
+};
+
+export type TOrderNumber = {
+  orderNumber: number;
+};
+
+export type TWsOrders = {
+  orders: Array<TOrder>;
+  total: number;
+  totalToday: number;
 };
 
 export type TIngredientProps = {
@@ -108,3 +118,9 @@ export type TWsMiddleware = {
   onMessage: string;
   wsSendOrder: string;
 };
+
+// export type TFormState = {
+//   name?: string;
+//   email?: string;
+//   password?: string;
+// };
