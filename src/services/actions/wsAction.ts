@@ -1,4 +1,4 @@
-import { TOrder } from "../../utils/types";
+import { TOrder, TWsOrders } from "../../utils/types";
 
 export const WS_CONNECTION_OPEN: 'WS_CONNECTION_OPEN' = 'WS_CONNECTION_OPEN';
 export const WS_CONNECTION_SUCCESS: 'WS_CONNECTION_SUCCESS' = 'WS_CONNECTION_SUCCESS';
@@ -26,9 +26,10 @@ export interface IWsConnectionClosedAction {
 
 export interface IWsGetOrderAction {
   readonly type: typeof WS_GET_ORDER;
-  orders: Array<TOrder>;
-  total: number;
-  totalToday: number;
+  payload: TWsOrders;
+  // orders: Array<TOrder>;
+  // total: number;
+  // totalToday: number;
 }
 
 export interface IWsSendOrderAction {
@@ -69,12 +70,10 @@ export const wsConnectionClosed = (): IWsConnectionClosedAction => {
   };
 };
 
-export const wsGetOrder = (orders: Array<TOrder>, total: number, totalToday: number): IWsGetOrderAction => {
+export const wsGetOrder = (payload: TWsOrders): IWsGetOrderAction => {
   return {
     type: WS_GET_ORDER,
-    orders,
-    total,
-    totalToday
+    payload
   };
 };
 

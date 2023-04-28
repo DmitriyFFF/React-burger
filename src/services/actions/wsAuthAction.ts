@@ -1,4 +1,4 @@
-import { TOrder } from "../../utils/types";
+import { TOrder, TWsOrders } from "../../utils/types";
 
 export const WS_AUTH_CONNECTION_OPEN: 'WS_AUTH_CONNECTION_OPEN' = 'WS_AUTH_CONNECTION_OPEN';
 export const WS_AUTH_CONNECTION_SUCCESS: 'WS_AUTH_CONNECTION_SUCCESS' = 'WS_AUTH_CONNECTION_SUCCESS';
@@ -26,7 +26,7 @@ export interface IWsAuthConnectionClosedAction {
 
 export interface IWsAuthGetOrderAction {
   readonly type: typeof WS_AUTH_GET_ORDER;
-  orders: Array<TOrder>;
+  payload: TWsOrders;
 }
 
 export interface IWsAuthSendOrderAction {
@@ -67,10 +67,10 @@ export const wsAuthConnectionClosed = (): IWsAuthConnectionClosedAction => {
   };
 };
 
-export const wsAuthGetOrder = (orders: Array<TOrder>): IWsAuthGetOrderAction => {
+export const wsAuthGetOrder = (payload: TWsOrders): IWsAuthGetOrderAction => {
   return {
     type: WS_AUTH_GET_ORDER,
-    orders
+    payload
   };
 };
 

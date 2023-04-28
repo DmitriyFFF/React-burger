@@ -10,17 +10,17 @@ import {
 export type TWsState = {
   wsConnected: boolean;
   orders: Array<TOrder>;
-  error: string | undefined;
   total: number;
   totalToday: number;
+  error: string | undefined;
 }
 
 const initialState: TWsState = {
   wsConnected: false,
   orders: [],
-  error: undefined,
   total: 0,
-  totalToday: 0
+  totalToday: 0,
+  error: undefined
 };
 
 export const wsReducer = (state = initialState, action: TWsActions): TWsState => {
@@ -28,37 +28,37 @@ export const wsReducer = (state = initialState, action: TWsActions): TWsState =>
     case WS_CONNECTION_SUCCESS:
       return {
         ...state,
-        error: undefined,
-        wsConnected: true
+        wsConnected: true,
+        error: undefined
       };
 
     case WS_CONNECTION_ERROR:
       return {
         ...state,
-        error: action.error,
         wsConnected: false,
-        total: 0,
-        totalToday: 0,
-        orders: []
+        error: action.error,
+        // total: 0,
+        // totalToday: 0,
+        // orders: []
       };
 
     case WS_CONNECTION_CLOSED:
       return {
         ...state,
-        error: undefined,
         wsConnected: false,
-        total: 0,
-        totalToday: 0,
-        orders: []
+        error: undefined
+        // total: 0,
+        // totalToday: 0,
+        // orders: []
       };
 
     case WS_GET_ORDER:
       return {
         ...state,
-        error: undefined,
-        orders: action.orders,
-        total: action.total,
-        totalToday: action.totalToday
+        orders: action.payload.orders,
+        total: action.payload.total,
+        totalToday: action.payload.totalToday,
+        error: undefined
       };
 
     default:

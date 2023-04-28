@@ -3,7 +3,6 @@ import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { AppHeader } from '../AppHeader/AppHeader';
 import styles from './App.module.css';
 import { useDispatch } from '../../hooks/hooks';
-// import { useDispatch } from 'react-redux';
 import { getIngredients } from '../../services/actions/ingredients';
 import { Login, Register, Main, ForgotPassword, ResetPassword, Profile, NotFound404, Ingredient, Feed } from '../../pages';
 import { getUserData } from '../../services/actions/auth';

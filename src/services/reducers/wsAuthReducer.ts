@@ -24,29 +24,29 @@ export const wsAuthReducer = (state = initialState, action: TWsAuthActions): TWs
     case WS_AUTH_CONNECTION_SUCCESS:
       return {
         ...state,
-        error: undefined,
-        wsConnected: true
+        wsConnected: true,
+        error: undefined
       };
 
     case WS_AUTH_CONNECTION_ERROR:
       return {
         ...state,
-        error: action.error,
-        wsConnected: false
+        wsConnected: false,
+        error: action.error
       };
 
     case WS_AUTH_CONNECTION_CLOSED:
       return {
         ...state,
-        error: undefined,
-        wsConnected: false
+        wsConnected: false,
+        error: undefined
       };
 
     case WS_AUTH_GET_ORDER:
       return {
         ...state,
-        error: undefined,
-        ordersAuth: action.orders
+        ordersAuth: action.payload.orders,
+        error: undefined
       };
 
     default:

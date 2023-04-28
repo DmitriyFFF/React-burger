@@ -33,13 +33,13 @@ export type TIngredient = {
 };
 
 export type TOrder = {
-  _id: string;
-  ingredients: Array<string>;
-  status: string;
-  name: string;
   createdAt: string;
-  updatedAt: string;
+  ingredients: Array<string>;
+  name: string;
   number: number;
+  status: string;
+  updatedAt: string;
+  _id: string;
 };
 
 export type TOrderNumber = {
@@ -47,6 +47,7 @@ export type TOrderNumber = {
 };
 
 export type TWsOrders = {
+  // success: boolean;
   orders: Array<TOrder>;
   total: number;
   totalToday: number;
