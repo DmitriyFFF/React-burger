@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import { useSelector } from "../../hooks/hooks";
-// import { useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import { ProfileForm } from "../../components/Profile/ProfileForm/ProfileForm";
 import { ProfileNavigation } from "../../components/Profile/ProfileNavigation/ProfileNavigation";

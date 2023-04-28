@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-// import PropTypes from 'prop-types';
 import { TOrder, TOrders } from '../../../utils/types.js';
 import { Link, useLocation } from 'react-router-dom';
 import { OrderItem } from '../OrderItem/OrderItem';
@@ -26,7 +25,3 @@ export const Orders: FC<TOrders> = ({feedOrders}) => {
     </section>
   );
 }
-
-// Orders.propTypes = {
-//   feedOrders: PropTypes.arrayOf(ingredientType)
-// };

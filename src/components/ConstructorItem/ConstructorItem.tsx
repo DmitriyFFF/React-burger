@@ -1,10 +1,8 @@
 import React, { useRef, FC } from "react";
-// import PropTypes from 'prop-types';
-// import { useDispatch } from "react-redux";
 import { useDispatch } from "../../hooks/hooks";
 import { useDrop, useDrag } from "react-dnd";
 import { ConstructorElement, DragIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import { /*deleteIngredient,*/ MOVE_INGREDIENT } from "../../services/actions/constructor";
+import { MOVE_INGREDIENT } from "../../services/actions/constructor";
 import styles from './ConstructorItem.module.css'
 import { TConstructorItemProps, TDropItem } from "../../utils/types";
 
@@ -16,7 +14,6 @@ export const ConstructorItem: FC<TConstructorItemProps> = ({ingredient, index, d
     type:'constructorIngredient',
     item: () => {
       return {
-        // id: ingredient.key,
         index
       }
     },
@@ -70,7 +67,7 @@ export const ConstructorItem: FC<TConstructorItemProps> = ({ingredient, index, d
   const opacity = isDragging ? 0 : 1;
 
   dragRef(dropRef(ref));
-  // console.log(ingredient)
+
   return (
     <li
       className={`${styles.ingredientItem}`}
@@ -87,8 +84,3 @@ export const ConstructorItem: FC<TConstructorItemProps> = ({ingredient, index, d
     </li>
   )
 }
-
-// ConstructorItem.propTypes = {
-//   ingredient: ingredientType.isRequired,
-//   index: PropTypes.number.isRequired
-// };

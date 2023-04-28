@@ -1,6 +1,5 @@
 import React, { useEffect, FC } from 'react';
 import { useDispatch, useSelector } from '../../hooks/hooks';
-// import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { loadIngredient } from '../../services/actions/modal';
 import styles from './IngredientDetails.module.css';

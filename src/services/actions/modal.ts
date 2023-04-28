@@ -48,25 +48,25 @@ export const loadOrderAction = (order: TOrder): ILoadOrderAction => ({
   order
 });
 
-export const openModal: AppThunk = () => {//AppThunk???
+export const openModal: AppThunk = () => {
   return function(dispatch: AppDispatch) {
     dispatch(openModalAction())
   }
 };
 
-export const closeModal: AppThunk = () => {//AppThunk???
+export const closeModal: AppThunk = () => {
   return function(dispatch: AppDispatch) {
     dispatch(closeModalAction());
   }
 };
 
-export const loadIngredient: AppThunk = (ingredient: TIngredient) => {//AppThunk???
+export const loadIngredient: AppThunk = (ingredient: TIngredient) => {
   return function(dispatch: AppDispatch) {
     dispatch(loadIngredientAction(ingredient));
   }
 };
 
-export const loadOrder: AppThunk = (order: TOrder) => {//AppThunk???
+export const loadOrder: AppThunk = (order: TOrder) => {
   return function(dispatch: AppDispatch) {
     dispatch(loadOrderAction(order));
   }

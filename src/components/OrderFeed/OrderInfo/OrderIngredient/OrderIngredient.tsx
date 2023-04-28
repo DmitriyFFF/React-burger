@@ -18,7 +18,3 @@ export const OrderIngredient: FC<TOrderIngredient> = ({ingredient, order}) => {
   )
 }
 
-// OrderIngredient.propTypes = {
-//   ingredient: ingredientType,
-//   order: ingredientType
-// };

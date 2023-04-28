@@ -1,20 +1,4 @@
-// import PropTypes from 'prop-types';
 import { ReactNode } from 'react';
-
-// export const ingredientType = PropTypes.shape({
-//   _id: PropTypes.string,
-//   name: PropTypes.string,
-//   type: PropTypes.string,
-//   proteins: PropTypes.number,
-//   fat: PropTypes.number,
-//   carbohydrates: PropTypes.number,
-//   calories: PropTypes.number,
-//   price: PropTypes.number,
-//   image: PropTypes.string,
-//   image_mobile: PropTypes.string,
-//   image_large: PropTypes.string,
-//   __v: PropTypes.number,
-// });
 
 export type TIngredient = {
   _id: string;
@@ -47,7 +31,6 @@ export type TOrderNumber = {
 };
 
 export type TWsOrders = {
-  // success: boolean;
   orders: Array<TOrder>;
   total: number;
   totalToday: number;
@@ -65,7 +48,6 @@ export type TIngredientsProps = {
 export type TConstructorItemProps = {
   ingredient: TIngredient;
   index: number;
-  // key: string;
   deleteIngredient: (key: string) => void;
 };
 
@@ -120,8 +102,3 @@ export type TWsMiddleware = {
   wsSendOrder: string;
 };
 
-// export type TFormState = {
-//   name?: string;
-//   email?: string;
-//   password?: string;
-// };

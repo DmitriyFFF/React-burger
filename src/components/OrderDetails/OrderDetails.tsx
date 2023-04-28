@@ -1,10 +1,8 @@
 import React, { FC } from 'react';
 import { useSelector } from '../../hooks/hooks';
-// import { useSelector } from 'react-redux';
 import styles from './OrderDetails.module.css';
 
 export const OrderDetails: FC = () => {
-  // const orderNumber = useSelector(store => store.orderReducer);
   const { orderNumber, orderRequest, orderFailed } = useSelector(store => store.orderReducer)
 
   return (

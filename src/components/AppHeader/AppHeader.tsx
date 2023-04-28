@@ -4,10 +4,6 @@ import { Logo, BurgerIcon, ListIcon, ProfileIcon } from "@ya.praktikum/react-dev
 import { TActiveLink } from "../../utils/types";
 import styles from "./AppHeader.module.css";
 
-// type TActiveLink = {
-//   isActive: boolean;
-// };
-
 const AppHeaderLogo = () => {
   return (
     <Link to="/">

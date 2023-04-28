@@ -3,7 +3,6 @@ import {Link, useNavigate} from "react-router-dom";
 import { Input, EmailInput, Button, PasswordInput } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./register.module.css";
 import { useDispatch, useSelector } from "../../hooks/hooks";
-// import { useDispatch, useSelector } from "react-redux";
 import { postUserData } from "../../services/actions/auth";
 import { useForm } from "../../hooks/useForm";
 

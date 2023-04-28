@@ -44,7 +44,7 @@ export const getIngredientsFail = (): IGetIngredientsFailAction => ({
   type: GET_INGREDIENTS_FAIL
 });
 
-export const setIngredientTab = (tab: string): ISetIngredientTabAction => ({// нужен ли tab???
+export const setIngredientTab = (tab: string): ISetIngredientTabAction => ({
   type: SET_INGREDIENT_TAB,
   tab
 });
@@ -54,7 +54,7 @@ export const getIngredients: AppThunk = () => {
     dispatch(getIngredientsRequest());
     request(`${baseUrl}/ingredients`)
       .then(res => {
-        dispatch(getIngredientsSuccess(res.data));//res.ingredients
+        dispatch(getIngredientsSuccess(res.data));
       })
       .catch(err => {
         console.log(err);

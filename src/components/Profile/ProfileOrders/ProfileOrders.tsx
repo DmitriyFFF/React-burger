@@ -1,5 +1,4 @@
 import React, { useEffect, FC } from 'react';
-// import PropTypes from 'prop-types';
 import { TOrder, TOrders } from '../../../utils/types.js';
 import { Link, useLocation } from 'react-router-dom';
 import { OrderItem } from '../../OrderFeed/OrderItem/OrderItem';
@@ -35,7 +34,3 @@ export const ProfileOrders: FC<TOrders> = ({profileOrders}) => {
     </section>
   );
 }
-
-// ProfileOrders.propTypes = {
-//   profileOrders: PropTypes.arrayOf(ingredientType)
-// };

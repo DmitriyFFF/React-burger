@@ -1,9 +1,7 @@
 import React, { useMemo, FC } from "react";
-// import PropTypes from 'prop-types';
 import { CurrencyIcon, FormattedDate } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from './OrderItem.module.css';
 import { useDispatch, useSelector } from "../../../hooks/hooks";
-// import { useDispatch, useSelector } from "react-redux";
 import { loadOrder } from "../../../services/actions/modal";
 import { TIngredient, TOrder, TOrderItem } from "../../../utils/types";
 
@@ -61,7 +59,3 @@ export const OrderItem: FC<TOrderItem> = ({order}) => {
     </>
   )
 }
-
-// OrderItem.propTypes = {
-//   order: PropTypes.object
-// };

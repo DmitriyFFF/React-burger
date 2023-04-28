@@ -12,7 +12,6 @@ export interface IAddIngredientAction {
 
 export interface IDeleteIngredientAction {
   readonly type: typeof DELETE_INGREDIENT;
-  // readonly payload: TIngredient;
   readonly key: string;
 }
 
@@ -32,7 +31,7 @@ export type TConstructorActions =
   | IMoveIngredientAction
   | IClearIngredientsAction;
 
-export const addIngredient = (payload: TIngredient): IAddIngredientAction => ({//: ReadonlyArray<TIngredient> возможно заменить
+export const addIngredient = (payload: TIngredient): IAddIngredientAction => ({
   type: ADD_INGREDIENT,
   payload: {
     ...payload,
@@ -40,7 +39,7 @@ export const addIngredient = (payload: TIngredient): IAddIngredientAction => ({/
   }
 });
 
-export const deleteIngredient = ( key: string): IDeleteIngredientAction => ({//: ReadonlyArray<TIngredient> возможно заменить
+export const deleteIngredient = ( key: string): IDeleteIngredientAction => ({
   type: DELETE_INGREDIENT,
   key
 });

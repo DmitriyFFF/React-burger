@@ -4,7 +4,6 @@ import styles from './BurgerConstructor.module.css';
 import { ConstructorOrder } from '../ConstructorOrder/ConstructorOrder';
 import { ConstructorItem } from '../ConstructorItem/ConstructorItem';
 import { useDispatch, useSelector } from '../../hooks/hooks';
-// import { useDispatch, useSelector } from 'react-redux';
 import { useDrop } from 'react-dnd/dist/hooks';
 import { addIngredient, deleteIngredient } from '../../services/actions/constructor';
 import { TIngredient } from '../../utils/types';

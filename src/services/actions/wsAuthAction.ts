@@ -74,7 +74,7 @@ export const wsAuthGetOrder = (payload: TWsOrders): IWsAuthGetOrderAction => {
   };
 };
 
-export const wsAuthSendOrder = (order: TOrder): IWsAuthSendOrderAction => {// Удалить??
+export const wsAuthSendOrder = (order: TOrder): IWsAuthSendOrderAction => {
   return {
     type: WS_AUTH_SEND_ORDER,
     order

@@ -27,9 +27,6 @@ export interface IWsConnectionClosedAction {
 export interface IWsGetOrderAction {
   readonly type: typeof WS_GET_ORDER;
   payload: TWsOrders;
-  // orders: Array<TOrder>;
-  // total: number;
-  // totalToday: number;
 }
 
 export interface IWsSendOrderAction {
@@ -77,7 +74,7 @@ export const wsGetOrder = (payload: TWsOrders): IWsGetOrderAction => {
   };
 };
 
-export const wsSendOrder = (order: TOrder): IWsSendOrderAction => {// Удалить??
+export const wsSendOrder = (order: TOrder): IWsSendOrderAction => {
   return {
     type: WS_SEND_ORDER,
     order

@@ -1,10 +1,8 @@
 import React, { useState, FC, FormEvent, ChangeEvent } from "react";
 import { Input, PasswordInput, Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDispatch, useSelector } from "../../../hooks/hooks";
-// import { useDispatch, useSelector } from "react-redux";
 import { patchUserData } from "../../../services/actions/auth";
 import styles from "./ProfileForm.module.css";
-// import { TFormState } from "../../../utils/types";
 
 export const ProfileForm: FC = () => {
   const { user } = useSelector(store => store.authReducer);

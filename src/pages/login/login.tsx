@@ -1,6 +1,5 @@
 import React, { useEffect, FC, FormEvent } from "react";
 import { useDispatch, useSelector } from "../../hooks/hooks";
-// import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { EmailInput, Button, PasswordInput } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./login.module.css";

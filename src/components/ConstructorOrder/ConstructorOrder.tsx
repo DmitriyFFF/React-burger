@@ -1,10 +1,8 @@
 import React, { useState, FC } from 'react';
-// import PropTypes from 'prop-types';
 import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './ConstructorOrder.module.css';
 import { Modal } from '../Modal/Modal';
 import { OrderDetails } from '../OrderDetails/OrderDetails';
-// import { useDispatch, useSelector } from 'react-redux';
 import { useDispatch, useSelector } from '../../hooks/hooks';
 import { CLEAR_ORDER, postOrder } from '../../services/actions/order';
 import { CLOSE_MODAL } from '../../services/actions/modal';
@@ -65,6 +63,3 @@ export const ConstructorOrder: FC<TConstructorPrice> = ({totalPrice}) => {
   )
 }
 
-// ConstructorOrder.propTypes = {
-//   totalPrice: PropTypes.number.isRequired
-// };

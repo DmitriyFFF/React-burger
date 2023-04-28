@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import { useDispatch } from "../../../hooks/hooks";
-// import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { postLogout } from "../../../services/actions/auth";
 import styles from "./ProfileNavigation.module.css";

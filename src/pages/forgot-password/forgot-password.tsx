@@ -3,7 +3,6 @@ import {Link, useNavigate} from "react-router-dom";
 import { EmailInput, Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./forgot-password.module.css";
 import { useDispatch, useSelector } from "../../hooks/hooks";
-// import { useDispatch, useSelector } from "react-redux";
 import { postForgotPassword } from "../../services/actions/forgot-password";
 import { useForm } from "../../hooks/useForm";
 

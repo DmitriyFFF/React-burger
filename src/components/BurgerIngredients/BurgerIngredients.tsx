@@ -1,6 +1,5 @@
 import React, { useState, useMemo, useEffect, FC } from 'react';
 import { Ingredients } from '../Ingredients/Ingredients';
-// import { useSelector } from 'react-redux';
 import { useSelector } from '../../hooks/hooks';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './BurgerIngredients.module.css';

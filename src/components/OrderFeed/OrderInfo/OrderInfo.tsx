@@ -1,9 +1,7 @@
 import { CurrencyIcon, FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components';
 import React, { useMemo, FC } from 'react';
 import { useSelector } from '../../../hooks/hooks';
-// import { useSelector } from 'react-redux';
 import { useLocation, useParams } from 'react-router-dom';
-// import PropTypes from 'prop-types';
 import styles from './OrderInfo.module.css';
 import { OrderIngredient } from './OrderIngredient/OrderIngredient';
 import { TIngredient, TModalOpen, TOrder } from '../../../utils/types';
@@ -19,17 +17,6 @@ export const OrderInfo: FC<TModalOpen> = ({modalIsOpen}) => {
   const orderAuth = ordersAuth?.find ((item: TOrder) => item._id === id);
 
   const activeOrder = location.pathname === `/profile/orders/${id}` ? orderAuth : order;
-
-  // const orderIngredients = useMemo(() => ingredients?.filter((item) => activeOrder?.ingredients.includes(item._id)), [activeOrder.ingredients, ingredients]);
-
-  // const calcIngredients = useMemo(() => activeOrder.ingredients?.map((element) => {
-  //   if(element!== null && element!== undefined) {
-  //     const calcItem = ingredients?.filter((item) => element && item._id ===element);
-  //     return calcItem[0]
-  //   }
-  // }), [activeOrder.ingredients, ingredients])
-
-  // console.log(calcIngredients)
 
   const orderIngredients = ingredients.filter((item: TIngredient) => activeOrder?.ingredients.includes(item._id));
 
@@ -83,8 +70,4 @@ export const OrderInfo: FC<TModalOpen> = ({modalIsOpen}) => {
     </>
   )
 };
-
-// OrderInfo.propTypes = {
-//   modalIsOpen: PropTypes.bool
-// };
 
