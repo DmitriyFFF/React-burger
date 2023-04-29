@@ -1,6 +1,6 @@
 import { request, baseUrl, getCookie } from "../../utils/constants";
 import { TIngredient } from "../../utils/types";
-import { AppDispatch, AppThunk } from "../types";
+import { AppThunk } from "../types";
 
 export const POST_ORDER_REQUEST: "POST_ORDER_REQUEST" = "POST_ORDER_REQUEST";
 export const POST_ORDER_SUCCESS: "POST_ORDER_SUCCESS" = "POST_ORDER_SUCCESS";
@@ -49,7 +49,7 @@ export const clearOrder = (): IClearOrderAction => ({
 });
 
 export const postOrder: AppThunk = (ingredients: Array<TIngredient>) => {
-  return function(dispatch: AppDispatch) {
+  return function(dispatch) {
     dispatch(postOrderRequestAction());
     request(`${baseUrl}/orders`, {
       method: 'POST',

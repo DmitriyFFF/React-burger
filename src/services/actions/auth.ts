@@ -1,6 +1,6 @@
 import { request, baseUrl, setCookie, deleteCookie, getCookie } from "../../utils/constants";
 import { TUser } from "../../utils/types";
-import { AppDispatch, AppThunk } from "../types";
+import { AppThunk } from "../types";
 
 export const POST_USER_REGISTER_REQUEST: "POST_USER_REGISTER_REQUEST" = "POST_USER_REGISTER_REQUEST";
 export const POST_USER_REGISTER_SUCCESS: "POST_USER_REGISTER_SUCCESS" = "POST_USER_REGISTER_SUCCESS";
@@ -199,7 +199,7 @@ export const patchUserFailAction = (): IPatchUserFailAction => ({
 });
 
 export const postUserData: AppThunk = (name: string, email: string, password: string) => {
-  return function(dispatch: AppDispatch) {
+  return function(dispatch) {
     dispatch(postUserRegisterRequestAction());
     request(`${baseUrl}/auth/register`, {
       method: 'POST',
@@ -223,7 +223,7 @@ export const postUserData: AppThunk = (name: string, email: string, password: st
 }
 
 export const postLogin: AppThunk = (email: string, password: string) => {
-  return function(dispatch: AppDispatch) {
+  return function(dispatch) {
     dispatch(postUserLoginRequestAction());
     request(`${baseUrl}/auth/login`, {
       method: 'POST',
@@ -246,7 +246,7 @@ export const postLogin: AppThunk = (email: string, password: string) => {
 }
 
 export const postLogout: AppThunk = () => {
-  return function(dispatch: AppDispatch) {
+  return function(dispatch) {
     dispatch(postUserLogoutRequestAction());
     request(`${baseUrl}/auth/logout`, {
       method: 'POST',
@@ -268,7 +268,7 @@ export const postLogout: AppThunk = () => {
 }
 
 export const postToken: AppThunk = () => {
-  return function(dispatch: AppDispatch) {
+  return function(dispatch) {
     dispatch(postTokenRequestAction());
     request(`${baseUrl}/auth/token`, {
       method: 'POST',
@@ -290,7 +290,7 @@ export const postToken: AppThunk = () => {
 }
 
 export const getUserData: AppThunk = () => {
-  return function(dispatch: AppDispatch) {
+  return function(dispatch) {
     dispatch(getUserRequestAction());
     request(`${baseUrl}/auth/user`, {
       method: 'GET',
@@ -310,7 +310,7 @@ export const getUserData: AppThunk = () => {
 }
 
 export const patchUserData: AppThunk = (name: string, email: string) => {
-  return function(dispatch: AppDispatch) {
+  return function(dispatch) {
     dispatch(patchUserRequestAction());
     request(`${baseUrl}/auth/user`, {
       method: 'PATCH',

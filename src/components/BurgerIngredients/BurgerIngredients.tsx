@@ -4,7 +4,6 @@ import { useSelector } from '../../hooks/hooks';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './BurgerIngredients.module.css';
 import { useInView } from 'react-intersection-observer';
-import { TIngredient } from '../../utils/types';
 
 export const BurgerIngredients: FC = () => {
   const [current, setCurrent] = useState('Булки')
@@ -13,9 +12,9 @@ export const BurgerIngredients: FC = () => {
   const [mainRef, inViewMain] = useInView({threshold: .5});
   const ingredients = useSelector(store => store.ingredientsReducer.ingredients);
 
-  const buns = useMemo(() => ingredients.filter((item: TIngredient) => item.type === 'bun'), [ingredients]);
-  const sauces = useMemo(() => ingredients.filter((item: TIngredient) => item.type === 'sauce'), [ingredients]);
-  const mains = useMemo(() => ingredients.filter((item: TIngredient) => item.type === 'main'), [ingredients]);
+  const buns = useMemo(() => ingredients.filter(item => item.type === 'bun'), [ingredients]);
+  const sauces = useMemo(() => ingredients.filter(item => item.type === 'sauce'), [ingredients]);
+  const mains = useMemo(() => ingredients.filter(item => item.type === 'main'), [ingredients]);
 
   useEffect(() => {
     if (inViewBun) {

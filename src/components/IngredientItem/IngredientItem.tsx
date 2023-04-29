@@ -2,7 +2,7 @@ import React, { FC, useMemo } from 'react';
 import { useDispatch, useSelector } from '../../hooks/hooks';
 import { useDrag } from 'react-dnd/dist/hooks/index.js';
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { TIngredient, TIngredientProps } from '../../utils/types';
+import { TIngredientProps } from '../../utils/types';
 import { loadIngredient } from '../../services/actions/modal';
 import styles from './IngredientItem.module.css';
 
@@ -14,7 +14,7 @@ export const IngredientItem: FC<TIngredientProps> = ({card}) => {
     if (card.type === 'bun') {
       return bun && bun._id === card._id ? 2 : 0;
     } else {
-      return ingredients.filter((ingredient: TIngredient) => ingredient._id === card._id).length
+      return ingredients.filter(ingredient => ingredient._id === card._id).length
     }},
     [bun, ingredients, card]
   );

@@ -4,7 +4,7 @@ import { useSelector } from '../../../hooks/hooks';
 import { useLocation, useParams } from 'react-router-dom';
 import styles from './OrderInfo.module.css';
 import { OrderIngredient } from './OrderIngredient/OrderIngredient';
-import { TIngredient, TModalOpen, TOrder } from '../../../utils/types';
+import { TModalOpen } from '../../../utils/types';
 
 export const OrderInfo: FC<TModalOpen> = ({modalIsOpen}) => {
   const location = useLocation();
@@ -13,15 +13,15 @@ export const OrderInfo: FC<TModalOpen> = ({modalIsOpen}) => {
   const { orders } = useSelector(store => store.wsReducer);
   const { ordersAuth } = useSelector(store => store.wsAuthReducer);
 
-  const order = orders?.find ((item: TOrder) => item._id === id);
-  const orderAuth = ordersAuth?.find ((item: TOrder) => item._id === id);
+  const order = orders?.find (item => item._id === id);
+  const orderAuth = ordersAuth?.find (item => item._id === id);
 
   const activeOrder = location.pathname === `/profile/orders/${id}` ? orderAuth : order;
 
-  const orderIngredients = ingredients.filter((item: TIngredient) => activeOrder?.ingredients.includes(item._id));
+   const orderIngredients = ingredients.filter(item => activeOrder?.ingredients.includes(item._id));
 
   const orderPrice = useMemo(() => {
-    return orderIngredients.reduce((prev: number, item: TIngredient) => {
+    return orderIngredients.reduce((prev, item) => {
       if (item.type === 'bun') {
         return (prev + item.price * 2);
       }
@@ -50,7 +50,7 @@ export const OrderInfo: FC<TModalOpen> = ({modalIsOpen}) => {
           <div className={styles.ingredientContainer}>
             <p className="text text_type_main-medium mb-6">Состав:</p>
             <ul className={styles.ingredientList}>
-              {orderIngredients.map((item: TIngredient, index: number) => (
+              {orderIngredients.map((item, index) => (
                 <OrderIngredient ingredient={item} order={activeOrder} key={index}/>
                 ))
               }

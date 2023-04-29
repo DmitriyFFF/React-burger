@@ -1,6 +1,6 @@
 import { request, baseUrl } from "../../utils/constants";
 import { TIngredient } from "../../utils/types";
-import { AppDispatch, AppThunk } from "../types";
+import { AppThunk } from "../types";
 
 export const GET_INGREDIENTS_REQUEST: "GET_INGREDIENTS_REQUEST" = "GET_INGREDIENTS_REQUEST";
 export const GET_INGREDIENTS_SUCCESS: "GET_INGREDIENTS_SUCCESS" = "GET_INGREDIENTS_SUCCESS";
@@ -50,7 +50,7 @@ export const setIngredientTab = (tab: string): ISetIngredientTabAction => ({
 });
 
 export const getIngredients: AppThunk = () => {
-  return function(dispatch: AppDispatch) {
+  return function(dispatch) {
     dispatch(getIngredientsRequest());
     request(`${baseUrl}/ingredients`)
       .then(res => {

@@ -1,6 +1,6 @@
 import { request, baseUrl } from "../../utils/constants";
 import { TUser } from "../../utils/types";
-import { AppDispatch, AppThunk } from "../types";
+import { AppThunk } from "../types";
 
 export const FORGOT_PASSWORD_REQUEST: "FORGOT_PASSWORD_REQUEST" = "FORGOT_PASSWORD_REQUEST";
 export const FORGOT_PASSWORD_SUCCESS: "FORGOT_PASSWORD_SUCCESS" = "FORGOT_PASSWORD_SUCCESS";
@@ -38,7 +38,7 @@ export const forgotPasswordFailAction = (): IForgotPasswordFailAction => ({
 });
 
 export const postForgotPassword: AppThunk = (email: string) => {
-  return function(dispatch: AppDispatch) {
+  return function(dispatch) {
     dispatch(forgotPasswordRequestAction());
     request(`${baseUrl}/password-reset`, {
       method: 'POST',

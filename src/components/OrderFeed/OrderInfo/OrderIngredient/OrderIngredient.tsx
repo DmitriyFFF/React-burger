@@ -4,7 +4,7 @@ import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components
 import styles from './OrderIngredient.module.css';
 
 export const OrderIngredient: FC<TOrderIngredient> = ({ingredient, order}) => {
-  const count = order.ingredients.filter((item) => item === ingredient._id).length;
+  const count = order.ingredients.filter(item => item === ingredient._id).length;
 
   return (
     <li className={styles.ingredient}>

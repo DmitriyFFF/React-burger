@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from '../../hooks/hooks';
 import { useParams } from 'react-router-dom';
 import { loadIngredient } from '../../services/actions/modal';
 import styles from './IngredientDetails.module.css';
-import { TIngredient } from '../../utils/types';
 
 export const IngredientDetails: FC = () => {
   const { ingredients } = useSelector(store => store.ingredientsReducer);
@@ -13,7 +12,7 @@ export const IngredientDetails: FC = () => {
 
   useEffect(() => {
     if (!loadedIngredient) {
-      const ingredient = ingredients.find((item: TIngredient) => item._id === id);
+      const ingredient = ingredients.find(item => item._id === id);
       dispatch(loadIngredient(ingredient));
     }
   }, [dispatch, ingredients, loadedIngredient, id])

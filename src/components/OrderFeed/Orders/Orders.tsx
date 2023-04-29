@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { TOrder, TOrders } from '../../../utils/types.js';
+import { TOrders } from '../../../utils/types.js';
 import { Link, useLocation } from 'react-router-dom';
 import { OrderItem } from '../OrderItem/OrderItem';
 import styles from './Orders.module.css';
@@ -11,7 +11,7 @@ export const Orders: FC<TOrders> = ({feedOrders}) => {
     <section className={`${styles.content} mb-10`}>
       <h2 className="text text_type_main-medium mt-10 mb-5">Лента заказов</h2>
       <ul className={styles.orderList}>
-      {feedOrders?.map((item: TOrder) =>(
+      {feedOrders?.map((item) =>(
           <Link
             className={styles.orderLink}
             key={item._id}

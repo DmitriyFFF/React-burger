@@ -1,5 +1,5 @@
 import { TIngredient, TOrder } from "../../utils/types";
-import { AppDispatch, AppThunk } from "../types";
+import { AppThunk } from "../types";
 
 export const OPEN_MODAL: 'OPEN_MODAL' = 'OPEN_MODAL';
 export const CLOSE_MODAL: 'CLOSE_MODAL' = 'CLOSE_MODAL';
@@ -49,25 +49,25 @@ export const loadOrderAction = (order: TOrder): ILoadOrderAction => ({
 });
 
 export const openModal: AppThunk = () => {
-  return function(dispatch: AppDispatch) {
+  return function(dispatch) {
     dispatch(openModalAction())
   }
 };
 
 export const closeModal: AppThunk = () => {
-  return function(dispatch: AppDispatch) {
+  return function(dispatch) {
     dispatch(closeModalAction());
   }
 };
 
 export const loadIngredient: AppThunk = (ingredient: TIngredient) => {
-  return function(dispatch: AppDispatch) {
+  return function(dispatch) {
     dispatch(loadIngredientAction(ingredient));
   }
 };
 
 export const loadOrder: AppThunk = (order: TOrder) => {
-  return function(dispatch: AppDispatch) {
+  return function(dispatch) {
     dispatch(loadOrderAction(order));
   }
 };

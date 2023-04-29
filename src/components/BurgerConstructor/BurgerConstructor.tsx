@@ -21,7 +21,7 @@ export const BurgerConstructor: FC = () => {
   });
 
   const totalPrice = useMemo(() => {
-    return ingredients.reduce((prev: number, item: TIngredient) =>
+    return ingredients.reduce((prev, item) =>
       prev + item.price, 0) + (bun ? bun.price * 2 : 0)
     },
     [bun, ingredients]
@@ -40,7 +40,7 @@ export const BurgerConstructor: FC = () => {
           />
         </div>}
       <ul className={styles.fillingList}>
-        {ingredients.map((ingredient: TIngredient, index: number) => (
+        {ingredients.map((ingredient, index) => (
             <ConstructorItem
               key={ingredient.key}
               ingredient={ingredient}
