@@ -5,5 +5,5 @@ import { Navigate, Outlet, } from 'react-router-dom';
 export const AuthorizedRoute: FC = () => {
   const { isAuthenticated } = useSelector(store => store.authReducer);
 
-  return !isAuthenticated ? <Outlet /> : <Navigate to="/" />;
+  return !isAuthenticated ? <Outlet /> : <Navigate to="/React-burger" />;
 }

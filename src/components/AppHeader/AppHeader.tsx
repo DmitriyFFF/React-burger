@@ -6,7 +6,7 @@ import styles from "./AppHeader.module.css";
 
 const AppHeaderLogo = () => {
   return (
-    <Link to="/">
+    <Link to="/React-burger">
       <Logo />
     </Link>
   );
@@ -18,7 +18,7 @@ const NavigationMenu = () => {
   return (
     <ul className={styles.menuContainer}>
       <li className={`${styles.menuItem} pt-4 pr-5 pb-4 mr-1`}>
-        <NavLink to="/" className={setActiveLink}>
+        <NavLink to="/React-burger" className={setActiveLink}>
           <BurgerIcon type="primary"/>
           <p className="text text_type_main-default pl-2">Конструктор</p>
         </NavLink>

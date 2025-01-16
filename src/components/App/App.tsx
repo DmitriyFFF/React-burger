@@ -34,7 +34,7 @@ export const App: FC = () => {
     <div className={styles.App}>
       <AppHeader />
       <Routes location={state || location}>
-        <Route path="/" element={<Main />} />
+        <Route path="/React-burger" element={<Main />} />
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<AuthorizedRoute />}>
           <Route path="/register" element={<Register />} />
