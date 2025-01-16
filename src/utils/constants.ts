@@ -55,7 +55,7 @@ export const request = async (url: string, options?: any) => {
   return fetch(url, options).then(checkResponse).then(checkSuccess);
 };
 
-export function setCookie(name: string, value: string, props: { [key: string]: any } & { expires?: number | Date | string } = {}) {//тренажер
+export function setCookie(name: string, value: string, props: { [key: string]: any } & { expires?: number | Date | string } = {}) {
   props = props || {};
   let exp = props.expires;
   if (typeof exp == 'number' && exp) {
@@ -78,7 +78,7 @@ export function setCookie(name: string, value: string, props: { [key: string]: a
   document.cookie = updatedCookie;
 };
 
-export function getCookie(name: string): string | undefined {//тренажер
+export function getCookie(name: string): string | undefined {
   const matches = document.cookie.match(
     new RegExp('(?:^|; )' + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)')
   );

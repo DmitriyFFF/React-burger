@@ -56,5 +56,5 @@
     "@types/uuid": "^9.0.0",
     "gh-pages": "^4.0.0"
   },
-  "homepage": "./"
+  "homepage": "https://dmitriyfff.github.io/React-burger/"
 }
